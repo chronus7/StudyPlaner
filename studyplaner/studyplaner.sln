@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "studyplaner", "studyplaner\studyplaner.csproj", "{31DCCD33-5CA7-4FF8-BBBC-F1CFEB7BADB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyPlaner.alt", "..\..\..\Dropbox\Projekte\VS Projects\StudyPlaner.alt\StudyPlaner\StudyPlaner.alt.csproj", "{0B67BFAF-3DC7-40C8-A12C-F4E5A901995F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyPlaner_alt", "StudyPlaner_alt\StudyPlaner.alt.csproj", "{0B67BFAF-3DC7-40C8-A12C-F4E5A901995F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
