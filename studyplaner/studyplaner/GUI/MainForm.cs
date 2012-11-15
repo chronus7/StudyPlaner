@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace studyplaner.GUI
+namespace Studyplaner.GUI
 {
     public partial class MainForm : Form
     {

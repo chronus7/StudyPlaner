@@ -1,4 +1,4 @@
-﻿namespace studyplaner.GUI
+﻿namespace Studyplaner.GUI
 {
     partial class MainForm
     {

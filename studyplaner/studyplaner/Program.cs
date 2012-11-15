@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using studyplaner.GUI;
+using Studyplaner.GUI;
 
-namespace studyplaner
+namespace Studyplaner
 {
     static class Program
     {

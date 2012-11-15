@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace studyplaner.Xml
+namespace Studyplaner.Xml
 {
     /// <summary>
     /// Parses the Xml which contains
