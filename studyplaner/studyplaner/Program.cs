@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using studyplaner.GUI;
 
 namespace studyplaner
 {
@@ -15,7 +16,8 @@ namespace studyplaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Console.WriteLine("Let's check wether mine does everysthing good as well :P");
+            Application.Run(new MainForm());
+            //Console.WriteLine("Let's check wether mine does everysthing good as well :P");
         }
     }
 }
