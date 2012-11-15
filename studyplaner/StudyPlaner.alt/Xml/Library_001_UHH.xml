@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE uni[
+  <!ELEMENT uni ANY>
+  <!ELEMENT region ANY>
+  <!ELEMENT module ANY>
+  <!ELEMENT semester ANY>
+  <!ELEMENT bools ANY>
+  <!ELEMENT lectures ANY>
+  <!ELEMENT exercises ANY>
+  <!ELEMENT tutorials ANY>
+  <!ELEMENT internships ANY>
+  <!ELEMENT event ANY>
+  <!ELEMENT day ANY>
+  <!ELEMENT time ANY>
+  <!ELEMENT location ANY>
+  <!ELEMENT importance ANY>
+  <!ELEMENT power ANY>
+
+  <!ATTLIST uni id ID #REQUIRED>
+  <!ATTLIST uni name NMTOKENS #REQUIRED>
+  <!ATTLIST region id ID #REQUIRED>
+  <!ATTLIST module id ID #REQUIRED>
+  <!ATTLIST module name NMTOKENS #REQUIRED>
+  <!ATTLIST module short NMTOKENS #REQUIRED>
+  <!ATTLIST event id ID #REQUIRED>
+  <!ATTLIST event type NMTOKEN #REQUIRED>
+]>
+<uni id="001_UHH" name="Universität Hamburg">
+  <region id="Informatik">
+    <module id="IP1" name="Softwareentwicklung 1" short="SE1">
+      <semester>Winter</semester>
+      <bools>
+        <lectures>1</lectures>
+        <exercises>2</exercises>
+        <tutorials>0</tutorials>
+        <internships>0</internships>
+      </bools>
+      <event id="64-000_01" type="lecture">
+        <day>Mittwoch</day>
+        <time>14.15,15.45</time>
+        <location>Chemie A</location>
+        <importance>3</importance>
+        <power>0</power>
+      </event>
+      <event id="64-001_02" type="exercise">
+        <day>Montag</day>
+        <time>9.00,12.00</time>
+        <location>D-010, D-017, D-018</location>
+        <importance>6</importance>
+        <power>1</power>
+      </event>
+      <event id="64-001_03" type="exercise">
+        <day>Dienstag</day>
+        <time>9.00,12.00</time>
+        <location>D-010, D-017, D-018</location>
+        <importance>6</importance>
+        <power>1</power>
+      </event>
+    </module>
+    <module id="IP2" name="Testmodul" short="TM1">
+      <semester>Sommer</semester>
+      <bools>
+        <lectures>0</lectures>
+        <exercises>0</exercises>
+        <internships>0</internships>
+        <tutorials>1</tutorials>
+      </bools>
+      <event id="65-000_01" type="tutorial">
+        <day>Freitag</day>
+        <time>18.00,20.00</time>
+        <location>Geomatikum H1</location>
+        <importance>5</importance>
+        <power>1</power>
+      </event>
+    </module>
+    <module id="IP3" name="Test" short="T1">
+      <semester>Winter</semester>
+      <bools>
+        <lectures>0</lectures>
+        <exercises>0</exercises>
+        <tutorials>0</tutorials>
+        <internships>1</internships>
+      </bools>
+      <event id="66-000_01" type="internship">
+        <day>Samstag</day>
+        <time>9.00,17.00</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+    </module>
+    <module id="IP4" name="TestModul Nummer 4" short="TMNr4">
+      <semester>Winter</semester>
+      <bools>
+        <lectures>2</lectures>
+        <exercises>1</exercises>
+        <tutorials>1</tutorials>
+        <internships>1</internships>
+      </bools>
+      <event id="67-000_01" type="lecture">
+        <day>Freitag</day>
+        <time>9.00,11.00</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+      <event id="67-000_02" type="lecture">
+        <day>Donnerstag</day>
+        <time>9.00,11.00</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+      <event id="67-003_03" type="exercise">
+        <day>Mittwoch</day>
+        <time>9.15,10.45</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+      <event id="67-001_04" type="internship">
+        <day>Dienstag</day>
+        <time>9.00,10.00</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+      <event id="67-002_05" type="tutorial">
+        <day>Montag</day>
+        <time>9.00,17.00</time>
+        <location>F-132</location>
+        <importance>4</importance>
+        <power>1</power>
+      </event>
+    </module>
+  </region>
+</uni>

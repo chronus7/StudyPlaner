@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE root [
+  <!ELEMENT root ANY>
+  <!ELEMENT libraries ANY>
+  <!ELEMENT uni ANY>
+  <!ELEMENT region EMPTY>
+  <!ELEMENT users ANY>
+  <!ELEMENT plan ANY>
+  <!ELEMENT event ANY>
+  <!ATTLIST libraries path NMTOKENS #REQUIRED>
+  <!ATTLIST uni id ID #REQUIRED>
+  <!ATTLIST uni name NMTOKENS #REQUIRED>
+  <!ATTLIST region id ID #REQUIRED>
+  <!ATTLIST region name NMTOKENS #REQUIRED>
+  <!ATTLIST plan id ID #REQUIRED>
+  <!ATTLIST plan name NMTOKENS "Semester XX">
+]>
+<root>
+  <!--Included Libraries-->
+  <libraries path="D:\Daten\Dropbox\Projekte\StudyPlaner\StudyPlaner\Xml\">
+    <uni id="001_UHH" name="Universtät Hamburg">
+      <region id="UHH_Inf" name="Informatik" />
+    </uni>
+  </libraries>
+  <!--User's own plans-->
+  <users>
+    <plan id="plan_001" name="Wintersemester 2011/2012">
+      <event>67-000_01</event>
+      <event>67-003_03</event>
+      <event>67-001_04</event>
+      <event>67-002_05</event>
+    </plan>
+  </users>
+</root>

@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="StudyPlaner.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="COLOR_LECTURES" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 255, 128</Value>
+    </Setting>
+    <Setting Name="COLOR_EXERCISES" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">128, 255, 255</Value>
+    </Setting>
+    <Setting Name="COLOR_TUTORIALS" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 42, 42</Value>
+    </Setting>
+    <Setting Name="COLOR_INTERNSHIPS" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">128, 255, 128</Value>
+    </Setting>
+    <Setting Name="COLOR_FONT" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="COLOR_BRIGHTNESSFACTOR" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.925</Value>
+    </Setting>
+    <Setting Name="COLOR_SELECTED" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 192, 0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
