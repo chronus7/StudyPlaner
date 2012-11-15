@@ -15,6 +15,7 @@ namespace studyplaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Console.WriteLine("Mal gucken, ob git extensions funktionieren xD");
         }
     }
 }
