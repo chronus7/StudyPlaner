@@ -31,11 +31,11 @@
             this._mainPanel = new System.Windows.Forms.Panel();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_file_new = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_file_quit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._panelInfo = new System.Windows.Forms.Panel();
-            this._mainMenu_file_new = new System.Windows.Forms.ToolStripMenuItem();
-            this._mainMenu_file_quit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,19 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // _mainMenu_file_new
+            // 
+            this._mainMenu_file_new.Name = "_mainMenu_file_new";
+            this._mainMenu_file_new.Size = new System.Drawing.Size(142, 22);
+            this._mainMenu_file_new.Text = "New";
+            // 
+            // _mainMenu_file_quit
+            // 
+            this._mainMenu_file_quit.Name = "_mainMenu_file_quit";
+            this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this._mainMenu_file_quit.Size = new System.Drawing.Size(142, 22);
+            this._mainMenu_file_quit.Text = "Quit";
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
@@ -95,19 +108,6 @@
             this._panelInfo.Name = "_panelInfo";
             this._panelInfo.Size = new System.Drawing.Size(269, 513);
             this._panelInfo.TabIndex = 2;
-            // 
-            // _mainMenu_file_new
-            // 
-            this._mainMenu_file_new.Name = "_mainMenu_file_new";
-            this._mainMenu_file_new.Size = new System.Drawing.Size(152, 22);
-            this._mainMenu_file_new.Text = "New";
-            // 
-            // _mainMenu_file_quit
-            // 
-            this._mainMenu_file_quit.Name = "_mainMenu_file_quit";
-            this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this._mainMenu_file_quit.Size = new System.Drawing.Size(152, 22);
-            this._mainMenu_file_quit.Text = "Quit";
             // 
             // MainForm
             // 
