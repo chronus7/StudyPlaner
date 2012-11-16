@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Studyplaner.GUI;
+using Studyplaner.Materials;
 
 namespace Studyplaner
 {
@@ -16,8 +17,8 @@ namespace Studyplaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            //Console.WriteLine("Let's check wether mine does everysthing good as well :P");
+            //Application.Run(new MainForm());
+            Console.WriteLine(new Time(5, 20));
         }
     }
 }
