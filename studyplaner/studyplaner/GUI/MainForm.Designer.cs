@@ -117,6 +117,7 @@
             this.Controls.Add(this._panelMain);
             this.Controls.Add(this._mainMenuStrip);
             this.MainMenuStrip = this._mainMenuStrip;
+            this.MinimumSize = new System.Drawing.Size(550, 300);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudyPlaner";
