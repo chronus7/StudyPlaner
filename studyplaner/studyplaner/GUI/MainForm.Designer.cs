@@ -83,6 +83,7 @@
             this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this._mainMenu_file_quit.Size = new System.Drawing.Size(152, 22);
             this._mainMenu_file_quit.Text = "Quit";
+            this._mainMenu_file_quit.Click += new System.EventHandler(this.totalQuitClick);
             // 
             // _mainMenu_edit
             // 
