@@ -18,7 +18,7 @@ namespace Studyplaner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new MainForm());
-            Console.WriteLine(new Time(5, 20));
+            Console.WriteLine(Time.ValueOf("05"));
         }
     }
 }
