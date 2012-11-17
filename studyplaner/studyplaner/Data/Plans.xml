@@ -6,8 +6,10 @@ export and import plans separately.-->
   <plan id="plan_001">
     <name><![CDATA[The name of this plan]]></name><!--really as CDATA ?-->
     <items>
-      <item>1234567</item><!--the id of the event-->
-      <item>3216548</item>
+      <item>
+        <uni>1111</uni><!--the id of the university to get the correct data-->
+        <event>1234567</event><!--the id of the event-->
+      </item>
       <!--and so on-->
     </items>
   </plan>

@@ -9,7 +9,7 @@ namespace Studyplaner.Materials
     public class UniEvent
     {
         public int ID { get; set; }
-        public int ParentID { get; set; }
+        public int ModuleID { get; set; }
         public string LVNum { get; set; }
         public string Location { get; set; }
         public Time StartTime { get; set; }
