@@ -58,6 +58,8 @@
             this._mainMenu_help});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
+            this._mainMenuStrip.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this._mainMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._mainMenuStrip.Size = new System.Drawing.Size(984, 24);
             this._mainMenuStrip.TabIndex = 1;
             this._mainMenuStrip.Text = "menuStrip1";
@@ -74,14 +76,14 @@
             // _mainMenu_file_new
             // 
             this._mainMenu_file_new.Name = "_mainMenu_file_new";
-            this._mainMenu_file_new.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_file_new.Size = new System.Drawing.Size(142, 22);
             this._mainMenu_file_new.Text = "New";
             // 
             // _mainMenu_file_quit
             // 
             this._mainMenu_file_quit.Name = "_mainMenu_file_quit";
             this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this._mainMenu_file_quit.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_file_quit.Size = new System.Drawing.Size(142, 22);
             this._mainMenu_file_quit.Text = "Quit";
             this._mainMenu_file_quit.Click += new System.EventHandler(this.totalQuitClick);
             // 

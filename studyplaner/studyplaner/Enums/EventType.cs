@@ -8,7 +8,7 @@ namespace Studyplaner.Enums
     public enum EventType
     {
         Lecture,
-        Exercises,
+        Exercise,
         Tutorial,
         Internship
     }

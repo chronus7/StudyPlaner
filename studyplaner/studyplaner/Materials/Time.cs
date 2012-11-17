@@ -33,7 +33,7 @@ namespace Studyplaner.Materials
         /// <summary>
         /// True if there is a valid Date. False if not.
         /// </summary>
-        public Boolean hasDate { get { return Date.Equals(STANDARDDATETIME);}}
+        public bool hasDate { get { return Date.Equals(STANDARDDATETIME);}}
 
         /// <summary>
         /// New Time.
