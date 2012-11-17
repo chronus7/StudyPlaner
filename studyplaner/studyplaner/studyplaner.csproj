@@ -56,6 +56,7 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Materials\Plan.cs" />
     <Compile Include="Materials\Time.cs" />
     <Compile Include="Materials\UniEvent.cs" />
     <Compile Include="Enums\EventType.cs" />
@@ -89,7 +90,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Library.xml" />
+    <Content Include="Data\Plans.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

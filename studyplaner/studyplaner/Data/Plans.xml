@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--The List of different plans...
+There should be the possibility to
+export and import plans separately.-->
+<root>
+  <plan id="plan_001">
+    <name><![CDATA[The name of this plan]]></name><!--really as CDATA ?-->
+    <items>
+      <item>1234567</item><!--the id of the event-->
+      <item>3216548</item>
+      <!--and so on-->
+    </items>
+  </plan>
+  <!--and more plans-->
+</root>
