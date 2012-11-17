@@ -96,7 +96,7 @@
       <void property="attributes">
        <void property="text">
         <string>+ ID : int
-+ ParentID : int
++ ModuleID : int
 + LVNum : string
 + Location : string
 + StartTime : Time
