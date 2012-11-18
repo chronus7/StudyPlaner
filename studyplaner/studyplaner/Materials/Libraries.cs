@@ -25,7 +25,7 @@ namespace Studyplaner.Materials
             _list.Add(unilib);
         }
 
-        public System.Collections.Generic.IEnumerator<Object> GetEnumerator()
+        public IEnumerator<UniLibrary> GetEnumerator()
         {
             return _list.GetEnumerator();
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Studyplaner.Materials
 {
-    class UniLibrary
+    public class UniLibrary
     {
         public int ID { get; set; }
         public string Name { get; set; }
