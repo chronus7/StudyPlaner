@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Department.cs" />
     <Compile Include="Enums\Semester.cs" />
     <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
@@ -56,8 +57,10 @@
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Materials\Libraries.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Materials\Time.cs" />
+    <Compile Include="Materials\UniLibrary.cs" />
     <Compile Include="Materials\UniEvent.cs" />
     <Compile Include="Enums\EventType.cs" />
     <Compile Include="Materials\UniModule.cs" />
@@ -78,6 +81,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Data\Libs.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\Plans.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,7 +99,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Plans.xml" />
+    <Content Include="Data\Libs.xml" />
+    <Content Include="Data\Plans.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

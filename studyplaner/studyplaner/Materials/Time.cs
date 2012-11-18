@@ -77,7 +77,6 @@ namespace Studyplaner.Materials
             if (!TIMEFULLREGEX.IsMatch(str, 0))
                 throw new ArgumentException("str", "Invalid Time-syntax!");
 
-            //TODO continue
             Match mhours = TIMEHOURSREGEX.Match(str);
             String val = mhours.Groups[0].Value;
             byte hours = Byte.Parse(val);

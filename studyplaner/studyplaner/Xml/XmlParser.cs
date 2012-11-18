@@ -12,7 +12,7 @@ namespace Studyplaner.Xml
     /// We should decide how we build up
     /// the arcitecture!!! :P
     /// </summary>
-    class XmlParser
+    public class XmlParser
     {
 
     }

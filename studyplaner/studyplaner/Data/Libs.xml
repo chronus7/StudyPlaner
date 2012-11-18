@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<libraries>
+  <!--List of all (local) known uni-libraries-->
+  <uni>
+    <id>1111</id>
+    <path>data/uniLib_1111.xml</path>
+  </uni>
+  <uni>
+    <id>1112</id>
+    <path>data/uniLib_1112.xml</path>
+  </uni>
+</libraries>
