@@ -81,6 +81,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Data\Libs.xsd">
       <SubType>Designer</SubType>
     </None>
