@@ -10,6 +10,12 @@ namespace Studyplaner.Materials
 {
     public class LaptopBattery
     {
+        // Grenzen für BatteryState Berechnungen
+        private const int BATTERYTHRESHOLD_EMPTY = 10;
+        private const int BATTERYTHRESHOLD_LOW = 30;
+        private const int BATTERYTHRESHOLD_MEDIUM = 60;
+        private const int BATTERYTHRESHOLD_HIGH = 90;
+
         public event EventHandler<BatteryEventArgs> BatteryStateChanged;
 
         protected virtual void OnBatteryStateChanged(BatteryEventArgs e)
@@ -59,13 +65,13 @@ namespace Studyplaner.Materials
 
         private BatteryState CalculateBatteryState(short batteryRemaining)
         {
-            if (batteryRemaining < 10)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
+            if (batteryRemaining < BATTERYTHRESHOLD_EMPTY)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
                 return BatteryState.Empty;
-            else if (batteryRemaining < 30)
+            else if (batteryRemaining < BATTERYTHRESHOLD_LOW)
                 return BatteryState.Low;
-            else if (batteryRemaining < 60)
+            else if (batteryRemaining < BATTERYTHRESHOLD_MEDIUM)
                 return BatteryState.Medium;
-            else if (batteryRemaining < 90)
+            else if (batteryRemaining < BATTERYTHRESHOLD_HIGH)
                 return BatteryState.High;
             else
                 return BatteryState.FullyCharged;
