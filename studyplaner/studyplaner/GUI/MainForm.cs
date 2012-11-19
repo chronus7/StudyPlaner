@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Studyplaner.Enums;
+using Studyplaner.Materials;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ namespace Studyplaner.GUI
     public partial class MainForm : Form
     {
         private const float MAINPANEL_YDISTANCE_FACTOR = 0.68f;
+        private LaptopBattery _battery;
 
         public MainForm()
         {
@@ -23,6 +26,10 @@ namespace Studyplaner.GUI
         private void Initialize()
         {
             this.BackColor = Properties.Settings.Default.USER_BACKGROUND;
+
+            this._battery = new LaptopBattery();
+            this._battery.BatteryStateChanged += OnBatteryStateChanged;
+            UpdateStatusBarBatteryState(_battery.GetCurrentBatteryState());
         }
             
         private void ResizePanels()
@@ -30,6 +37,37 @@ namespace Studyplaner.GUI
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 45, _panelInfo.Height);
+        }
+
+        private void UpdateStatusBarBatteryState(BatteryState batteryState)
+        {
+            Image img = null;
+
+            switch (batteryState)
+            {
+                case BatteryState.Empty:
+                    img = Properties.Resources.EMPTY;
+                    break;
+                case BatteryState.Low:
+                    img = Properties.Resources.LOW;
+                    break;
+                case BatteryState.Medium:
+                    img = Properties.Resources.MEDIUM;
+                    break;
+                case BatteryState.High:
+                    img = Properties.Resources.HIGH;
+                    break;
+                case BatteryState.FullyCharged:
+                    img = Properties.Resources.FULLYCHARGED;
+                    break;
+            }
+
+            this._statusElementBattery.Image = img;
+        }
+
+        private void OnBatteryStateChanged(object sender, BatteryEventArgs e)
+        {
+            UpdateStatusBarBatteryState(e.BatteryState);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
