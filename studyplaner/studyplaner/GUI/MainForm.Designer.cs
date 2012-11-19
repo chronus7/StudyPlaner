@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._panelMain = new System.Windows.Forms.Panel();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._mainMenu_file = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,7 @@
             this._statusElementTooltip = new System.Windows.Forms.ToolStripStatusLabel();
             this._statusElementBattery = new System.Windows.Forms.ToolStripStatusLabel();
             this._statusElementDateTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this._dateTimeTimer = new System.Windows.Forms.Timer(this.components);
             this._mainMenuStrip.SuspendLayout();
             this._statusMenu.SuspendLayout();
             this.SuspendLayout();
@@ -130,21 +132,28 @@
             // 
             this._statusElementTooltip.BackColor = System.Drawing.SystemColors.Control;
             this._statusElementTooltip.Name = "_statusElementTooltip";
-            this._statusElementTooltip.Size = new System.Drawing.Size(807, 17);
+            this._statusElementTooltip.Size = new System.Drawing.Size(797, 17);
             this._statusElementTooltip.Spring = true;
             // 
             // _statusElementBattery
             // 
             this._statusElementBattery.BackColor = System.Drawing.SystemColors.Control;
             this._statusElementBattery.Image = global::Studyplaner.Properties.Resources.HIGH;
+            this._statusElementBattery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._statusElementBattery.Name = "_statusElementBattery";
-            this._statusElementBattery.Size = new System.Drawing.Size(16, 17);
+            this._statusElementBattery.Size = new System.Drawing.Size(26, 17);
+            this._statusElementBattery.Text = " ";
             // 
             // _statusElementDateTime
             // 
             this._statusElementDateTime.Name = "_statusElementDateTime";
             this._statusElementDateTime.Size = new System.Drawing.Size(115, 17);
             this._statusElementDateTime.Text = "Mo, 00.00.0000 00:00";
+            // 
+            // _dateTimeTimer
+            // 
+            this._dateTimeTimer.Interval = 30000;
+            this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
             // 
             // MainForm
             // 
@@ -185,5 +194,6 @@
         private System.Windows.Forms.ToolStripStatusLabel _statusElementTooltip;
         private System.Windows.Forms.ToolStripStatusLabel _statusElementBattery;
         private System.Windows.Forms.ToolStripStatusLabel _statusElementDateTime;
+        private System.Windows.Forms.Timer _dateTimeTimer;
     }
 }

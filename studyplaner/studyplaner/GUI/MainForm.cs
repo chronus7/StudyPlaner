@@ -27,6 +27,9 @@ namespace Studyplaner.GUI
         {
             this.BackColor = Properties.Settings.Default.USER_BACKGROUND;
 
+            this._dateTimeTimer.Start();
+            UpdateStatusBarDateTime();
+
             this._battery = new LaptopBattery();
             this._battery.BatteryStateChanged += OnBatteryStateChanged;
             UpdateStatusBarBatteryState(_battery.GetCurrentBatteryState());
@@ -37,6 +40,12 @@ namespace Studyplaner.GUI
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 45, _panelInfo.Height);
+        }
+
+        private void UpdateStatusBarDateTime()
+        {
+            this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString(); // TODO: "\t" will irgendwie nicht richtig, daher die spaces
+            // TODO: ergibt "Montag, 19. November 2012" nicht genau das, was wir wollten, aber die anderen Methoden sind schlechter und ich will den string nicht selber zusammenbauen                                                                    
         }
 
         private void UpdateStatusBarBatteryState(BatteryState batteryState)
@@ -63,6 +72,11 @@ namespace Studyplaner.GUI
             }
 
             this._statusElementBattery.Image = img;
+        }
+
+        private void dateTimeTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateStatusBarDateTime();
         }
 
         private void OnBatteryStateChanged(object sender, BatteryEventArgs e)
