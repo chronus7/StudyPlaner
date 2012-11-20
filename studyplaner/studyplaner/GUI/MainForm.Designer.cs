@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._panelMain = new System.Windows.Forms.Panel();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._mainMenu_file = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,7 +37,13 @@
             this._mainMenu_edit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_help = new System.Windows.Forms.ToolStripMenuItem();
             this._panelInfo = new System.Windows.Forms.Panel();
+            this._statusMenu = new System.Windows.Forms.StatusStrip();
+            this._statusElementTooltip = new System.Windows.Forms.ToolStripStatusLabel();
+            this._statusElementBattery = new System.Windows.Forms.ToolStripStatusLabel();
+            this._statusElementDateTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this._dateTimeTimer = new System.Windows.Forms.Timer(this.components);
             this._mainMenuStrip.SuspendLayout();
+            this._statusMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _panelMain
@@ -45,9 +52,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this._panelMain.BackColor = System.Drawing.SystemColors.Control;
             this._panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._panelMain.Location = new System.Drawing.Point(12, 37);
+            this._panelMain.Location = new System.Drawing.Point(10, 35);
             this._panelMain.Name = "_panelMain";
-            this._panelMain.Size = new System.Drawing.Size(685, 513);
+            this._panelMain.Size = new System.Drawing.Size(685, 495);
             this._panelMain.TabIndex = 0;
             // 
             // _mainMenuStrip
@@ -104,17 +111,57 @@
             this._panelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this._panelInfo.BackColor = System.Drawing.SystemColors.Control;
             this._panelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._panelInfo.Location = new System.Drawing.Point(703, 37);
+            this._panelInfo.Location = new System.Drawing.Point(700, 35);
             this._panelInfo.Name = "_panelInfo";
-            this._panelInfo.Size = new System.Drawing.Size(269, 513);
+            this._panelInfo.Size = new System.Drawing.Size(275, 495);
             this._panelInfo.TabIndex = 2;
+            // 
+            // _statusMenu
+            // 
+            this._statusMenu.BackColor = System.Drawing.SystemColors.Control;
+            this._statusMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._statusElementTooltip,
+            this._statusElementBattery,
+            this._statusElementDateTime});
+            this._statusMenu.Location = new System.Drawing.Point(0, 540);
+            this._statusMenu.Name = "_statusMenu";
+            this._statusMenu.Size = new System.Drawing.Size(984, 22);
+            this._statusMenu.TabIndex = 3;
+            // 
+            // _statusElementTooltip
+            // 
+            this._statusElementTooltip.BackColor = System.Drawing.SystemColors.Control;
+            this._statusElementTooltip.Name = "_statusElementTooltip";
+            this._statusElementTooltip.Size = new System.Drawing.Size(797, 17);
+            this._statusElementTooltip.Spring = true;
+            // 
+            // _statusElementBattery
+            // 
+            this._statusElementBattery.BackColor = System.Drawing.SystemColors.Control;
+            this._statusElementBattery.Image = global::Studyplaner.Properties.Resources.HIGH;
+            this._statusElementBattery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._statusElementBattery.Name = "_statusElementBattery";
+            this._statusElementBattery.Size = new System.Drawing.Size(26, 17);
+            this._statusElementBattery.Text = " ";
+            // 
+            // _statusElementDateTime
+            // 
+            this._statusElementDateTime.Name = "_statusElementDateTime";
+            this._statusElementDateTime.Size = new System.Drawing.Size(115, 17);
+            this._statusElementDateTime.Text = "Mo, 00.00.0000 00:00";
+            // 
+            // _dateTimeTimer
+            // 
+            this._dateTimeTimer.Interval = 30000;
+            this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(984, 562);
+            this.Controls.Add(this._statusMenu);
             this.Controls.Add(this._panelInfo);
             this.Controls.Add(this._panelMain);
             this.Controls.Add(this._mainMenuStrip);
@@ -126,6 +173,8 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this._mainMenuStrip.ResumeLayout(false);
             this._mainMenuStrip.PerformLayout();
+            this._statusMenu.ResumeLayout(false);
+            this._statusMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,5 +190,10 @@
         private System.Windows.Forms.Panel _panelInfo;
         private System.Windows.Forms.ToolStripMenuItem _mainMenu_file_new;
         public System.Windows.Forms.ToolStripMenuItem _mainMenu_file_quit;
+        private System.Windows.Forms.StatusStrip _statusMenu;
+        private System.Windows.Forms.ToolStripStatusLabel _statusElementTooltip;
+        private System.Windows.Forms.ToolStripStatusLabel _statusElementBattery;
+        private System.Windows.Forms.ToolStripStatusLabel _statusElementDateTime;
+        private System.Windows.Forms.Timer _dateTimeTimer;
     }
 }

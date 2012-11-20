@@ -22,5 +22,17 @@ namespace Studyplaner.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightSlateGray")]
+        public global::System.Drawing.Color USER_BACKGROUND {
+            get {
+                return ((global::System.Drawing.Color)(this["USER_BACKGROUND"]));
+            }
+            set {
+                this["USER_BACKGROUND"] = value;
+            }
+        }
     }
 }

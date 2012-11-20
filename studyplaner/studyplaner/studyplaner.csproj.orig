@@ -50,18 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Department.cs" />
-    <Compile Include="Enums\LoadingState.cs" />
-    <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Enums\Semester.cs" />
-    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Materials\BatteryEventArgs.cs" />
-    <Compile Include="Materials\LaptopBattery.cs" />
     <Compile Include="Materials\Libraries.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Materials\Time.cs" />
@@ -86,11 +81,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="Data\Libs.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Data\Plans.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\uniLib.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -111,12 +108,9 @@
     <Content Include="Data\Plans.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Data\uniLib_1111.xml" />
-    <None Include="Resources\two.png" />
-    <None Include="Resources\three.png" />
-    <None Include="Resources\one.png" />
-    <None Include="Resources\four.png" />
-    <None Include="Resources\empty.png" />
+    <Content Include="Data\uniLib_1111.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
