@@ -36,6 +36,7 @@
             this._mainMenu_file_quit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_edit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_extras = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_extras_settings = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_help = new System.Windows.Forms.ToolStripMenuItem();
             this._panelInfo = new System.Windows.Forms.Panel();
             this._statusMenu = new System.Windows.Forms.StatusStrip();
@@ -43,7 +44,6 @@
             this._statusElementBattery = new System.Windows.Forms.ToolStripStatusLabel();
             this._statusElementDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this._dateTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this._mainMenu_extras_settings = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenuStrip.SuspendLayout();
             this._statusMenu.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,6 @@
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
             this._mainMenuStrip.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this._mainMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._mainMenuStrip.Size = new System.Drawing.Size(984, 24);
             this._mainMenuStrip.TabIndex = 1;
             this._mainMenuStrip.Text = "menuStrip1";
@@ -86,14 +85,14 @@
             // _mainMenu_file_new
             // 
             this._mainMenu_file_new.Name = "_mainMenu_file_new";
-            this._mainMenu_file_new.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_file_new.Size = new System.Drawing.Size(142, 22);
             this._mainMenu_file_new.Text = "New";
             // 
             // _mainMenu_file_quit
             // 
             this._mainMenu_file_quit.Name = "_mainMenu_file_quit";
             this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this._mainMenu_file_quit.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_file_quit.Size = new System.Drawing.Size(142, 22);
             this._mainMenu_file_quit.Text = "Quit";
             this._mainMenu_file_quit.ToolTipText = "Close the application";
             this._mainMenu_file_quit.Click += new System.EventHandler(this.TotalQuitClick);
@@ -113,6 +112,16 @@
             this._mainMenu_extras.Name = "_mainMenu_extras";
             this._mainMenu_extras.Size = new System.Drawing.Size(49, 20);
             this._mainMenu_extras.Text = "Extras";
+            // 
+            // _mainMenu_extras_settings
+            // 
+            this._mainMenu_extras_settings.Name = "_mainMenu_extras_settings";
+            this._mainMenu_extras_settings.Size = new System.Drawing.Size(116, 22);
+            this._mainMenu_extras_settings.Text = "Settings";
+            this._mainMenu_extras_settings.ToolTipText = "Open the settings dialog";
+            this._mainMenu_extras_settings.Click += new System.EventHandler(this.OpenSettingsDialog);
+            this._mainMenu_extras_settings.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
+            this._mainMenu_extras_settings.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
             // 
             // _mainMenu_help
             // 
@@ -139,6 +148,7 @@
             this._statusElementDateTime});
             this._statusMenu.Location = new System.Drawing.Point(0, 540);
             this._statusMenu.Name = "_statusMenu";
+            this._statusMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             this._statusMenu.Size = new System.Drawing.Size(984, 22);
             this._statusMenu.TabIndex = 3;
             // 
@@ -147,7 +157,7 @@
             this._statusElementTooltip.BackColor = System.Drawing.SystemColors.Control;
             this._statusElementTooltip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this._statusElementTooltip.Name = "_statusElementTooltip";
-            this._statusElementTooltip.Size = new System.Drawing.Size(838, 17);
+            this._statusElementTooltip.Size = new System.Drawing.Size(807, 17);
             this._statusElementTooltip.Spring = true;
             this._statusElementTooltip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -171,16 +181,6 @@
             // 
             this._dateTimeTimer.Interval = 30000;
             this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
-            // 
-            // _mainMenu_extras_settings
-            // 
-            this._mainMenu_extras_settings.Name = "_mainMenu_extras_settings";
-            this._mainMenu_extras_settings.Size = new System.Drawing.Size(152, 22);
-            this._mainMenu_extras_settings.Text = "Settings";
-            this._mainMenu_extras_settings.ToolTipText = "Open the settings dialog";
-            this._mainMenu_extras_settings.Click += new System.EventHandler(this.OpenSettingsDialog);
-            this._mainMenu_extras_settings.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
-            this._mainMenu_extras_settings.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
             // 
             // MainForm
             // 
