@@ -48,7 +48,7 @@ namespace Studyplaner.Materials
         private void UpdateBatteryState()
         {
             bool isChargingNow = SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online ? true : false; // TODO: PowerLineStatus.Unknown wird nicht behandelt und als !charging interpretiert ändern?
-            short batteryStateNow = (short)Math.Floor(SystemInformation.PowerStatus.BatteryLifePercent);
+            short batteryStateNow = (short)Math.Floor(SystemInformation.PowerStatus.BatteryLifePercent * 100f);
 
             if (_isCharging != isChargingNow || _batteryState != batteryStateNow)
             {
@@ -65,13 +65,13 @@ namespace Studyplaner.Materials
 
         private BatteryState CalculateBatteryState(short batteryRemaining)
         {
-            if (batteryRemaining < BATTERYTHRESHOLD_EMPTY)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
+            if (batteryRemaining <= BATTERYTHRESHOLD_EMPTY)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
                 return BatteryState.Empty;
-            else if (batteryRemaining < BATTERYTHRESHOLD_LOW)
+            else if (batteryRemaining <= BATTERYTHRESHOLD_LOW)
                 return BatteryState.Low;
-            else if (batteryRemaining < BATTERYTHRESHOLD_MEDIUM)
+            else if (batteryRemaining <= BATTERYTHRESHOLD_MEDIUM)
                 return BatteryState.Medium;
-            else if (batteryRemaining < BATTERYTHRESHOLD_HIGH)
+            else if (batteryRemaining <= BATTERYTHRESHOLD_HIGH)
                 return BatteryState.High;
             else
                 return BatteryState.FullyCharged;
