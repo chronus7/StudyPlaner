@@ -13,8 +13,8 @@
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="item">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="uni" type="xs:unsignedShort" />
-                          <xs:element name="event" type="xs:unsignedInt" />
+                          <xs:element name="uni" type="xs:int" />
+                          <xs:element name="event" type="xs:int" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
