@@ -14,6 +14,9 @@ namespace Studyplaner.GUI
     public partial class MainForm : Form
     {
         private const float MAINPANEL_YDISTANCE_FACTOR = 0.68f;
+
+        private SettingsForm _settingsFrm;
+
         private LaptopBattery _battery;
 
         public MainForm()
@@ -25,7 +28,7 @@ namespace Studyplaner.GUI
 
         private void Initialize()
         {
-            this.BackColor = Properties.Settings.Default.USER_BACKGROUND;
+            this.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
 
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
@@ -55,23 +58,32 @@ namespace Studyplaner.GUI
             switch (batteryState)
             {
                 case BatteryState.Empty:
-                    img = Properties.Resources.EMPTY;
+                    img = Properties.Resources.BATTERY_EMPTY;
                     break;
                 case BatteryState.Low:
-                    img = Properties.Resources.LOW;
+                    img = Properties.Resources.BATTERY_LOW;
                     break;
                 case BatteryState.Medium:
-                    img = Properties.Resources.MEDIUM;
+                    img = Properties.Resources.BATTERY_MEDIUM;
                     break;
                 case BatteryState.High:
-                    img = Properties.Resources.HIGH;
+                    img = Properties.Resources.BATTERY_HIGH;
                     break;
                 case BatteryState.FullyCharged:
-                    img = Properties.Resources.FULLYCHARGED;
+                    img = Properties.Resources.BATTERY_FULLYCHARGED;
                     break;
             }
 
             this._statusElementBattery.Image = img;
+        }
+
+        private void LaunchSettingsDialog()
+        {
+            this._settingsFrm = new SettingsForm();
+            if (_settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                Properties.Settings.Default.Save();
+            else
+                Properties.Settings.Default.Reload();
         }
 
         private void dateTimeTimer_Tick(object sender, EventArgs e)
@@ -89,9 +101,27 @@ namespace Studyplaner.GUI
             ResizePanels();
         }
 
-        private void totalQuitClick(object sender, EventArgs e)
+        private void TotalQuitClick(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void MenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            ToolStripItem item = sender as ToolStripItem;
+
+            if (item != null)
+                this._statusElementTooltip.Text = item.ToolTipText;
+        }
+
+        private void MenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            this._statusElementTooltip.Text = string.Empty;
+        }
+
+        private void OpenSettingsDialog(object sender, EventArgs e)
+        {
+            LaunchSettingsDialog();
         }
     }
 }

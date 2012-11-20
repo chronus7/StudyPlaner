@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Studyplaner.Materials
 {
+    /// <summary>
+    /// Provides additional information about the power state of the pc at eventtime.
+    /// </summary>
     public class BatteryEventArgs : EventArgs
     {
         public BatteryState BatteryState { get; set; }

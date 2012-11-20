@@ -63,9 +63,9 @@ namespace Studyplaner.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EMPTY {
+        internal static System.Drawing.Bitmap BATTERY_EMPTY {
             get {
-                object obj = ResourceManager.GetObject("EMPTY", resourceCulture);
+                object obj = ResourceManager.GetObject("BATTERY_EMPTY", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Studyplaner.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FULLYCHARGED {
+        internal static System.Drawing.Bitmap BATTERY_FULLYCHARGED {
             get {
-                object obj = ResourceManager.GetObject("FULLYCHARGED", resourceCulture);
+                object obj = ResourceManager.GetObject("BATTERY_FULLYCHARGED", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Studyplaner.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HIGH {
+        internal static System.Drawing.Bitmap BATTERY_HIGH {
             get {
-                object obj = ResourceManager.GetObject("HIGH", resourceCulture);
+                object obj = ResourceManager.GetObject("BATTERY_HIGH", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Studyplaner.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LOW {
+        internal static System.Drawing.Bitmap BATTERY_LOW {
             get {
-                object obj = ResourceManager.GetObject("LOW", resourceCulture);
+                object obj = ResourceManager.GetObject("BATTERY_LOW", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Studyplaner.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MEDIUM {
+        internal static System.Drawing.Bitmap BATTERY_MEDIUM {
             get {
-                object obj = ResourceManager.GetObject("MEDIUM", resourceCulture);
+                object obj = ResourceManager.GetObject("BATTERY_MEDIUM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
