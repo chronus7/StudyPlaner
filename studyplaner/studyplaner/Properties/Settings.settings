@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Studyplaner.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="USER_BACKGROUND" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="COLOR_USER_BACKGROUND" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightSlateGray</Value>
     </Setting>
   </Settings>

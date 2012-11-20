@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 namespace Studyplaner.Materials
 {
+    /// <summary>
+    /// Represents the batterypart of a pc or laptop.
+    /// Provides information about the current state of the system and raises an event when something changes
+    /// </summary>
     public class LaptopBattery
     {
         // Grenzen für BatteryState Berechnungen
@@ -82,11 +86,19 @@ namespace Studyplaner.Materials
             return isCharging ? ChargingState.Charging : ChargingState.OnBattery;
         }
  
+        /// <summary>
+        /// Gets the current ChargingState of the system
+        /// </summary>
+        /// <returns>A value of Enums.Chargingstate</returns>
         public ChargingState GetCurrentChargingState()
         {
             return CalculateChargingState(_isCharging);
         }
 
+        /// <summary>
+        /// Gets the current BatteryState of the system
+        /// </summary>
+        /// <returns>A value of Enums.BatteryState</returns>
         public BatteryState GetCurrentBatteryState()
         {
             return CalculateBatteryState(_batteryState);
