@@ -25,6 +25,12 @@ namespace Studyplaner.Materials
             _list.Add(unilib);
         }
 
+        public UniLibrary this[int index]
+        {
+            get { return _list[index] }
+            set; // TODO | dj | get makes sense. but set?!?!?
+        }
+
         public IEnumerator<UniLibrary> GetEnumerator()
         {
             return _list.GetEnumerator();
