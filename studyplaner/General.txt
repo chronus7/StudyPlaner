@@ -2,3 +2,4 @@ General Information / Important ToDos:
 
 - we could scratch the UniEvent.EventType and make use of inheritance.. Events could still be listed and grouped by general properties which we would move to an abstract baseclass..
   not sure wether this is necessary though, since there are no big parts of additional information in the subclasses and of course no single extended functionality since these are all just data-containers.
+ --- thats the reason why we decided to use EventType... also we may use this in a cool comboBox to let the user decide what to add not build up the same gui several times...

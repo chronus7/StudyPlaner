@@ -41,9 +41,9 @@
             this._panelInfo = new System.Windows.Forms.Panel();
             this._statusMenu = new System.Windows.Forms.StatusStrip();
             this._statusElementTooltip = new System.Windows.Forms.ToolStripStatusLabel();
+            this._statusElementBattery = new System.Windows.Forms.ToolStripStatusLabel();
             this._statusElementDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this._dateTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this._statusElementBattery = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenuStrip.SuspendLayout();
             this._statusMenu.SuspendLayout();
             this.SuspendLayout();
@@ -116,7 +116,7 @@
             // _mainMenu_extras_settings
             // 
             this._mainMenu_extras_settings.Name = "_mainMenu_extras_settings";
-            this._mainMenu_extras_settings.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_extras_settings.Size = new System.Drawing.Size(125, 22);
             this._mainMenu_extras_settings.Text = "Settings...";
             this._mainMenu_extras_settings.ToolTipText = "Open the settings dialog";
             this._mainMenu_extras_settings.Click += new System.EventHandler(this.OpenSettingsDialog);
@@ -162,17 +162,6 @@
             this._statusElementTooltip.Spring = true;
             this._statusElementTooltip.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // _statusElementDateTime
-            // 
-            this._statusElementDateTime.Name = "_statusElementDateTime";
-            this._statusElementDateTime.Size = new System.Drawing.Size(115, 17);
-            this._statusElementDateTime.Text = "Mo, 00.00.0000 00:00";
-            // 
-            // _dateTimeTimer
-            // 
-            this._dateTimeTimer.Interval = 30000;
-            this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
-            // 
             // _statusElementBattery
             // 
             this._statusElementBattery.BackColor = System.Drawing.SystemColors.Control;
@@ -183,6 +172,17 @@
             this._statusElementBattery.Size = new System.Drawing.Size(16, 17);
             this._statusElementBattery.Text = " ";
             this._statusElementBattery.ToolTipText = "Time Remaining: qq:zz";
+            // 
+            // _statusElementDateTime
+            // 
+            this._statusElementDateTime.Name = "_statusElementDateTime";
+            this._statusElementDateTime.Size = new System.Drawing.Size(115, 17);
+            this._statusElementDateTime.Text = "Mo, 00.00.0000 00:00";
+            // 
+            // _dateTimeTimer
+            // 
+            this._dateTimeTimer.Interval = 30000;
+            this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
             // 
             // MainForm
             // 
@@ -198,7 +198,7 @@
             this.MinimumSize = new System.Drawing.Size(550, 300);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ".: Study Planer :.";
+            this.Text = "Study Planer";
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this._mainMenuStrip.ResumeLayout(false);
             this._mainMenuStrip.PerformLayout();
