@@ -102,6 +102,9 @@
     <None Include="Data\Plans.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Data\uniLib.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +123,7 @@
     <Content Include="Data\Plans.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Data\uniLib_1111.xml" />
     <None Include="Resources\BATTERY_MEDIUM.png" />
     <None Include="Resources\BATTERY_HIGH.png" />
     <None Include="Resources\BATTERY_LOW.png" />

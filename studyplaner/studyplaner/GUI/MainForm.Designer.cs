@@ -116,8 +116,8 @@
             // _mainMenu_extras_settings
             // 
             this._mainMenu_extras_settings.Name = "_mainMenu_extras_settings";
-            this._mainMenu_extras_settings.Size = new System.Drawing.Size(116, 22);
-            this._mainMenu_extras_settings.Text = "Settings";
+            this._mainMenu_extras_settings.Size = new System.Drawing.Size(152, 22);
+            this._mainMenu_extras_settings.Text = "Settings...";
             this._mainMenu_extras_settings.ToolTipText = "Open the settings dialog";
             this._mainMenu_extras_settings.Click += new System.EventHandler(this.OpenSettingsDialog);
             this._mainMenu_extras_settings.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);

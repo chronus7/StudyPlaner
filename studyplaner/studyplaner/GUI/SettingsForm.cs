@@ -21,6 +21,7 @@ namespace Studyplaner.GUI
         private void Initialize()
         {
             this.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
+            _btnBgColor.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
         }
     }
 }
