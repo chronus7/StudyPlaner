@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Studyplaner.Enums;
+using System;
 using System.Text.RegularExpressions;
-using Studyplaner.Enums;
 
-namespace Studyplaner.Materials
+namespace Studyplaner.Values
 {
     public struct Time
     {
@@ -70,20 +67,20 @@ namespace Studyplaner.Materials
         /// 
         /// Time-string syntax: either [h]h:mm oder [h]h.
         /// </summary>
-        /// <param name="str">The string to parse</param>
+        /// <param name="time">The string to parse</param>
         /// <returns>The aequivalent Time</returns>
-        public static Time ValueOf(string str)
+        public static Time ValueOf(string time)
         {
-            if (!TIMEFULLREGEX.IsMatch(str, 0))
-                throw new ArgumentException("str", "Invalid Time-syntax!");
+            if (!TIMEFULLREGEX.IsMatch(time, 0))
+                throw new ArgumentException("time", "Invalid Time-syntax!");
 
-            Match mhours = TIMEHOURSREGEX.Match(str);
+            Match mhours = TIMEHOURSREGEX.Match(time);
             String val = mhours.Groups[0].Value;
             byte hours = Byte.Parse(val);
 
-            if (TIMEMINUTESREGEX.IsMatch(str))
+            if (TIMEMINUTESREGEX.IsMatch(time))
             {
-                Match mMinutes = TIMEMINUTESREGEX.Match(str);
+                Match mMinutes = TIMEMINUTESREGEX.Match(time);
                 String valh = mMinutes.Groups[0].Value;
                 valh = valh.Substring(1);
                 byte minutes = Byte.Parse(valh);

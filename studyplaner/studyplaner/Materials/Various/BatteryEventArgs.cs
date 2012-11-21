@@ -1,8 +1,5 @@
 ﻿using Studyplaner.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Studyplaner.Materials
 {
@@ -13,5 +10,6 @@ namespace Studyplaner.Materials
     {
         public BatteryState BatteryState { get; set; }
         public ChargingState ChargingState { get; set; }
+        public int BatteryRemaining { get; set; }
     }
 }

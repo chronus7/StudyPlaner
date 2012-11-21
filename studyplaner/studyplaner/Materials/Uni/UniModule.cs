@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Studyplaner.Enums;
 
-namespace Studyplaner.Materials
+namespace Studyplaner.Materials.Uni
 {
     public class UniModule
     {

@@ -69,7 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 247);
+            this.ClientSize = new System.Drawing.Size(480, 307);
             this.Controls.Add(this._mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -78,7 +78,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "SettingsForm";
+            this.Text = "Settings";
             this._mainPanel.ResumeLayout(false);
             this._mainPanel.PerformLayout();
             this.ResumeLayout(false);

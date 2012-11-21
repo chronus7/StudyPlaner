@@ -1,5 +1,6 @@
 ﻿using Studyplaner.Enums;
 using Studyplaner.Materials;
+using Studyplaner.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,11 @@ namespace Studyplaner.GUI
     public partial class MainForm : Form
     {
         private const float MAINPANEL_YDISTANCE_FACTOR = 0.68f;
+        private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
 
         private SettingsForm _settingsFrm;
 
-        private LaptopBattery _battery;
+        private LaptopBatteryService _batteryService;
 
         public MainForm()
         {
@@ -33,11 +35,12 @@ namespace Studyplaner.GUI
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
 
-            this._battery = new LaptopBattery();
-            this._battery.BatteryStateChanged += OnBatteryStateChanged;
-            UpdateStatusBarBatteryState(_battery.GetCurrentBatteryState());
+            this._batteryService = new LaptopBatteryService();
+            this._batteryService.BatteryStateChanged += OnBatteryStateChanged;
+            UpdateStatusBarBatteryState(_batteryService.GetCurrentBatteryState());
+            UpdateBatteryToolTipText(_batteryService.GetCurrentRemainingTime());
         }
-            
+
         private void ResizePanels()
         {
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
@@ -77,6 +80,14 @@ namespace Studyplaner.GUI
             this._statusElementBattery.Image = img;
         }
 
+        private void UpdateBatteryToolTipText(int batteryLifeRemaining)
+        {
+            byte hours = (byte)(batteryLifeRemaining / 3600);
+            byte minutes = (byte)(batteryLifeRemaining / 60 % 60);
+
+            this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + hours.ToString("D2") + ':' + minutes.ToString("D2");
+        }
+
         private void LaunchSettingsDialog()
         {
             this._settingsFrm = new SettingsForm();
@@ -94,6 +105,7 @@ namespace Studyplaner.GUI
         private void OnBatteryStateChanged(object sender, BatteryEventArgs e)
         {
             UpdateStatusBarBatteryState(e.BatteryState);
+            UpdateBatteryToolTipText(e.BatteryRemaining);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
