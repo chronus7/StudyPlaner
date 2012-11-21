@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Studyplaner.Enums;
 
-namespace Studyplaner.Materials
+namespace Studyplaner.Values
 {
     public struct Time
     {

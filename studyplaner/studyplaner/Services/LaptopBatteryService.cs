@@ -1,4 +1,5 @@
 ﻿using Studyplaner.Enums;
+using Studyplaner.Materials;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +7,13 @@ using System.Text;
 using System.Timers;
 using System.Windows.Forms;
 
-namespace Studyplaner.Materials
+namespace Studyplaner.Services
 {
     /// <summary>
     /// Represents the batterypart of a pc or laptop.
     /// Provides information about the current state of the system and raises an event when something changes
     /// </summary>
-    public class LaptopBattery
+    public class LaptopBatteryService
     {
         // Grenzen für BatteryState Berechnungen
         private const int BATTERYTHRESHOLD_EMPTY = 10;
@@ -31,7 +32,7 @@ namespace Studyplaner.Materials
         private short _batteryState;        
         private System.Timers.Timer _timer;
 
-        public LaptopBattery()
+        public LaptopBatteryService()
         {
             _isCharging = false;
             _batteryState = -1;
