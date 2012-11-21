@@ -149,6 +149,7 @@
             this._statusMenu.Location = new System.Drawing.Point(0, 540);
             this._statusMenu.Name = "_statusMenu";
             this._statusMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this._statusMenu.ShowItemToolTips = true;
             this._statusMenu.Size = new System.Drawing.Size(984, 22);
             this._statusMenu.TabIndex = 3;
             // 
@@ -170,6 +171,7 @@
             this._statusElementBattery.Name = "_statusElementBattery";
             this._statusElementBattery.Size = new System.Drawing.Size(16, 17);
             this._statusElementBattery.Text = " ";
+            this._statusElementBattery.ToolTipText = "Time Remaining: qq:zz";
             // 
             // _statusElementDateTime
             // 

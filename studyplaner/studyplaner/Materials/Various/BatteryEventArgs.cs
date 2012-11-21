@@ -13,5 +13,6 @@ namespace Studyplaner.Materials
     {
         public BatteryState BatteryState { get; set; }
         public ChargingState ChargingState { get; set; }
+        public int BatteryRemaining { get; set; }
     }
 }

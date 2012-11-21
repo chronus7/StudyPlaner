@@ -29,13 +29,15 @@ namespace Studyplaner.Services
         }
 
         private bool _isCharging;
-        private short _batteryState;        
+        private short _batteryState;
+        private int _batteryRemaining;
         private System.Timers.Timer _timer;
 
         public LaptopBatteryService()
         {
             _isCharging = false;
             _batteryState = -1;
+            _batteryRemaining = -1;
 
             UpdateBatteryState();
 
@@ -54,14 +56,16 @@ namespace Studyplaner.Services
         {
             bool isChargingNow = SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online ? true : false; // TODO: PowerLineStatus.Unknown wird nicht behandelt und als !charging interpretiert ändern?
             short batteryStateNow = (short)Math.Floor(SystemInformation.PowerStatus.BatteryLifePercent * 100f);
+            int batteryRemaining = SystemInformation.PowerStatus.BatteryLifeRemaining;
 
-            if (_isCharging != isChargingNow || _batteryState != batteryStateNow)
+            if (_isCharging != isChargingNow || _batteryState != batteryStateNow || batteryRemaining != _batteryRemaining)
             {
-                BatteryEventArgs args = new BatteryEventArgs() { BatteryState = CalculateBatteryState(batteryStateNow), ChargingState = CalculateChargingState(isChargingNow) };
+                BatteryEventArgs args = new BatteryEventArgs() { BatteryState = CalculateBatteryState(batteryStateNow), ChargingState = CalculateChargingState(isChargingNow), BatteryRemaining = CalculateBatteryRemaining() };
                 OnBatteryStateChanged(args);
 
                 _isCharging = isChargingNow;
                 _batteryState = batteryStateNow;
+                _batteryRemaining = batteryRemaining;
             }
 
             // SystemInformation.PowerStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery 
@@ -86,6 +90,11 @@ namespace Studyplaner.Services
         {
             return isCharging ? ChargingState.Charging : ChargingState.OnBattery;
         }
+
+        private int CalculateBatteryRemaining()
+        {
+            return SystemInformation.PowerStatus.BatteryLifeRemaining;
+        }
  
         /// <summary>
         /// Gets the current ChargingState of the system
@@ -103,6 +112,15 @@ namespace Studyplaner.Services
         public BatteryState GetCurrentBatteryState()
         {
             return CalculateBatteryState(_batteryState);
+        }
+
+        /// <summary>
+        /// Gets the current remaining time, until the battery runs out of power
+        /// </summary>
+        /// <returns></returns>
+        public int GetCurrentRemainingTime()
+        {
+            return SystemInformation.PowerStatus.BatteryLifeRemaining;
         }
     }
 }
