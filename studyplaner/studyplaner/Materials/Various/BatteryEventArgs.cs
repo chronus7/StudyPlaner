@@ -1,7 +1,7 @@
 ﻿using Studyplaner.Enums;
 using System;
 
-namespace Studyplaner.Materials
+namespace Studyplaner.Materials.Various
 {
     /// <summary>
     /// Provides additional information about the power state of the pc at eventtime.
@@ -10,6 +10,6 @@ namespace Studyplaner.Materials
     {
         public BatteryState BatteryState { get; set; }
         public ChargingState ChargingState { get; set; }
-        public int BatteryRemaining { get; set; }
+        public TimeSpan BatteryRemaining { get; set; }
     }
 }

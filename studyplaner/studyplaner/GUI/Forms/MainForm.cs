@@ -1,5 +1,6 @@
 ﻿using Studyplaner.Enums;
 using Studyplaner.Materials;
+using Studyplaner.Materials.Various;
 using Studyplaner.Services;
 using System;
 using System.Collections.Generic;
@@ -80,12 +81,9 @@ namespace Studyplaner.GUI.Forms
             this._statusElementBattery.Image = img;
         }
 
-        private void UpdateBatteryToolTipText(int batteryLifeRemaining)
+        private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)
         {
-            byte hours = (byte)(batteryLifeRemaining / 3600);
-            byte minutes = (byte)(batteryLifeRemaining / 60 % 60);
-
-            this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + hours.ToString("D2") + ':' + minutes.ToString("D2");
+            this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + batteryLifeRemaining.Hours.ToString("D2") + ':' + batteryLifeRemaining.Minutes.ToString("D2");
         }
 
         private void LaunchSettingsDialog()

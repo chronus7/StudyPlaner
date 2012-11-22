@@ -1,5 +1,5 @@
 ﻿using Studyplaner.Enums;
-using Studyplaner.Materials;
+using Studyplaner.Materials.Various;
 using System;
 using System.Timers;
 using System.Windows.Forms;
@@ -57,7 +57,12 @@ namespace Studyplaner.Services
 
             if (_isCharging != isChargingNow || _batteryState != batteryStateNow || batteryRemaining != _batteryRemaining)
             {
-                BatteryEventArgs args = new BatteryEventArgs() { BatteryState = CalculateBatteryState(batteryStateNow), ChargingState = CalculateChargingState(isChargingNow), BatteryRemaining = CalculateBatteryRemaining() };
+                BatteryEventArgs args = new BatteryEventArgs() 
+                { 
+                    BatteryState = CalculateBatteryState(batteryStateNow), 
+                    ChargingState = CalculateChargingState(isChargingNow), 
+                    BatteryRemaining = CalculateBatteryRemaining(batteryRemaining) 
+                };
                 OnBatteryStateChanged(args);
 
                 _isCharging = isChargingNow;
@@ -88,9 +93,9 @@ namespace Studyplaner.Services
             return isCharging ? ChargingState.Charging : ChargingState.OnBattery;
         }
 
-        private int CalculateBatteryRemaining()
+        private TimeSpan CalculateBatteryRemaining(int seconds)
         {
-            return SystemInformation.PowerStatus.BatteryLifeRemaining;
+            return new TimeSpan((seconds / 3600), (seconds / 60 % 60), 0);
         }
  
         /// <summary>
@@ -115,9 +120,9 @@ namespace Studyplaner.Services
         /// Gets the current remaining time, until the battery runs out of power
         /// </summary>
         /// <returns></returns>
-        public int GetCurrentRemainingTime()
+        public TimeSpan GetCurrentRemainingTime()
         {
-            return SystemInformation.PowerStatus.BatteryLifeRemaining;
+            return CalculateBatteryRemaining(_batteryRemaining);
         }
     }
 }

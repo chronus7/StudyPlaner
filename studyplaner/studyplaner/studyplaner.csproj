@@ -54,6 +54,9 @@
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Enums\Semester.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GUI\Controls\UniEventPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GUI\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,9 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\Control\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\Libs.xml">
       <SubType>Designer</SubType>
