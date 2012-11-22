@@ -22,12 +22,14 @@ digraph UniLibStructure {
 		ide [label = "id"]
 		lvnum
 		location
-		starttime
+		date
 			interval
 			hours
 			minutes
-			date
-		endtime
+			dated [label = "date"]
+		duration
+			hoursd [label = "hours"]
+			minutesd [label = "minutes"]
 		lecturer
 		importance
 		power
@@ -52,15 +54,18 @@ digraph UniLibStructure {
 	event -> ide
 	event -> lvnum
 	event -> location
-	event -> starttime
-	event -> endtime
+	event -> date
+	event -> duration
 	event -> lecturer
 	event -> importance
 	event -> power
 	event -> type
 
-	{starttime, endtime} -> interval
-	{starttime, endtime} -> hours
-	{starttime, endtime} -> minutes
-	{starttime, endtime} -> date
+	date -> interval
+	date -> hours
+	date -> minutes
+	date -> dated
+
+	duration -> hoursd
+	duration -> minutesd
 }
