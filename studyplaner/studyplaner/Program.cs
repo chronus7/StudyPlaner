@@ -25,12 +25,14 @@ namespace Studyplaner
             ev.Lecturer = "somebody";
             ev.Power = false;
             ev.Importance = 5;
+            ev.Date = new Values.Time(10, 15, Enums.WeekInterval.EveryWeek);
+            ev.Duration = new TimeSpan(1, 30, 0);
             //...
             string filename = @"test.xml"; // is in debug dir -.-'
             XmlParser.Serialize(filename, ev);
             Console.WriteLine("Original Event: " + ev.ID);
             UniEvent ev2 = XmlParser.DeSerialize(filename);
-            Console.WriteLine("The read Event: " + ev.ID);
+            Console.WriteLine("The read Event: " + ev2.ID + " " + ev2.Duration);
         }
     }
 }

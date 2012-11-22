@@ -1,15 +1,15 @@
 ﻿using Studyplaner.Enums;
 using System;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace Studyplaner.Values
 {
-    public struct Time
+    public struct Time : IXmlSerializable
     {
         private static readonly Regex TIMEFULLREGEX = new Regex("^[0-2]?[\\d](:[0-5][\\d])?$");
         private static readonly Regex TIMEHOURSREGEX = new Regex("[\\d]{1,2}");
         private static readonly Regex TIMEMINUTESREGEX = new Regex(":[\\d]{2}");
-        private static readonly DateTime STANDARDDATETIME = new DateTime(1, 1, 1);
 
         /// <summary>
         /// The hours of this Time.
@@ -30,7 +30,7 @@ namespace Studyplaner.Values
         /// <summary>
         /// True if there is a valid Date. False if not.
         /// </summary>
-        public bool hasDate { get { return Date.Equals(STANDARDDATETIME);}}
+        public bool hasDate { get { return Date.Equals(DateTime.MinValue);}}
 
         /// <summary>
         /// New Time.
@@ -42,7 +42,7 @@ namespace Studyplaner.Values
         {
             Hours = hours;
             Minutes = minutes;
-            Date = STANDARDDATETIME;
+            Date = DateTime.MinValue;
             WeekInterval = weekInterval;
         }
 
@@ -93,6 +93,31 @@ namespace Studyplaner.Values
         public override string ToString()
         {
             return String.Format("{0:00}:{1:00}", Hours, Minutes);
+        }
+
+        public System.Xml.Schema.XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader)
+        {
+            reader.MoveToContent();
+            reader.ReadStartElement();
+            WeekInterval = (WeekInterval)Enum.Parse(typeof(WeekInterval),
+                reader.ReadElementString("interval"));
+            Hours = byte.Parse(reader.ReadElementString("hours"));
+            Minutes = byte.Parse(reader.ReadElementString("minutes"));
+            Date = DateTime.Parse(reader.ReadElementString("date"));
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer)
+        {
+            writer.WriteElementString("interval", WeekInterval.ToString());
+            writer.WriteElementString("hours", Hours.ToString());
+            writer.WriteElementString("minutes", Minutes.ToString());
+            writer.WriteElementString("date", Date.ToShortDateString());
         }
     }
 }
