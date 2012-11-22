@@ -5,34 +5,36 @@
     <name><![CDATA[Universität Hamburg]]></name>
     <short>UHH</short>
   </uni>
-  <module>
-    <id>1354</id>
-    <name><![CDATA[Name of the module]]></name>
-    <short>NOM</short>
-    <semester>Winter</semester>
-    <department>Informatik</department>
-    <events>
-      <event>
-        <id>1234567</id>
-        <lvnum>64-001</lvnum>
-        <location>somewhere</location>
-        <starttime>
-          <interval>FixedDate</interval>
-          <hours>10</hours>
-          <minutes>15</minutes>
-          <date>15.11.2012</date>
-        </starttime>
-        <endtime>
-          <interval>FixedDate</interval>
-          <hours>11</hours>
-          <minutes>45</minutes>
-          <date>15.11.2012</date>
-        </endtime>
-        <lecturer>hans</lecturer>
-        <importance>6</importance>
-        <power>false</power>
-        <type>Lecture</type>
-      </event>
-    </events>
-  </module>
+  <modules>
+    <module>
+      <id>1354</id>
+      <name><![CDATA[Name of the module]]></name>
+      <short>NOM</short>
+      <semester>Winter</semester>
+      <department>IT</department>
+      <events>
+        <event>
+          <id>1234567</id>
+          <lvnum>64-001</lvnum>
+          <location>somewhere</location>
+          <starttime>
+            <interval>FixedDate</interval>
+            <hours>10</hours>
+            <minutes>15</minutes>
+            <date>15.11.2012</date>
+          </starttime>
+          <endtime>
+            <interval>FixedDate</interval>
+            <hours>11</hours>
+            <minutes>45</minutes>
+            <date>15.11.2012</date>
+          </endtime>
+          <lecturer>hans</lecturer>
+          <importance>6</importance>
+          <power>false</power>
+          <type>Lecture</type>
+        </event>
+      </events>
+    </module>
+  </modules>
 </library>

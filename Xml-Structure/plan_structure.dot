@@ -7,7 +7,7 @@ root [label = root]
 plan [label = "{plan | attributes = 'id'}"]
 name [label = "name"]
 items [label = "items"]
-
+item [label = "item"]
 uni [label = "uni"]
 event [label = "event"]
 }
@@ -15,7 +15,8 @@ event [label = "event"]
 root -> plan
 plan -> name
 plan -> items
-items -> uni
-items -> event
+items -> item
+item -> uni
+item -> event
 
 }

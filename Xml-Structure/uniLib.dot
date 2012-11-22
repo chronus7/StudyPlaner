@@ -1,0 +1,66 @@
+digraph UniLibStructure {
+	rankdir = TD
+
+	{ node [shape = Mrecord]
+		library
+		
+		uni
+		idu [label = "id"]
+		nameu [label = "name"]
+		shortu [label = "short"]
+		modules
+
+		module
+		idm [label = "id"]
+		namem [label = "name"]
+		shortm [label = "short"]
+		semester
+		department
+		events
+
+		event
+		ide [label = "id"]
+		lvnum
+		location
+		starttime
+			interval
+			hours
+			minutes
+			date
+		endtime
+		lecturer
+		importance
+		power
+		type
+	}
+	library -> uni
+	library -> modules
+
+	uni -> idu
+	uni -> nameu
+	uni -> shortu
+
+	modules -> module
+	module -> idm
+	module -> namem
+	module -> shortm
+	module -> semester
+	module -> department
+	module -> events
+	events -> event
+
+	event -> ide
+	event -> lvnum
+	event -> location
+	event -> starttime
+	event -> endtime
+	event -> lecturer
+	event -> importance
+	event -> power
+	event -> type
+
+	{starttime, endtime} -> interval
+	{starttime, endtime} -> hours
+	{starttime, endtime} -> minutes
+	{starttime, endtime} -> date
+}
