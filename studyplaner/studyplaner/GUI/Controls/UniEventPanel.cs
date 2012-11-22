@@ -12,12 +12,17 @@ namespace Studyplaner.GUI.Controls
 {
     public partial class UniEventPanel : Panel
     {
+        // (Re-)Size constants TODO: fine tune them
+        private const double DEFAULTSIZE_X = 1.0d;
+        private const double FACTOR_DURATION_Y = 1.0d;
+
         public UniEvent EventToRepresent { get; set; }
 
-        public UniEventPanel(UniEvent ev)
+        public UniEventPanel(UniEvent ev, double xFactor, double yFactor)
         {
             this.EventToRepresent = ev;
             this.BackColor = GetBackgroundColorFromEventType(EventToRepresent.Type);
+            this.Size = new Size((int)(DEFAULTSIZE_X * xFactor), (int)(EventToRepresent.Duration.TotalMinutes * FACTOR_DURATION_Y * yFactor));
         }
 
         private Color GetBackgroundColorFromEventType(Enums.EventType eventType)
@@ -43,9 +48,23 @@ namespace Studyplaner.GUI.Controls
             return bg;
         }
 
+        private void DrawContent(Graphics graphics)
+        {
+            //TODO: Draw Event info corresponding to size
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
+            DrawContent(e.Graphics);
+        }
+
+        protected override void OnResize(EventArgs eventargs)
+        {
+            base.OnResize(eventargs);
+
+            //TODO: Do we need to do anything here?
         }
     }
 }
