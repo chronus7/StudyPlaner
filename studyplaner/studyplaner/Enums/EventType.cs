@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Studyplaner.Enums
 {
     public enum EventType
@@ -11,5 +7,7 @@ namespace Studyplaner.Enums
         Exercise,
         Tutorial,
         Internship
+        // add something like user_specified/notes or so.
+
     }
 }
