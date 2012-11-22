@@ -2,8 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Studyplaner.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="COLOR_USER_BACKGROUND" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="USER_COLOR_BACKGROUND" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightSlateGray</Value>
+    </Setting>
+    <Setting Name="USER_COLOR_LECTURE" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="USER_COLOR_EXERCISE" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="USER_COLOR_INTERNSHIP" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="USER_COLOR_TUTORIAL" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
     </Setting>
   </Settings>
 </SettingsFile>

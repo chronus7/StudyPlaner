@@ -20,8 +20,8 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
-            this.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
-            _btnBgColor.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
+            this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+            _btnBgColor.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
         }
     }
 }

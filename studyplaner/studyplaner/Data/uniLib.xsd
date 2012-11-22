@@ -53,7 +53,7 @@
                                   </xs:complexType>
                                 </xs:element>
                                 <xs:element name="lecturer" type="xs:string" />
-                                <xs:element name="importance" type="xs:int" />
+                                <xs:element name="importance" type="xs:byte" />
                                 <xs:element name="power" type="xs:boolean" />
                                 <xs:element name="type" type="xs:string" />
                               </xs:sequence>

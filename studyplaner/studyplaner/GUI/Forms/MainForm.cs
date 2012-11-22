@@ -1,14 +1,8 @@
 ﻿using Studyplaner.Enums;
-using Studyplaner.Materials;
 using Studyplaner.Materials.Various;
 using Studyplaner.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Studyplaner.GUI.Forms
@@ -31,7 +25,7 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
-            this.BackColor = Properties.Settings.Default.COLOR_USER_BACKGROUND;
+            this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
 
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
