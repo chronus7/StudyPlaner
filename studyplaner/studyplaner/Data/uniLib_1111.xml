@@ -17,18 +17,16 @@
           <id>1234567</id>
           <lvnum>64-001</lvnum>
           <location>somewhere</location>
-          <starttime>
+          <date>
             <interval>FixedDate</interval>
             <hours>10</hours>
             <minutes>15</minutes>
             <date>15.11.2012</date>
-          </starttime>
-          <endtime>
-            <interval>FixedDate</interval>
-            <hours>11</hours>
-            <minutes>45</minutes>
-            <date>15.11.2012</date>
-          </endtime>
+          </date>
+          <duration>
+            <hours>1</hours>
+            <minutes>30</minutes>
+          </duration>
           <lecturer>hans</lecturer>
           <importance>6</importance>
           <power>false</power>
