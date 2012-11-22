@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 using Studyplaner.Enums;
 using Studyplaner.Values;
+using System.ComponentModel;
 
 namespace Studyplaner.Materials.Uni
 {
@@ -18,7 +19,7 @@ namespace Studyplaner.Materials.Uni
         public string Location { get; set; }
         [XmlElement(ElementName = "date")]
         public Time Date { get; set; }
-        [XmlElement(ElementName="duration")]
+        [XmlIgnore]
         public TimeSpan Duration { get; set; }
         [XmlElement(ElementName = "lecturer")]
         public string Lecturer { get; set; }
@@ -28,5 +29,13 @@ namespace Studyplaner.Materials.Uni
         public bool Power { get; set; }
         [XmlElement(ElementName = "type")]
         public EventType Type { get; set; }
+
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)] // <-- seems not to work
+        [XmlElement(ElementName = "duration")]
+        public long DurationTicks
+        {
+            get { return Duration.Ticks; }
+            set { Duration = new TimeSpan(value); }
+        }
     }
 }
