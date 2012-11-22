@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Studyplaner.GUI;
+using Studyplaner.GUI.Forms;
 using Studyplaner.Materials;
 
 namespace Studyplaner

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Studyplaner.GUI
+namespace Studyplaner.GUI.Forms
 {
     public partial class MainForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace Studyplaner.GUI
+﻿namespace Studyplaner.GUI.Forms
 {
     partial class SettingsForm
     {
