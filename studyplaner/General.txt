@@ -8,3 +8,4 @@ General Information / Important ToDos:
  --- but as you said: there are no differnces between those classes. so why shall we create a bunch of nearly exactly similar classes?
 
 - this explains how to serialize a timespan: http://stackoverflow.com/questions/637933/net-how-to-serialize-a-timespan-to-xml
+ --- thanks :P
