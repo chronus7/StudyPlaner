@@ -13,10 +13,10 @@ namespace Studyplaner.Materials.Uni
         public int ModuleID { get; set; }
         public string LVNum { get; set; }
         public string Location { get; set; }
-        public Time StartTime { get; set; }
-        public Time EndTime { get; set; }
+        public Time Date { get; set; }
+        public TimeSpan Duration { get; set; }
         public string Lecturer { get; set; }
-        public int Importance { get; set; }
+        public byte Importance { get; set; }
         public bool Power { get; set; }
         public EventType Type { get; set; }
     }
