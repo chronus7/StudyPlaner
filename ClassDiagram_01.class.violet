@@ -92,11 +92,14 @@
     </void>
     <void method="addChild">
      <object class="com.horstmann.violet.ClassNode" id="ClassNode3">
+      <void property="attributes">
+       <void property="text">
+        <string>+ this[int] : UniLibrary</string>
+       </void>
+      </void>
       <void property="methods">
        <void property="text">
-        <string>+ get(int) : UniLibrary
-+ add(UniLibrary) : void
-+ GetEnumerator() : IEnumerator&lt;UniLibrary&gt;</string>
+        <string>+ GetEnumerator() : IEnumerator&lt;UniLibrary&gt;</string>
        </void>
       </void>
       <void property="name">
@@ -180,7 +183,8 @@
         <void property="attributes">
          <void property="text">
           <string>+ BatteryState : BatteryState
-+ ChargingState : CharginState</string>
++ ChargingState : CharginState
++ BatteryRemaining : TimeSpan</string>
          </void>
         </void>
         <void property="name">
@@ -777,7 +781,8 @@ correct arrows. :P</string>
       <void property="methods">
        <void property="text">
         <string>+ GetCurrentChargingState() : ChargingState
-+ GetCurrentBatteryState() : BatteryState</string>
++ GetCurrentBatteryState() : BatteryState
++ GetCurrentRemainingTime() : TimeSpan</string>
        </void>
       </void>
       <void property="name">
@@ -827,10 +832,10 @@ correct arrows. :P</string>
          <object idref="Point2D$Double18">
           <void method="setLocation">
            <double>990.0</double>
-           <double>270.0</double>
+           <double>290.0</double>
           </void>
          </object>
-         <double>270.0</double>
+         <double>290.0</double>
         </void>
        </void>
       </object>
@@ -851,15 +856,15 @@ correct arrows. :P</string>
         <void method="set">
          <object idref="Point2D$Double19">
           <void method="setLocation">
-           <double>998.1938674518406</double>
-           <double>406.1248916810279</double>
+           <double>999.1938674518406</double>
+           <double>428.1248916810279</double>
           </void>
          </object>
-         <double>406.1248916810279</double>
+         <double>428.1248916810279</double>
         </void>
        </void>
       </object>
-      <double>998.1938674518406</double>
+      <double>999.1938674518406</double>
      </void>
     </void>
    </object>
@@ -876,15 +881,15 @@ correct arrows. :P</string>
         <void method="set">
          <object idref="Point2D$Double20">
           <void method="setLocation">
-           <double>1127.1282092113565</double>
-           <double>332.3401871576773</double>
+           <double>1126.1282092113565</double>
+           <double>322.3401871576773</double>
           </void>
          </object>
-         <double>332.3401871576773</double>
+         <double>322.3401871576773</double>
         </void>
        </void>
       </object>
-      <double>1127.1282092113565</double>
+      <double>1126.1282092113565</double>
      </void>
     </void>
    </object>
@@ -1002,10 +1007,10 @@ correct arrows. :P</string>
          <object idref="Point2D$Double25">
           <void method="setLocation">
            <double>760.0</double>
-           <double>410.0</double>
+           <double>390.0</double>
           </void>
          </object>
-         <double>410.0</double>
+         <double>390.0</double>
         </void>
        </void>
       </object>
@@ -1026,15 +1031,15 @@ correct arrows. :P</string>
         <void method="set">
          <object idref="Point2D$Double26">
           <void method="setLocation">
-           <double>768.9339828220175</double>
-           <double>436.320851173921</double>
+           <double>766.9339828220175</double>
+           <double>415.320851173921</double>
           </void>
          </object>
-         <double>436.320851173921</double>
+         <double>415.320851173921</double>
         </void>
        </void>
       </object>
-      <double>768.9339828220175</double>
+      <double>766.9339828220175</double>
      </void>
     </void>
    </object>
@@ -1051,15 +1056,15 @@ correct arrows. :P</string>
         <void method="set">
          <object idref="Point2D$Double27">
           <void method="setLocation">
-           <double>1012.4377336282355</double>
-           <double>329.2346314604055</double>
+           <double>1011.4377336282355</double>
+           <double>348.2346314604056</double>
           </void>
          </object>
-         <double>329.2346314604055</double>
+         <double>348.2346314604056</double>
         </void>
        </void>
       </object>
-      <double>1012.4377336282355</double>
+      <double>1011.4377336282355</double>
      </void>
     </void>
    </object>
@@ -1077,10 +1082,10 @@ correct arrows. :P</string>
          <object idref="Point2D$Double28">
           <void method="setLocation">
            <double>1000.0</double>
-           <double>300.0</double>
+           <double>320.0</double>
           </void>
          </object>
-         <double>300.0</double>
+         <double>320.0</double>
         </void>
        </void>
       </object>

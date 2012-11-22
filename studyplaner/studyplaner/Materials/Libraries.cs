@@ -15,22 +15,11 @@ namespace Studyplaner.Materials
             _list = list;
         }
 
-        public UniLibrary get(int index)
+        public UniLibrary this[int index]
         {
-            return _list[index];
+            get { return _list[index]; }
+            set { _list[index] = value; }//TODO | dj | maybe also file adding etc.
         }
-
-        public void add(UniLibrary unilib)
-        {
-            //TODO | dj | maybe also file adding etc.
-            _list.Add(unilib);
-        }
-
-        //public UniLibrary this[int index]
-        //{
-        //    get { return _list[index]; }
-        //    set; // TODO | dj | get makes sense. but set?!?!?
-        //}
 
         public IEnumerator<UniLibrary> GetEnumerator()
         {
