@@ -5,3 +5,4 @@ General Information / Important ToDos:
  --- thats the reason why we decided to use EventType... also we may use this in a cool comboBox to let the user decide what to add not build up the same gui several times...
  --- yeah i know, but with seperate classes we could name the properties correct.. but i guess you are right, would take too much time to write multiple GUI elements.. we could still use the combobox tho, 
 	 since we would have an abstract baseclass which could be the type of the elements the combobox is showing..
+ --- but as you said: there are no differnces between those classes. so why shall we create a bunch of nearly exactly similar classes?
