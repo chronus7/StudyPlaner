@@ -14,9 +14,9 @@ namespace Studyplaner.Services.Xml
     /// </summary>
     public class XmlParser
     {
-        public static void Serialize(string filename, UniEvent uniEvent)
+        public static void Serialize(string filename, UniModule uniModule)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(UniEvent));
+            XmlSerializer ser = new XmlSerializer(typeof(UniModule));
             TextWriter tw = null;
             try
             {
@@ -28,7 +28,7 @@ namespace Studyplaner.Services.Xml
 
                 tw = new StreamWriter(filename);
 
-                ser.Serialize(tw, uniEvent);
+                ser.Serialize(tw, uniModule);
                 tw.Flush();
             }
             catch (Exception e)
@@ -42,18 +42,18 @@ namespace Studyplaner.Services.Xml
             }
         }
 
-        public static UniEvent DeSerialize(string filename)
+        public static UniModule DeSerialize(string filename)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(UniEvent));
+            XmlSerializer ser = new XmlSerializer(typeof(UniModule));
             // -- to handle incorrect Input --
             //ser.UnknownNode += new XmlNodeEventHandler(XmlSerializer_UnknownNode);
             //ser.UnknownAttribute +=
             FileStream fs = null;
-            UniEvent ev = null;
+            UniModule mo = null;
             try
             {
                 fs = new FileStream(filename, FileMode.Open);
-                ev = (UniEvent)ser.Deserialize(fs);
+                mo = (UniModule)ser.Deserialize(fs);
             }
             catch (Exception e)
             {
@@ -64,7 +64,7 @@ namespace Studyplaner.Services.Xml
                 if (fs != null)
                     fs.Close();
             }
-            return ev;
+            return mo;
         }
     }
 }
