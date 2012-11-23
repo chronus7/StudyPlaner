@@ -4,7 +4,6 @@ digraph UniLibStructure {
 	{ node [shape = Mrecord]
 		library
 		
-		uni
 		idu [label = "id"]
 		nameu [label = "name"]
 		shortu [label = "short"]
@@ -35,12 +34,10 @@ digraph UniLibStructure {
 		power
 		type
 	}
-	library -> uni
+	library -> idu
+	library -> nameu
+	library -> shortu
 	library -> modules
-
-	uni -> idu
-	uni -> nameu
-	uni -> shortu
 
 	modules -> module
 	module -> idm

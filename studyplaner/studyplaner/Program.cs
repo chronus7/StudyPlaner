@@ -43,11 +43,17 @@ namespace Studyplaner
             mo.Department = Enums.Department.IT;
             mo.UniID = 1111;
 
+            UniLibrary lib = new UniLibrary();
+            lib.ID = 1111;
+            lib.Name = "Uni HH";
+            lib.Short = "UHH";
+            lib.Modules = new List<UniModule>() { mo };
+
             string filename = @"test.xml"; // is in debug dir -.-'
-            XmlParser.Serialize(filename, mo);
-            Console.WriteLine("Original Event: " + ev.ID);
-            UniModule module = XmlParser.DeSerialize(filename);
-            Console.WriteLine("The read Event: " + module.ID + " " + module.Events);
+            XmlParser.Serialize(filename, lib);
+            Console.WriteLine("Original Library: " + lib.ID);
+            UniLibrary library = XmlParser.DeSerialize(filename);
+            Console.WriteLine("The read Library: " + library.ID + " " + library.Modules);
         }
     }
 }
