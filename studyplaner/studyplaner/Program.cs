@@ -52,7 +52,8 @@ namespace Studyplaner
             string filename = @"test.xml"; // is in debug dir -.-'
             XmlParser.Serialize(filename, lib);
             Console.WriteLine("Original Library: " + lib.ID);
-            UniLibrary library = XmlParser.DeSerialize(filename);
+
+            UniLibrary library = XmlParser.Deserialize(filename);
             Console.WriteLine("The read Library: " + library.ID + " " + library.Modules);
         }
     }

@@ -8,9 +8,6 @@ namespace Studyplaner.Services.Xml
     /// <summary>
     /// Parses the Xml which contains
     /// important data.
-    /// 
-    /// We should decide how we build up
-    /// the arcitecture!!! :P
     /// </summary>
     public class XmlParser
     {
@@ -42,7 +39,7 @@ namespace Studyplaner.Services.Xml
             }
         }
 
-        public static UniLibrary DeSerialize(string filename)
+        public static UniLibrary Deserialize(string filename)
         {
             XmlSerializer ser = new XmlSerializer(typeof(UniLibrary));
             // -- to handle incorrect Input --

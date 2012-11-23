@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Studyplaner.Materials
 {
-    public class Libraries
+    public class Libraries : IXmlSerializable
     {
         private List<UniLibrary> _list;
 
@@ -24,6 +25,30 @@ namespace Studyplaner.Materials
         public IEnumerator<UniLibrary> GetEnumerator()
         {
             return _list.GetEnumerator();
+        }
+
+        public System.Xml.Schema.XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader)
+        {
+            reader.MoveToContent();
+            reader.ReadStartElement();
+            //TODO how?!?!
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer)
+        {
+            foreach (UniLibrary lib in _list)
+            {
+                writer.WriteStartElement("uni");
+                writer.WriteElementString("id", lib.ID.ToString());
+                writer.WriteElementString("path", @"data/uniLib_" + lib.ID + ".xml");
+                writer.WriteEndElement();//???
+            }
         }
     }
 }
