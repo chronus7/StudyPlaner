@@ -12,6 +12,11 @@ namespace Studyplaner.Materials
     {
         private List<UniLibrary> _list;
 
+        public Libraries()
+        {
+            _list = new List<UniLibrary>();
+        }
+
         public Libraries(List<UniLibrary> list)
         {
             _list = list;

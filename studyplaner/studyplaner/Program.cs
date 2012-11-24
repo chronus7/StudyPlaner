@@ -29,7 +29,13 @@ namespace Studyplaner
             ul.ID = 1231;
             Console.Out.WriteLine("Lib: " + ul.ID);
             Libraries libs = new Libraries(new List<UniLibrary> { ul });
-            //Serialization
+
+            string filename = @"test.xml"; // is in debug dir -.-'
+            XmlParser<Libraries>.Serialize(filename, libs);
+            Console.WriteLine("Original [0]: " + libs[0].ID);
+
+            Libraries libraries = XmlParser<Libraries>.Deserialize(filename);
+            Console.WriteLine("The read [0]: " + libraries[0].ID);
         }
 
         static void SerializationDummy()
@@ -61,10 +67,10 @@ namespace Studyplaner
             lib.Modules = new List<UniModule>() { mo };
 
             string filename = @"test.xml"; // is in debug dir -.-'
-            XmlParser.Serialize(filename, lib);
+            XmlParser<UniLibrary>.Serialize(filename, lib);
             Console.WriteLine("Original Library: " + lib.ID);
 
-            UniLibrary library = XmlParser.Deserialize(filename);
+            UniLibrary library = XmlParser<UniLibrary>.Deserialize(filename);
             Console.WriteLine("The read Library: " + library.ID + " " + library.Modules);
         }
     }

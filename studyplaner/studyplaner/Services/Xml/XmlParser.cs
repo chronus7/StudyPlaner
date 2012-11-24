@@ -9,14 +9,16 @@ namespace Studyplaner.Services.Xml
     /// Parses the Xml which contains
     /// important data.
     /// </summary>
-    public class XmlParser
-    { //TODO: maybe we should make an abstract class out of it
-      //      and then define different classes for different xmls
-      //      e.g. XmlParser<T> -> LibraryParser : XmlParser<UniLibrary>
-      //           ...
-        public static void Serialize(string filename, UniLibrary uniLibrary)
+    public class XmlParser<T>
+    {
+        /// <summary>
+        /// Serializes the given Object in the named file.
+        /// </summary>
+        /// <param name="filename">Path to the file.</param>
+        /// <param name="Object">The object which will be serialized.</param>
+        public static void Serialize(string filename, T Object)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(UniLibrary));
+            XmlSerializer ser = new XmlSerializer(typeof(T));
             TextWriter tw = null;
             try
             {
@@ -28,7 +30,7 @@ namespace Studyplaner.Services.Xml
 
                 tw = new StreamWriter(filename);
 
-                ser.Serialize(tw, uniLibrary);
+                ser.Serialize(tw, Object);
                 tw.Flush();
             }
             catch (Exception e)
@@ -42,18 +44,23 @@ namespace Studyplaner.Services.Xml
             }
         }
 
-        public static UniLibrary Deserialize(string filename)
+        /// <summary>
+        /// Deserializes T from the named file.
+        /// </summary>
+        /// <param name="filename">Path to the file.</param>
+        /// <returns>The deserialized object.</returns>
+        public static T Deserialize(string filename)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(UniLibrary));
+            XmlSerializer ser = new XmlSerializer(typeof(T));
             // -- to handle incorrect Input --
             //ser.UnknownNode += new XmlNodeEventHandler(XmlSerializer_UnknownNode);
             //ser.UnknownAttribute +=
             FileStream fs = null;
-            UniLibrary lib = null;
+            T ob = default(T);
             try
             {
                 fs = new FileStream(filename, FileMode.Open);
-                lib = (UniLibrary)ser.Deserialize(fs);
+                ob = (T)ser.Deserialize(fs);
             }
             catch (Exception e)
             {
@@ -64,7 +71,7 @@ namespace Studyplaner.Services.Xml
                 if (fs != null)
                     fs.Close();
             }
-            return lib;
+            return ob;
         }
     }
 }
