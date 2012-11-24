@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Studyplaner.Materials.Uni;
 using Studyplaner.Services.Xml;
 using System.Collections.Generic;
+using Studyplaner.Materials;
 
 namespace Studyplaner
 {
@@ -19,6 +20,16 @@ namespace Studyplaner
             //Application.Run(new MainForm());
             //Console.WriteLine(Time.ValueOf("23:59"));//to test time :P
             SerializationDummy();
+            SerializationDummy2();
+        }
+
+        private static void SerializationDummy2()
+        {
+            UniLibrary ul = new UniLibrary();
+            ul.ID = 1231;
+            Console.Out.WriteLine("Lib: " + ul.ID);
+            Libraries libs = new Libraries(new List<UniLibrary> { ul });
+            //Serialization
         }
 
         static void SerializationDummy()

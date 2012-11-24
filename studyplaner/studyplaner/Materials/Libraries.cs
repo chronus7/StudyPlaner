@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace Studyplaner.Materials
 {
@@ -14,6 +15,21 @@ namespace Studyplaner.Materials
         public Libraries(List<UniLibrary> list)
         {
             _list = list;
+        }
+
+        public void Add(UniLibrary uniLib)
+        {
+            _list.Add(uniLib);
+        }
+
+        public void Remove(UniLibrary uniLib)
+        {
+            _list.Remove(uniLib);
+        }
+
+        public void Remove(int index)
+        {
+            _list.RemoveAt(index);
         }
 
         public UniLibrary this[int index]
@@ -32,15 +48,26 @@ namespace Studyplaner.Materials
             return null;
         }
 
-        public void ReadXml(System.Xml.XmlReader reader)
+        public void ReadXml(XmlReader reader)
         {
             reader.MoveToContent();
             reader.ReadStartElement();
-            //TODO how?!?!
+            while (reader.ReadToFollowing("uni"))
+            {
+                XmlReader r = reader.ReadSubtree();
+                string id = r.ReadElementString("id");
+                string path = r.ReadElementString("path");
+
+                UniLibrary ul = new UniLibrary();
+                ul.ID = int.Parse(id);
+                // TODO more!!!
+                _list.Add(ul);
+            }
+            //TODO does this work???
             reader.ReadEndElement();
         }
 
-        public void WriteXml(System.Xml.XmlWriter writer)
+        public void WriteXml(XmlWriter writer)
         {
             foreach (UniLibrary lib in _list)
             {

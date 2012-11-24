@@ -10,7 +10,10 @@ namespace Studyplaner.Services.Xml
     /// important data.
     /// </summary>
     public class XmlParser
-    {
+    { //TODO: maybe we should make an abstract class out of it
+      //      and then define different classes for different xmls
+      //      e.g. XmlParser<T> -> LibraryParser : XmlParser<UniLibrary>
+      //           ...
         public static void Serialize(string filename, UniLibrary uniLibrary)
         {
             XmlSerializer ser = new XmlSerializer(typeof(UniLibrary));
