@@ -1,14 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "studyplaner", "studyplaner\studyplaner.csproj", "{31DCCD33-5CA7-4FF8-BBBC-F1CFEB7BADB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyPlaner.alt", "StudyPlaner_alt\StudyPlaner.alt.csproj", "{0B67BFAF-3DC7-40C8-A12C-F4E5A901995F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{35B1E00E-261A-4692-A447-6CB83E0D0E88}"
-	ProjectSection(SolutionItems) = preProject
-		General.txt = General.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

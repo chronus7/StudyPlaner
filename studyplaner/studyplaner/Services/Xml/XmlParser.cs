@@ -27,8 +27,9 @@ namespace Studyplaner.Services.Xml
                     File.Create(filename);
                     Console.WriteLine("Created file: " + filename);
                 }
-                // TODO: writing after the creation of the file
-                //       is not possible :(
+                // TODO | dj | write file after creation!
+                //      writing after the creation of the file
+                //      is not possible :(
 
                 tw = new StreamWriter(filename);
 
@@ -54,7 +55,7 @@ namespace Studyplaner.Services.Xml
         public static T Deserialize(string filename)
         {
             XmlSerializer ser = new XmlSerializer(typeof(T));
-            // -- to handle incorrect Input --
+            // -- to handle incorrect Input -- TODO | dj | handle incorrect nodes.
             //ser.UnknownNode += new XmlNodeEventHandler(XmlSerializer_UnknownNode);
             //ser.UnknownAttribute +=
             FileStream fs = null;
