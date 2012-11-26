@@ -58,18 +58,18 @@ namespace Studyplaner.Materials
         {
             reader.MoveToContent();
             reader.ReadStartElement();
-            while (reader.ReadToFollowing("uni"))
+            while (reader.Name.Equals("uni"))
             {
-                XmlReader r = reader.ReadSubtree();
-                string id = r.ReadElementString("id");
-                string path = r.ReadElementString("path");
+                reader.ReadStartElement();
+                string id = reader.ReadElementString("id");
+                string path = reader.ReadElementString("path");
+                reader.ReadEndElement();
 
                 UniLibrary ul = new UniLibrary();
                 ul.ID = int.Parse(id);
                 // TODO more!!!
                 _list.Add(ul);
             }
-            //TODO does this work???
             reader.ReadEndElement();
         }
 
