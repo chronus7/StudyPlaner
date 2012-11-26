@@ -9,7 +9,9 @@ namespace Studyplaner.GUI.Forms
 {
     public partial class MainForm : Form
     {
-        private const float MAINPANEL_YDISTANCE_FACTOR = 0.68f;
+        private const float MAINPANEL_YDISTANCE_FACTOR = 0.68f; //TODO | dj | maybe we should change this ration?
+                                                                //            the infopanel seems to get really big
+                                                                //            in fullscreen mode
         private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
 
         private SettingsForm _settingsFrm;
@@ -26,6 +28,8 @@ namespace Studyplaner.GUI.Forms
         private void Initialize()
         {
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+
+            this._panelMain.Paint += new PaintEventHandler(PaintMainPanel);
 
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
@@ -103,6 +107,12 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Resize(object sender, EventArgs e)
         {
             ResizePanels();
+            _panelMain.Refresh(); //TODO | dj | not so nice...
+        }
+
+        private void PaintMainPanel(object sender, PaintEventArgs g)
+        {
+            PaintService.PaintGrid(g.Graphics);
         }
 
         private void TotalQuitClick(object sender, EventArgs e)
