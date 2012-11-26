@@ -6,3 +6,6 @@ General Information / Important ToDos:
  --- yeah i know, but with seperate classes we could name the properties correct.. but i guess you are right, would take too much time to write multiple GUI elements.. we could still use the combobox tho, 
 	 since we would have an abstract baseclass which could be the type of the elements the combobox is showing..
  --- but as you said: there are no differnces between those classes. so why shall we create a bunch of nearly exactly similar classes?
+
+- this explains how to serialize a timespan: http://stackoverflow.com/questions/637933/net-how-to-serialize-a-timespan-to-xml
+ --- thanks :P
