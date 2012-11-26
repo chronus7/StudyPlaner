@@ -27,6 +27,8 @@ namespace Studyplaner.Services.Xml
                     File.Create(filename);
                     Console.WriteLine("Created file: " + filename);
                 }
+                // TODO: writing after the creation of the file
+                //       is not possible :(
 
                 tw = new StreamWriter(filename);
 

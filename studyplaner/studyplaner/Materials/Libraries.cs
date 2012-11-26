@@ -8,6 +8,7 @@ using System.Xml;
 
 namespace Studyplaner.Materials
 {
+    [XmlRoot(ElementName="libraries")]
     public class Libraries : IXmlSerializable
     {
         private List<UniLibrary> _list;

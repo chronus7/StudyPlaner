@@ -30,7 +30,7 @@ namespace Studyplaner
             Console.Out.WriteLine("Lib: " + ul.ID);
             Libraries libs = new Libraries(new List<UniLibrary> { ul });
 
-            string filename = @"test.xml"; // is in debug dir -.-'
+            string filename = @"test2.xml"; // is in debug dir -.-'
             XmlParser<Libraries>.Serialize(filename, libs);
             Console.WriteLine("Original [0]: " + libs[0].ID);
 
