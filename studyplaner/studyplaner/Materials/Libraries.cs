@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.Xml;
+using Studyplaner.Services.Xml;
 
 namespace Studyplaner.Materials
 {
@@ -62,12 +63,11 @@ namespace Studyplaner.Materials
             {
                 reader.ReadStartElement();
                 string id = reader.ReadElementString("id");
-                string path = reader.ReadElementString("path");
                 reader.ReadEndElement();
 
-                UniLibrary ul = new UniLibrary();
-                ul.ID = int.Parse(id);
-                // TODO more!!!
+                String path = @"..\..\Data\uniLib_" + id + ".xml"; //TODO: change to userchosen path
+                UniLibrary ul = XmlParser<UniLibrary>.Deserialize(path);
+                Console.Out.WriteLine(ul.ID);
                 _list.Add(ul);
             }
             reader.ReadEndElement();
@@ -79,8 +79,7 @@ namespace Studyplaner.Materials
             {
                 writer.WriteStartElement("uni");
                 writer.WriteElementString("id", lib.ID.ToString());
-                writer.WriteElementString("path", @"data/uniLib_" + lib.ID + ".xml");
-                writer.WriteEndElement();//???
+                writer.WriteEndElement();
             }
         }
     }

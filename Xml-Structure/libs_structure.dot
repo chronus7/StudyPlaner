@@ -4,10 +4,8 @@ digraph LibsStructure {
 		root
 		uni
 		id
-		path
 	}
 
 	root -> uni
 	uni -> id
-	uni -> path
 }
