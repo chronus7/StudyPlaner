@@ -31,6 +31,7 @@
             this._mainPanel = new System.Windows.Forms.Panel();
             this._lblBgColor = new System.Windows.Forms.Label();
             this._btnBgColor = new System.Windows.Forms.Button();
+            this._colorDialog = new System.Windows.Forms.ColorDialog();
             this._mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +44,7 @@
             this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._mainPanel.Location = new System.Drawing.Point(10, 10);
             this._mainPanel.Name = "_mainPanel";
-            this._mainPanel.Size = new System.Drawing.Size(224, 227);
+            this._mainPanel.Size = new System.Drawing.Size(460, 287);
             this._mainPanel.TabIndex = 0;
             // 
             // _lblBgColor
@@ -64,6 +65,12 @@
             this._btnBgColor.Size = new System.Drawing.Size(20, 20);
             this._btnBgColor.TabIndex = 1;
             this._btnBgColor.UseVisualStyleBackColor = false;
+            this._btnBgColor.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _colorDialog
+            // 
+            this._colorDialog.AnyColor = true;
+            this._colorDialog.FullOpen = true;
             // 
             // SettingsForm
             // 
@@ -90,5 +97,6 @@
         private System.Windows.Forms.Panel _mainPanel;
         private System.Windows.Forms.Label _lblBgColor;
         private System.Windows.Forms.Button _btnBgColor;
+        private System.Windows.Forms.ColorDialog _colorDialog;
     }
 }

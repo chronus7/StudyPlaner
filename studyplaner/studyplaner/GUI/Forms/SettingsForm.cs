@@ -20,8 +20,23 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
+            changeMainBgColor();
+        }
+
+        private void changeMainBgColor()
+        {
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
             _btnBgColor.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+        }
+
+        private void ChangeColorClick(object sender, EventArgs e)
+        {
+            DialogResult dr = this._colorDialog.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                Properties.Settings.Default.USER_COLOR_BACKGROUND = this._colorDialog.Color;
+                changeMainBgColor();
+            }
         }
     }
 }
