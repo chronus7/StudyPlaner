@@ -33,43 +33,58 @@ namespace Studyplaner.Services
             float usedWidth = bounds.Width - generalOffset; // the resulting width
             float usedHeight = bounds.Height - generalOffset; // the resulting height
 
-            float timeOffset = usedWidth * 0.1f;
-            float dayWidth = (usedWidth - timeOffset) / 5;
+            float timeOffset = usedWidth * 0.1f; // offset for timecoloumn
+            float dayWidth = (usedWidth - timeOffset) / 5; // width of a daycoloumn
             
+            // dayline (horizontal)
+            float headOffset = usedHeight * 0.1f; // offset of headline (separator)
+            graphics.DrawLine(LINEPEN, new PointF(generalOffset, headOffset), new PointF(bounds.Width - generalOffset, headOffset));
+
             // days (vertical + strings)
             String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            float fontSize = usedWidth * 0.0225f;
+            Font dayFont = new Font(FontFamily.GenericSansSerif, fontSize);
             for (int i = 0; i < 5; i++)
             {
                 float x = timeOffset + (dayWidth * i);
                 graphics.DrawLine(LINEPEN, new PointF(x, generalOffset), new PointF(x, bounds.Height - generalOffset));
-                //graphics.DrawString(days[i], new Font(FontFamily.GenericSansSerif, 12), LINEPEN.Brush, new PointF(x + 5, generalOffset));
-                //TODO | dj | make those fontsizes dynamic!!!
+                // set dayString center-center
+                SizeF dayStringSize = graphics.MeasureString(days[i], dayFont);
+                float stringX = (dayWidth / 2) - (dayStringSize.Width / 2) + x;
+                float stringY = (headOffset / 2) - (dayStringSize.Height / 2);
+                graphics.DrawString(days[i], dayFont, LINEPEN.Brush, new PointF(stringX, stringY));
             }
 
-            // dayline (horizontal)
-            float headOffset = usedHeight * 0.1f;
-            graphics.DrawLine(LINEPEN, new PointF(generalOffset, headOffset), new PointF(bounds.Width - generalOffset, headOffset));
-
             //times
-            float hourHeight = (usedHeight - headOffset) / 12;
+            int startTime = 8; // first time displayed
+            int endTime = 19; // last time displayed
+
+            float hourHeight = (usedHeight - headOffset) / (endTime - startTime + 1);
             float countingOffset = headOffset + hourHeight / 2;
-            float xStringOffset = 40; //TODO | dj | fontsize relative to size.
-            for (int i = 8; i < 20; ++i)
+            float lineWidth = timeOffset * 0.15f;
+            float smallLineWidth = lineWidth * 0.75f;
+            float fullHourFontsize = usedWidth * 0.0175f;
+            float halfHourFontsize = usedWidth * 0.0125f;
+            Font fullHourFont = new Font(FontFamily.GenericSansSerif, fullHourFontsize);
+            Font halfHourFont = new Font(FontFamily.GenericSansSerif, halfHourFontsize);
+            for (int i = startTime; i <= endTime; ++i)
             {
-                if (i == 10)
-                    xStringOffset += 7.5f;
                 float y = countingOffset + (hourHeight * (i - 8));
                 // full hours
-                graphics.DrawLine(LINEPEN, new PointF(timeOffset, y), new PointF(timeOffset - 10, y));
-                graphics.DrawString(i + ":00", new Font(FontFamily.GenericSansSerif, 10), LINEPEN.Brush, new PointF(timeOffset - xStringOffset, y - 7.5f));
+                graphics.DrawLine(LINEPEN, new PointF(timeOffset, y), new PointF(timeOffset - lineWidth, y));
+                SizeF sizeFullString = graphics.MeasureString(i + ":00", fullHourFont);
+                float fullX = timeOffset - lineWidth - sizeFullString.Width;
+                float fullY = y - (sizeFullString.Height / 2) + (LINEPEN.Width / 2);
+                graphics.DrawString(i + ":00", fullHourFont, LINEPEN.Brush, new PointF(fullX, fullY));
                 // half hours
-                if (i < 19)
+                if (i < endTime)
                 {
                     y = y + hourHeight / 2;
-                    float xStrOffset = xStringOffset - 10;
-                    graphics.DrawLine(LINEPEN, new PointF(timeOffset, y), new PointF(timeOffset - 5, y));
-                    graphics.DrawString(i + ":30", new Font(FontFamily.GenericSansSerif, 7.5f), LINEPEN.Brush, new PointF(timeOffset - xStrOffset, y - 6.75f));
-                
+                    graphics.DrawLine(LINEPEN, new PointF(timeOffset, y), new PointF(timeOffset - smallLineWidth, y));
+                    SizeF sizeHalfString = graphics.MeasureString(i + ":30", halfHourFont);
+                    float halfX = timeOffset - smallLineWidth - sizeHalfString.Width;
+                    float halfY = y - (sizeHalfString.Height / 2) + (LINEPEN.Width / 2);
+                    graphics.DrawString(i + ":30", halfHourFont, LINEPEN.Brush, new PointF(halfX, halfY));
                 }
             }
         }
