@@ -32,6 +32,9 @@
             this._lblBgColor = new System.Windows.Forms.Label();
             this._btnBgColor = new System.Windows.Forms.Button();
             this._colorDialog = new System.Windows.Forms.ColorDialog();
+            this._btnSave = new System.Windows.Forms.Button();
+            this._btnCancel = new System.Windows.Forms.Button();
+            this._btnReset = new System.Windows.Forms.Button();
             this._mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,6 +42,9 @@
             // 
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._mainPanel.Controls.Add(this._btnReset);
+            this._mainPanel.Controls.Add(this._btnCancel);
+            this._mainPanel.Controls.Add(this._btnSave);
             this._mainPanel.Controls.Add(this._lblBgColor);
             this._mainPanel.Controls.Add(this._btnBgColor);
             this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,10 +78,42 @@
             this._colorDialog.AnyColor = true;
             this._colorDialog.FullOpen = true;
             // 
+            // _btnSave
+            // 
+            this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._btnSave.Location = new System.Drawing.Point(299, 259);
+            this._btnSave.Name = "_btnSave";
+            this._btnSave.Size = new System.Drawing.Size(75, 23);
+            this._btnSave.TabIndex = 2;
+            this._btnSave.Text = "Save";
+            this._btnSave.UseVisualStyleBackColor = true;
+            // 
+            // _btnCancel
+            // 
+            this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this._btnCancel.Location = new System.Drawing.Point(380, 259);
+            this._btnCancel.Name = "_btnCancel";
+            this._btnCancel.Size = new System.Drawing.Size(75, 23);
+            this._btnCancel.TabIndex = 3;
+            this._btnCancel.Text = "Cancel";
+            this._btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // _btnReset
+            // 
+            this._btnReset.Location = new System.Drawing.Point(218, 259);
+            this._btnReset.Name = "_btnReset";
+            this._btnReset.Size = new System.Drawing.Size(75, 23);
+            this._btnReset.TabIndex = 4;
+            this._btnReset.Text = "Reset";
+            this._btnReset.UseVisualStyleBackColor = true;
+            this._btnReset.Click += new System.EventHandler(this.ResetClick);
+            // 
             // SettingsForm
             // 
+            this.AcceptButton = this._btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._btnCancel;
             this.ClientSize = new System.Drawing.Size(480, 307);
             this.Controls.Add(this._mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -98,5 +136,8 @@
         private System.Windows.Forms.Label _lblBgColor;
         private System.Windows.Forms.Button _btnBgColor;
         private System.Windows.Forms.ColorDialog _colorDialog;
+        private System.Windows.Forms.Button _btnCancel;
+        private System.Windows.Forms.Button _btnSave;
+        private System.Windows.Forms.Button _btnReset;
     }
 }
