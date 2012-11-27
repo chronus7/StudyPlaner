@@ -19,8 +19,8 @@ namespace Studyplaner.Services
 
         /// <summary>
         /// Paints the standard plan-grid to the
-        /// graphics. It is (mainly) adjusted to the
-        /// size of graphics-object.
+        /// graphics object. It is (mainly) adjusted to the
+        /// size of graphics object.
         /// </summary>
         /// <param name="graphics">the graphics to paint on</param>
         public static void PaintGrid(Graphics graphics)

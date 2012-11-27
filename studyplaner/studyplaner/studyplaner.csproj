@@ -146,11 +146,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Data\uniLib_1111.xml" />
-    <None Include="Resources\BATTERY_MEDIUM.png" />
-    <None Include="Resources\BATTERY_HIGH.png" />
-    <None Include="Resources\BATTERY_LOW.png" />
-    <None Include="Resources\BATTERY_FULLYCHARGED.png" />
-    <None Include="Resources\BATTERY_EMPTY.png" />
+    <None Include="Services\Resources\BATTERY_NOT_CHARGEABLE.png" />
+    <None Include="Services\Resources\BATTERY_MEDIUM.png" />
+    <None Include="Services\Resources\BATTERY_HIGH.png" />
+    <None Include="Services\Resources\BATTERY_LOW.png" />
+    <None Include="Services\Resources\BATTERY_FULLYCHARGED.png" />
+    <None Include="Services\Resources\BATTERY_EMPTY.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

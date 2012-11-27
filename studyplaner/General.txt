@@ -9,3 +9,7 @@ General Information / Important ToDos:
 
 - this explains how to serialize a timespan: http://stackoverflow.com/questions/637933/net-how-to-serialize-a-timespan-to-xml
  --- thanks :P
+
+ Sources: 
+	- battery icons		www.gentleface.com		- license: http://creativecommons.org/licenses/by-nc/3.0/
+	- power cord icon	www.androidicons.com	- license: http://creativecommons.org/licenses/by/3.0/

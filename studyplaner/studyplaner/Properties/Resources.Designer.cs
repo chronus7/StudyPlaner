@@ -109,5 +109,15 @@ namespace Studyplaner.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BATTERY_NOT_CHARGEABLE {
+            get {
+                object obj = ResourceManager.GetObject("BATTERY_NOT_CHARGEABLE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

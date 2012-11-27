@@ -35,9 +35,17 @@ namespace Studyplaner.GUI.Forms
             UpdateStatusBarDateTime();
 
             this._batteryService = new LaptopBatteryService();
-            this._batteryService.BatteryStateChanged += OnBatteryStateChanged;
-            UpdateStatusBarBatteryState(_batteryService.GetCurrentBatteryState());
-            UpdateBatteryToolTipText(_batteryService.GetCurrentRemainingTime());
+            if (_batteryService.IsChargeable())
+            {
+                this._batteryService.BatteryStateChanged += OnBatteryStateChanged;
+                UpdateStatusBarBatteryState(_batteryService.GetCurrentBatteryState());
+                UpdateBatteryToolTipText(_batteryService.GetCurrentRemainingTime());
+            }
+            else
+            {
+                this._batteryService = null;
+                this._statusElementBattery.Image = Properties.Resources.BATTERY_NOT_CHARGEABLE;
+            }
         }
 
         private void ResizePanels()

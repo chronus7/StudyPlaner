@@ -25,23 +25,28 @@ namespace Studyplaner.Services
             BatteryStateChanged.Raise(this, e);
         }
 
-        private bool _isCharging;
+        private bool _isChargeable, _isCharging;
         private short _batteryState;
         private int _batteryRemaining;
         private System.Timers.Timer _timer;
 
         public LaptopBatteryService()
         {
-            _isCharging = false;
-            _batteryState = -1;
-            _batteryRemaining = -1;
+            _isChargeable = SystemInformation.PowerStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery;
 
-            UpdateBatteryState();
+            if (IsChargeable())
+            {
+                _isCharging = false;
+                _batteryState = -1;
+                _batteryRemaining = -1;
 
-            _timer = new System.Timers.Timer(30000d);
-            _timer.AutoReset = true;
-            _timer.Elapsed += UpdateBatteryStateOnTimerTick;
-            _timer.Start();
+                UpdateBatteryState();
+
+                _timer = new System.Timers.Timer(30000d);
+                _timer.AutoReset = true;
+                _timer.Elapsed += UpdateBatteryStateOnTimerTick;
+                _timer.Start();
+            }
         }
 
         private void UpdateBatteryStateOnTimerTick(object sender, ElapsedEventArgs e)
@@ -97,7 +102,16 @@ namespace Studyplaner.Services
         {
             return new TimeSpan((seconds / 3600), (seconds / 60 % 60), 0);
         }
- 
+
+        /// <summary>
+        /// Gets a value wether the running computer has a chargeable battery
+        /// </summary>
+        /// <returns></returns>
+        public bool IsChargeable()
+        {
+            return _isChargeable;
+        }
+
         /// <summary>
         /// Gets the current ChargingState of the system
         /// </summary>
