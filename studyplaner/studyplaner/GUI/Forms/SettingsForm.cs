@@ -38,5 +38,12 @@ namespace Studyplaner.GUI.Forms
                 changeMainBgColor();
             }
         }
+
+        private void ResetClick(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            //TODO | dj | not only this...
+            changeMainBgColor();
+        }
     }
 }

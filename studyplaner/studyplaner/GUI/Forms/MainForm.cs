@@ -96,7 +96,11 @@ namespace Studyplaner.GUI.Forms
         {
             this._settingsFrm = new SettingsForm();
             if (_settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                Properties.Settings.Default.Save();
+            {
+                Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
+                // TODO | dj | here should be more... (method extraction) :P
+                this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+            }
             else
                 Properties.Settings.Default.Reload();
         }
