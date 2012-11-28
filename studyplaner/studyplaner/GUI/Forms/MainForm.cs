@@ -1,4 +1,6 @@
 ﻿using Studyplaner.Enums;
+using Studyplaner.GUI.Controls;
+using Studyplaner.Materials.Uni;
 using Studyplaner.Materials.Various;
 using Studyplaner.Services;
 using System;
@@ -31,9 +33,35 @@ namespace Studyplaner.GUI.Forms
 
             this._panelMain.Paint += new PaintEventHandler(PaintMainPanel);
 
+            InitializeDateTimeTimer();
+            InitializeBattery();
+        }
+
+        private void TestEventPanel()
+        {
+            UniEvent ue = new UniEvent() { Type = EventType.Exercise };
+            UniEventPanel panel = new UniEventPanel(ue);
+            _panelMain.Controls.Add(panel);
+
+            Timer t = new Timer();
+            t.Interval = 5000;
+            t.Tick += delegate(System.Object o, System.EventArgs e)
+            { 
+                UniEvent newue = new UniEvent(); 
+                int time = (int)DateTime.Now.Ticks; 
+                newue.Type = (time % 2 == 0) ? EventType.Lecture : EventType.Exercise; panel.EventToRepresent = newue; 
+            };
+            t.Start();
+        }
+
+        private void InitializeDateTimeTimer()
+        {
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
+        }
 
+        private void InitializeBattery()
+        {
             this._batteryService = new BatteryService();
             if (_batteryService.IsChargeable())
             {
@@ -51,8 +79,10 @@ namespace Studyplaner.GUI.Forms
         private void ResizePanels()
         {
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
+            _panelMain.Refresh(); //TODO | dj | not so nice...
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 40, _panelInfo.Height);
+            _panelInfo.Refresh(); //TODO | f | not so nice as well...
         }
 
         private void UpdateStatusBarDateTime()
@@ -119,7 +149,6 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Resize(object sender, EventArgs e)
         {
             ResizePanels();
-            _panelMain.Refresh(); //TODO | dj | not so nice...
         }
 
         private void PaintMainPanel(object sender, PaintEventArgs g)
@@ -148,6 +177,11 @@ namespace Studyplaner.GUI.Forms
         private void OpenSettingsDialog(object sender, EventArgs e)
         {
             LaunchSettingsDialog();
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            TestEventPanel();
         }
     }
 }

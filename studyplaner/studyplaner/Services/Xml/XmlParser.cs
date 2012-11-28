@@ -18,32 +18,43 @@ namespace Studyplaner.Services.Xml
         /// <param name="Object">The object which will be serialized.</param>
         public static void Serialize(string filename, T Object)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(T));
-            TextWriter tw = null;
-            try
+            XmlSerializer xSer = new XmlSerializer(typeof(T));
+            //TextWriter tw = null;
+            //try
+            //{
+            //    if (!File.Exists(filename))
+            //    {
+            //        File.Create(filename);
+            //        Console.WriteLine("Created file: " + filename);
+            //    }
+            //    // TODO | dj | write file after creation!
+            //    //      writing after the creation of the file
+            //    //      is not possible :(
+
+            //    tw = new StreamWriter(filename);
+
+            //    ser.Serialize(tw, Object);
+            //    tw.Flush();
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
+            //finally
+            //{
+            //    if (tw != null)
+            //        tw.Close();
+            //}
+            using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
-                if (!File.Exists(filename))
+                try
                 {
-                    File.Create(filename);
-                    Console.WriteLine("Created file: " + filename);
+                    xSer.Serialize(fs, Object);
                 }
-                // TODO | dj | write file after creation!
-                //      writing after the creation of the file
-                //      is not possible :(
-
-                tw = new StreamWriter(filename);
-
-                ser.Serialize(tw, Object);
-                tw.Flush();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                if (tw != null)
-                    tw.Close();
+                catch (IOException ioEx)
+                {
+                    throw new IOException("There was an error during serialization of the given " + typeof(T), ioEx);
+                }
             }
         }
 
@@ -58,23 +69,20 @@ namespace Studyplaner.Services.Xml
             // -- to handle incorrect Input -- TODO | dj | handle incorrect nodes.
             //ser.UnknownNode += new XmlNodeEventHandler(XmlSerializer_UnknownNode);
             //ser.UnknownAttribute +=
-            FileStream fs = null;
-            T ob = default(T);
-            try
+
+            T value = default(T);
+            using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                fs = new FileStream(filename, FileMode.Open);
-                ob = (T)ser.Deserialize(fs);
+                try
+                {
+                    value = (T)ser.Deserialize(fs);
+                }
+                catch (IOException ioEx)
+                {
+                    throw new IOException("There was an error during deserialization of the given file " + filename, ioEx);
+                }      
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                if (fs != null)
-                    fs.Close();
-            }
-            return ob;
+            return value;
         }
     }
 }
