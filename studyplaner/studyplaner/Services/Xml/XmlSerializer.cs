@@ -9,7 +9,7 @@ namespace Studyplaner.Services.Xml
     /// Parses the Xml which contains
     /// important data.
     /// </summary>
-    public class XmlParser<T>
+    public class XmlSerializer<T>
     {
         /// <summary>
         /// Serializes the given Object in the named file.

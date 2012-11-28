@@ -66,7 +66,7 @@ namespace Studyplaner.Materials
                 reader.ReadEndElement();
 
                 String path = @"..\..\Data\uniLib_" + id + ".xml"; //TODO | dj | change to userchosen path
-                UniLibrary ul = XmlParser<UniLibrary>.Deserialize(path);
+                UniLibrary ul = XmlSerializer<UniLibrary>.Deserialize(path);
                 Console.Out.WriteLine(ul.ID);
                 _list.Add(ul);
             }
