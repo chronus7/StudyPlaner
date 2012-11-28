@@ -32,7 +32,7 @@ namespace Studyplaner.Services
 
         public LaptopBatteryService()
         {
-            _isChargeable = SystemInformation.PowerStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery;
+            _isChargeable = (SystemInformation.PowerStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery);
 
             if (IsChargeable())
             {
