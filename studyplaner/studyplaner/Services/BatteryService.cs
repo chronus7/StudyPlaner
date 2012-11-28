@@ -10,7 +10,7 @@ namespace Studyplaner.Services
     /// Represents the batterypart of a pc or laptop.
     /// Provides information about the current state of the system and raises an event when something changes
     /// </summary>
-    public class LaptopBatteryService
+    public class BatteryService
     {
         // Grenzen für BatteryState Berechnungen
         private const int BATTERYTHRESHOLD_EMPTY = 10;
@@ -30,7 +30,7 @@ namespace Studyplaner.Services
         private int _batteryRemaining;
         private System.Timers.Timer _timer;
 
-        public LaptopBatteryService()
+        public BatteryService()
         {
             _isChargeable = (SystemInformation.PowerStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery);
 

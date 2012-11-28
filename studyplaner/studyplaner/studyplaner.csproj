@@ -82,7 +82,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Materials\Various\BatteryEventArgs.cs" />
-    <Compile Include="Services\LaptopBatteryService.cs" />
+    <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Libraries.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Values\Time.cs" />

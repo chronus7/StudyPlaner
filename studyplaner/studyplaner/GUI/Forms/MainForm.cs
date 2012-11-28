@@ -16,7 +16,7 @@ namespace Studyplaner.GUI.Forms
 
         private SettingsForm _settingsFrm;
 
-        private LaptopBatteryService _batteryService;
+        private BatteryService _batteryService;
 
         public MainForm()
         {
@@ -34,7 +34,7 @@ namespace Studyplaner.GUI.Forms
             this._dateTimeTimer.Start();
             UpdateStatusBarDateTime();
 
-            this._batteryService = new LaptopBatteryService();
+            this._batteryService = new BatteryService();
             if (_batteryService.IsChargeable())
             {
                 this._batteryService.BatteryStateChanged += OnBatteryStateChanged;
