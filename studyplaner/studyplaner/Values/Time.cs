@@ -42,6 +42,7 @@ namespace Studyplaner.Values
         {
             Hours = hours;
             Minutes = minutes;
+            // TODO | dj | WEEKDAY is missing!!!!!!!!
             Date = DateTime.MinValue;
             WeekInterval = weekInterval;
         }
