@@ -1,6 +1,6 @@
 ﻿using Studyplaner.Enums;
 using Studyplaner.GUI.Controls;
-using Studyplaner.Materials.Uni;
+using Studyplaner.Materials.University;
 using Studyplaner.Materials.Various;
 using Studyplaner.Services;
 using System;
@@ -39,7 +39,7 @@ namespace Studyplaner.GUI.Forms
 
         private void TestEventPanel()
         {
-            UniEvent ue = new UniEvent() { Type = EventType.Exercise };
+            UniversityEvent ue = new UniversityEvent() { Type = EventType.Exercise };
             UniEventPanel panel = new UniEventPanel(ue);
             _panelMain.Controls.Add(panel);
 
@@ -47,7 +47,7 @@ namespace Studyplaner.GUI.Forms
             t.Interval = 5000;
             t.Tick += delegate(System.Object o, System.EventArgs e)
             { 
-                UniEvent newue = new UniEvent(); 
+                UniversityEvent newue = new UniversityEvent(); 
                 int time = (int)DateTime.Now.Ticks; 
                 newue.Type = (time % 2 == 0) ? EventType.Lecture : EventType.Exercise; panel.EventToRepresent = newue; 
             };

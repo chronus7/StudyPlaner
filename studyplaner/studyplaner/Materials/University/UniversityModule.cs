@@ -2,10 +2,10 @@
 using System.Xml.Serialization;
 using Studyplaner.Enums;
 
-namespace Studyplaner.Materials.Uni
+namespace Studyplaner.Materials.University
 {
     [XmlRootAttribute(ElementName="module")]
-    public class UniModule
+    public class UniversityModule
     {
         /// <summary>
         /// The (hopefully) unique id of this module.
@@ -49,6 +49,6 @@ namespace Studyplaner.Materials.Uni
         /// </summary>
         [XmlArray(ElementName="events")]
         [XmlArrayItem(ElementName="event")]
-        public List<UniEvent> Events { get; set; }
+        public List<UniversityEvent> Events { get; set; }
     }
 }

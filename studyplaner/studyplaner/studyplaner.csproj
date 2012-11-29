@@ -87,10 +87,10 @@
     <Compile Include="Materials\Libraries.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Values\Time.cs" />
-    <Compile Include="Materials\Uni\UniLibrary.cs" />
-    <Compile Include="Materials\Uni\UniEvent.cs" />
+    <Compile Include="Materials\University\UniversityLibrary.cs" />
+    <Compile Include="Materials\University\UniversityEvent.cs" />
     <Compile Include="Enums\EventType.cs" />
-    <Compile Include="Materials\Uni\UniModule.cs" />
+    <Compile Include="Materials\University\UniversityModule.cs" />
     <Compile Include="Enums\WeekInterval.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

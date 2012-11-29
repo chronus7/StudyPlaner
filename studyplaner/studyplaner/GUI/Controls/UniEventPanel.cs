@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.Uni;
+using Studyplaner.Materials.University;
 using Studyplaner.Services;
 
 namespace Studyplaner.GUI.Controls
@@ -16,15 +16,15 @@ namespace Studyplaner.GUI.Controls
         private const float FACTOR_X_HEADER = 0.03f, FACTOR_Y_HEADER = 0.03f;
         private const float FACTOR_FONT_NAME = 0.15f, FACTOR_FONT_SUB = 0.1f;
 
-        private UniEvent _eventToRepresent;
+        private UniversityEvent _eventToRepresent;
 
-        public UniEventPanel(UniEvent ev)
+        public UniEventPanel(UniversityEvent ev)
         {
             this.EventToRepresent = ev;
             UpdateBackgroundColor();
         }
 
-        public UniEvent EventToRepresent
+        public UniversityEvent EventToRepresent
         {
             get
             {
