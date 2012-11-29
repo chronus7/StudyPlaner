@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Studyplaner.Manager
 {
-    public class ModuleManager
+    public class UniversityManager
     {
         
     }
