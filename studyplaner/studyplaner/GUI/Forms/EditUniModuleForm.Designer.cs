@@ -38,6 +38,8 @@
             this._lblDepartment = new System.Windows.Forms.Label();
             this._cmBoxDepartment = new System.Windows.Forms.ComboBox();
             this._grpBoxEvent = new System.Windows.Forms.GroupBox();
+            this._btnAdd = new System.Windows.Forms.Button();
+            this._btnRemove = new System.Windows.Forms.Button();
             this._eventTree = new Studyplaner.GUI.Controls.EventTree(this.components);
             this._grpBoxEvent.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +117,8 @@
             this._grpBoxEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._grpBoxEvent.Controls.Add(this._btnAdd);
+            this._grpBoxEvent.Controls.Add(this._btnRemove);
             this._grpBoxEvent.Controls.Add(this._eventTree);
             this._grpBoxEvent.Location = new System.Drawing.Point(12, 65);
             this._grpBoxEvent.Name = "_grpBoxEvent";
@@ -123,11 +127,37 @@
             this._grpBoxEvent.TabStop = false;
             this._grpBoxEvent.Text = "Events";
             // 
+            // _btnAdd
+            // 
+            this._btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._btnAdd.Location = new System.Drawing.Point(87, 206);
+            this._btnAdd.Name = "_btnAdd";
+            this._btnAdd.Size = new System.Drawing.Size(75, 23);
+            this._btnAdd.TabIndex = 2;
+            this._btnAdd.Text = "Add";
+            this._btnAdd.UseVisualStyleBackColor = true;
+            this._btnAdd.Click += new System.EventHandler(this.Add_Click);
+            // 
+            // _btnRemove
+            // 
+            this._btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._btnRemove.Location = new System.Drawing.Point(6, 206);
+            this._btnRemove.Name = "_btnRemove";
+            this._btnRemove.Size = new System.Drawing.Size(75, 23);
+            this._btnRemove.TabIndex = 1;
+            this._btnRemove.Text = "Remove";
+            this._btnRemove.UseVisualStyleBackColor = true;
+            this._btnRemove.Click += new System.EventHandler(this.Remove_Click);
+            // 
             // _eventTree
             // 
+            this._eventTree.FullRowSelect = true;
             this._eventTree.Location = new System.Drawing.Point(6, 19);
             this._eventTree.Name = "_eventTree";
-            this._eventTree.Size = new System.Drawing.Size(150, 210);
+            this._eventTree.ShowLines = false;
+            this._eventTree.ShowPlusMinus = false;
+            this._eventTree.ShowRootLines = false;
+            this._eventTree.Size = new System.Drawing.Size(156, 181);
             this._eventTree.TabIndex = 0;
             // 
             // EditUniModuleForm
@@ -164,5 +194,7 @@
         private System.Windows.Forms.ComboBox _cmBoxDepartment;
         private System.Windows.Forms.GroupBox _grpBoxEvent;
         private Controls.EventTree _eventTree;
+        private System.Windows.Forms.Button _btnAdd;
+        private System.Windows.Forms.Button _btnRemove;
     }
 }

@@ -6,15 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Studyplaner.Materials.University;
+using System.Drawing;
 
 namespace Studyplaner.GUI.Controls
 {
     public partial class EventTree : TreeView
     {
+        private static readonly Font HEADERFONT = new Font(DefaultFont, FontStyle.Italic);
+
         public EventTree()
         {
             InitializeComponent();
-            Init();
         }
 
         public EventTree(IContainer container)
@@ -22,18 +24,21 @@ namespace Studyplaner.GUI.Controls
             container.Add(this);
 
             InitializeComponent();
-            Init();
         }
 
-        private void Init()
+        public void Add(TreeNode node)
         {
-            this.DrawNode += new DrawTreeNodeEventHandler(DrawNodeEvent);
+            if ((node as EventTreeNode) == null)
+                node.NodeFont = HEADERFONT;
+            this.Nodes.Add(node);
+            if (node.PrevVisibleNode != null)
+                node.PrevVisibleNode.ExpandAll();
         }
 
-        void DrawNodeEvent(object sender, DrawTreeNodeEventArgs e)
+        public void AddRange(TreeNode[] nodes)
         {
-            if (e != null)
-                e.Node.PrevVisibleNode.ExpandAll();
+            foreach (TreeNode n in nodes)
+                Add(n);
         }
     }
 
@@ -44,7 +49,7 @@ namespace Studyplaner.GUI.Controls
         public EventTreeNode(UniversityEvent ev)
         {
             UniEvent = ev;
-            Text = ev.LVNum; // TODO | dj | maybe ToString()...
+            Text = (ev.LVNum == null)? " > New Event" : ev.LVNum; // TODO | dj | maybe ToString()...
         }
     }
 }
