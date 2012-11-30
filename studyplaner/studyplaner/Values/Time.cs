@@ -25,6 +25,8 @@ namespace Studyplaner.Values
         public WeekInterval WeekInterval { get; private set; }
         /// <summary>
         /// The Date of this Time.
+        /// Returns NOT always the same Date but the next upcoming DateTime of the Time
+        /// or simply the (possibly) passed DateTime if the WeekIntervall is FixedDate
         /// </summary>
         public DateTime Date 
         {
@@ -40,25 +42,21 @@ namespace Studyplaner.Values
                 _date = value;
             }
         }
+        private DateTime _date;
 
-        private DateTime GetNextValidDate()
+        // gets the next (upcoming) DateTime
+        private DateTime GetNextValidDate()     // TODO: needs changes if we decide to use FirstDate and LastDate
         {
             DateTime _newDate = new DateTime(_date.Year, _date.Month, _date.Day, _date.Hour, _date.Minute, _date.Second);
             switch (WeekInterval)
             {
                 case WeekInterval.EveryWeek:
-                    if (_newDate.Date >= DateTime.Now)
-                        break;
-                    else
-                        do
-                        {
-                            _newDate.AddDays(7);
-                        } while (_newDate.Date < DateTime.Now);
+                    if (_newDate.Date < DateTime.Now)
+                        _newDate = AddUntilValid(_newDate, 7);
                     break;
-                case WeekInterval.EvenWeeks:
-                    if(DateTime.Now.WeekOfYear
-                    break;
-                case WeekInterval.OddWeeks:
+                case WeekInterval.EveryTwoWeeks:
+                    if (_newDate.Date < DateTime.Now)
+                        _newDate = AddUntilValid(_newDate, 14);
                     break;
                 case WeekInterval.FixedDate:    // code doesnt get here.. might remove this case
                     break;
@@ -67,7 +65,17 @@ namespace Studyplaner.Values
             }
             return _newDate;
         }
-        private DateTime _date;
+
+        // helper method for AddUntilValid
+        private DateTime AddUntilValid(DateTime original, int days)
+        {
+            do
+            {
+                original.AddDays(days);
+            } while (original.Date < DateTime.Now);
+
+            return original;
+        }
 
         /// <summary>
         /// New Time.
@@ -102,26 +110,26 @@ namespace Studyplaner.Values
         /// </summary>
         /// <param name="time">The string to parse</param>
         /// <returns>The aequivalent Time</returns>
-        public static Time ValueOf(string time)
-        {
-            if (!TIMEFULLREGEX.IsMatch(time, 0))
-                throw new ArgumentException("time", "Invalid Time-syntax!");
+        //public static Time ValueOf(string time)
+        //{
+        //    if (!TIMEFULLREGEX.IsMatch(time, 0))
+        //        throw new ArgumentException("time", "Invalid Time-syntax!");
 
-            Match mhours = TIMEHOURSREGEX.Match(time);
-            String val = mhours.Groups[0].Value;
-            byte hours = Byte.Parse(val);
+        //    Match mhours = TIMEHOURSREGEX.Match(time);
+        //    String val = mhours.Groups[0].Value;
+        //    byte hours = Byte.Parse(val);
 
-            if (TIMEMINUTESREGEX.IsMatch(time))
-            {
-                Match mMinutes = TIMEMINUTESREGEX.Match(time);
-                String valh = mMinutes.Groups[0].Value;
-                valh = valh.Substring(1);
-                byte minutes = Byte.Parse(valh);
-                return new Time(hours, minutes, WeekInterval.EveryWeek);
-            }
+        //    if (TIMEMINUTESREGEX.IsMatch(time))
+        //    {
+        //        Match mMinutes = TIMEMINUTESREGEX.Match(time);
+        //        String valh = mMinutes.Groups[0].Value;
+        //        valh = valh.Substring(1);
+        //        byte minutes = Byte.Parse(valh);
+        //        return new Time(hours, minutes, WeekInterval.EveryWeek);
+        //    }
 
-            return new Time(hours, 0, WeekInterval.EveryWeek);
-        }
+        //    return new Time(hours, 0, WeekInterval.EveryWeek);
+        //}
 
         public override string ToString()
         {
