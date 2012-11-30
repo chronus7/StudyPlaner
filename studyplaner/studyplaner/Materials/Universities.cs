@@ -1,4 +1,4 @@
-﻿using Studyplaner.Materials.University;
+﻿using Studyplaner.Materials.UniversityStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,27 +9,27 @@ using Studyplaner.Services.Xml;
 
 namespace Studyplaner.Materials
 {
-    [XmlRoot(ElementName="libraries")]
-    public class Libraries : IXmlSerializable
+    [XmlRoot(ElementName="universities")]
+    public class Universities : IXmlSerializable
     {
-        private List<UniversityLibrary> _list;
+        private List<University> _list;
 
-        public Libraries()
+        public Universities()
         {
-            _list = new List<UniversityLibrary>();
+            _list = new List<University>();
         }
 
-        public Libraries(List<UniversityLibrary> list)
+        public Universities(List<University> list)
         {
             _list = list;
         }
 
-        public void Add(UniversityLibrary uniLib)
+        public void Add(University uniLib)
         {
             _list.Add(uniLib);
         }
 
-        public void Remove(UniversityLibrary uniLib)
+        public void Remove(University uniLib)
         {
             _list.Remove(uniLib);
         }
@@ -39,13 +39,13 @@ namespace Studyplaner.Materials
             _list.RemoveAt(index);
         }
 
-        public UniversityLibrary this[int index]
+        public University this[int index]
         {
             get { return _list[index]; }
             set { _list[index] = value; }//TODO | dj | maybe also file adding etc.
         }
 
-        public IEnumerator<UniversityLibrary> GetEnumerator()
+        public IEnumerator<University> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
@@ -59,14 +59,14 @@ namespace Studyplaner.Materials
         {
             reader.MoveToContent();
             reader.ReadStartElement();
-            while (reader.Name.Equals("uni"))
+            while (reader.Name.Equals("university"))
             {
                 reader.ReadStartElement();
                 string id = reader.ReadElementString("id");
                 reader.ReadEndElement();
 
-                String path = @"..\..\Data\uniLib_" + id + ".xml"; //TODO | dj | change to userchosen path
-                UniversityLibrary ul = XmlSerializer<UniversityLibrary>.Deserialize(path);
+                String path = @"..\..\Data\university_" + id + ".xml"; //TODO | dj | change to userchosen path
+                University ul = XmlSerializer<University>.Deserialize(path);
                 Console.Out.WriteLine(ul.ID);
                 _list.Add(ul);
             }
@@ -75,10 +75,10 @@ namespace Studyplaner.Materials
 
         public void WriteXml(XmlWriter writer)
         {
-            foreach (UniversityLibrary lib in _list)
+            foreach (University uni in _list)
             {
-                writer.WriteStartElement("uni");
-                writer.WriteElementString("id", lib.ID.ToString());
+                writer.WriteStartElement("university");
+                writer.WriteElementString("id", uni.ID.ToString());
                 writer.WriteEndElement();
             }
         }

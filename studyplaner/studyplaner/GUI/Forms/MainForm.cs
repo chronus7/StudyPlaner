@@ -1,6 +1,6 @@
 ﻿using Studyplaner.Enums;
 using Studyplaner.GUI.Controls;
-using Studyplaner.Materials.University;
+using Studyplaner.Materials.UniversityStuff;
 using Studyplaner.Materials.Various;
 using Studyplaner.Services;
 using System;

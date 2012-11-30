@@ -1,4 +1,4 @@
-﻿using Studyplaner.Materials.University;
+﻿using Studyplaner.Materials.UniversityStuff;
 using System;
 using System.Collections.Generic;
 

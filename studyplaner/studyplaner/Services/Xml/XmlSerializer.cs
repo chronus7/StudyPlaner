@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using Studyplaner.Materials.University;
+using Studyplaner.Materials.UniversityStuff;
 
 namespace Studyplaner.Services.Xml
 {
