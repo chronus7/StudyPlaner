@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
-using Studyplaner.Materials.Uni;
+using Studyplaner.Materials.University;
 
 namespace Studyplaner.GUI.Forms
 {
@@ -21,7 +21,7 @@ namespace Studyplaner.GUI.Forms
 
             #region NODETEST
             //TODO | dj | delete... (mock up)
-            UniEvent ev = new UniEvent();
+            UniversityEvent ev = new UniversityEvent();
             ev.LVNum = "64-001";
             EventTreeNode t1 = new EventTreeNode(ev);
             TreeNode lectures = new TreeNode("Lectures", new TreeNode[] {t1});
@@ -29,6 +29,7 @@ namespace Studyplaner.GUI.Forms
             TreeNode tutorials = new TreeNode("Tutorials");
             TreeNode internships = new TreeNode("Internships");
             _eventTree.Nodes.AddRange(new TreeNode[]{ lectures, exercises, tutorials, internships });
+            _eventTree.ExpandAll();
             #endregion
         }
     }

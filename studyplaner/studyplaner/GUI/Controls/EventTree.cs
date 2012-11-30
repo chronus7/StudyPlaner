@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.Uni;
+using Studyplaner.Materials.University;
 
 namespace Studyplaner.GUI.Controls
 {
@@ -14,6 +14,7 @@ namespace Studyplaner.GUI.Controls
         public EventTree()
         {
             InitializeComponent();
+            Init();
         }
 
         public EventTree(IContainer container)
@@ -21,14 +22,26 @@ namespace Studyplaner.GUI.Controls
             container.Add(this);
 
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            this.DrawNode += new DrawTreeNodeEventHandler(DrawNodeEvent);
+        }
+
+        void DrawNodeEvent(object sender, DrawTreeNodeEventArgs e)
+        {
+            if (e != null)
+                e.Node.PrevVisibleNode.ExpandAll();
         }
     }
 
     public class EventTreeNode : TreeNode
     {
-        public UniEvent UniEvent { get; set; }
+        public UniversityEvent UniEvent { get; set; }
 
-        public EventTreeNode(UniEvent ev)
+        public EventTreeNode(UniversityEvent ev)
         {
             UniEvent = ev;
             Text = ev.LVNum; // TODO | dj | maybe ToString()...

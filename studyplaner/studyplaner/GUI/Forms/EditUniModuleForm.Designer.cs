@@ -125,12 +125,8 @@
             // 
             // _eventTree
             // 
-            this._eventTree.FullRowSelect = true;
             this._eventTree.Location = new System.Drawing.Point(6, 19);
             this._eventTree.Name = "_eventTree";
-            this._eventTree.ShowLines = false;
-            this._eventTree.ShowPlusMinus = false;
-            this._eventTree.ShowRootLines = false;
             this._eventTree.Size = new System.Drawing.Size(150, 210);
             this._eventTree.TabIndex = 0;
             // 
