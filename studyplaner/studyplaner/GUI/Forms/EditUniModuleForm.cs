@@ -2,11 +2,14 @@
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
 using Studyplaner.Materials.University;
+using System.Text.RegularExpressions;
 
 namespace Studyplaner.GUI.Forms
 {
     public partial class EditUniModuleForm : Form
     {
+        private bool _shortModified;
+
         public EditUniModuleForm()
         {
             InitializeComponent();
@@ -47,6 +50,30 @@ namespace Studyplaner.GUI.Forms
             {
                 _eventTree.Nodes.Remove(etn);
             }
+        }
+
+        private void Name_TextChanged(object sender, EventArgs e)
+        {
+            if (!_shortModified)
+            {
+                string text = _txBoxName.Text;
+
+                string[] strarr = text.Split(' ');
+                string str = string.Empty;
+
+                foreach (string s in strarr)
+                {
+                    if (s.Length > 0)
+                        str += s[0];
+                }
+
+                _txBoxShort.Text = str;
+            }
+        }
+
+        private void Short_TextChanged(object sender, KeyEventArgs e)
+        {
+            _shortModified = true;
         }
     }
 }

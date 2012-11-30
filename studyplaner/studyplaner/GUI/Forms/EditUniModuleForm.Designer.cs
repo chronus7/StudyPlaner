@@ -59,6 +59,7 @@
             this._txBoxName.Name = "_txBoxName";
             this._txBoxName.Size = new System.Drawing.Size(291, 20);
             this._txBoxName.TabIndex = 1;
+            this._txBoxName.TextChanged += new System.EventHandler(this.Name_TextChanged);
             // 
             // _lblShort
             // 
@@ -75,6 +76,7 @@
             this._txBoxShort.Name = "_txBoxShort";
             this._txBoxShort.Size = new System.Drawing.Size(68, 20);
             this._txBoxShort.TabIndex = 3;
+            this._txBoxShort.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Short_TextChanged);
             // 
             // _cmBoxSemester
             // 
@@ -176,6 +178,7 @@
             this.Controls.Add(this._lblName);
             this.Name = "EditUniModuleForm";
             this.Text = "Create / Edit module";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Short_TextChanged);
             this._grpBoxEvent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
