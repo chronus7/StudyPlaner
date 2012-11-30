@@ -87,20 +87,21 @@
     <Compile Include="GUI\Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manager\ModuleManager.cs" />
     <Compile Include="Materials\Various\BatteryEventArgs.cs" />
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Libraries.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Values\Time.cs" />
-    <Compile Include="Materials\Uni\UniLibrary.cs" />
-    <Compile Include="Materials\Uni\UniEvent.cs" />
+    <Compile Include="Materials\University\UniversityLibrary.cs" />
+    <Compile Include="Materials\University\UniversityEvent.cs" />
     <Compile Include="Enums\EventType.cs" />
-    <Compile Include="Materials\Uni\UniModule.cs" />
+    <Compile Include="Materials\University\UniversityModule.cs" />
     <Compile Include="Enums\WeekInterval.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PaintService.cs" />
-    <Compile Include="Services\Xml\XmlParser.cs" />
+    <Compile Include="Services\Xml\XmlSerializer.cs" />
     <EmbeddedResource Include="GUI\Controls\EventTree.resx">
       <DependentUpon>EventTree.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,12 +156,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Data\uniLib_1111.xml" />
-    <None Include="Services\Resources\BATTERY_NOT_CHARGEABLE.png" />
-    <None Include="Services\Resources\BATTERY_MEDIUM.png" />
-    <None Include="Services\Resources\BATTERY_HIGH.png" />
-    <None Include="Services\Resources\BATTERY_LOW.png" />
-    <None Include="Services\Resources\BATTERY_FULLYCHARGED.png" />
-    <None Include="Services\Resources\BATTERY_EMPTY.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

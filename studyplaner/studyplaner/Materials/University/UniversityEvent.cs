@@ -4,10 +4,10 @@ using Studyplaner.Enums;
 using Studyplaner.Values;
 using System.ComponentModel;
 
-namespace Studyplaner.Materials.Uni
+namespace Studyplaner.Materials.University
 {
     [XmlRootAttribute("event")]
-    public class UniEvent
+    public class UniversityEvent
     {
         /// <summary>
         /// The (hopefully) unique ID of the event.

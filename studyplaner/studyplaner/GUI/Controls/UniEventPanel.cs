@@ -6,24 +6,44 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.Uni;
+using Studyplaner.Materials.University;
+using Studyplaner.Services;
 
 namespace Studyplaner.GUI.Controls
 {
-    public partial class UniEventPanel : Panel
+    public class UniEventPanel : Panel
     {
-        // (Re-)Size constants TODO: fine tune them
-        private const double DEFAULTSIZE_X = 1.0d;
-        private const double FACTOR_DURATION_Y = 1.0d;
+        private const float FACTOR_X_HEADER = 0.03f, FACTOR_Y_HEADER = 0.03f;
+        private const float FACTOR_FONT_NAME = 0.15f, FACTOR_FONT_SUB = 0.1f;
 
-        public UniEvent EventToRepresent { get; set; }
+        private UniversityEvent _eventToRepresent;
 
-        public UniEventPanel(UniEvent ev, double xFactor, double yFactor)
+        public UniEventPanel(UniversityEvent ev)
         {
             this.EventToRepresent = ev;
-            this.BackColor = GetBackgroundColorFromEventType(EventToRepresent.Type);
-            this.Size = new Size((int)(DEFAULTSIZE_X * xFactor), (int)(EventToRepresent.Duration.TotalMinutes * FACTOR_DURATION_Y * yFactor));
+            UpdateBackgroundColor();
         }
+
+        public UniversityEvent EventToRepresent
+        {
+            get
+            {
+                return _eventToRepresent;
+            }
+            set
+            {
+                if (!ValidateUniEvent())
+                    throw new ArgumentException("The given UniEvent is not valid.");
+                _eventToRepresent = value;
+                UpdateBackgroundColor();
+            }
+        }
+
+        private bool ValidateUniEvent()
+        {
+            return true; // TODO: |f| obviously not finished
+        }
+
 
         private Color GetBackgroundColorFromEventType(Enums.EventType eventType)
         {
@@ -43,28 +63,48 @@ namespace Studyplaner.GUI.Controls
                 case Studyplaner.Enums.EventType.Internship:
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
                     break;
+                default:
+                    bg = Color.Gray;
+                    break;
             }
 
             return bg;
         }
 
-        private void DrawContent(Graphics graphics)
+        private void UpdateBackgroundColor()
         {
-            //TODO: Draw Event info corresponding to size
+            this.BackColor = GetBackgroundColorFromEventType(EventToRepresent.Type);
+        }
+
+        private void PaintContent(Graphics graphics)
+        {
+            RectangleF panelArea = graphics.VisibleClipBounds;
+
+            float width = panelArea.Width, height = panelArea.Height;
+
+            float fontSizeTitle = height * FACTOR_FONT_NAME;
+ 
+            PointF header = new PointF(panelArea.X + width * FACTOR_X_HEADER, panelArea.Y + height * FACTOR_Y_HEADER);
+
+            SizeF size = graphics.MeasureString("SoftwareEntwicklung III Funktional", new Font(FontFamily.GenericSansSerif, fontSizeTitle));
+
+            graphics.DrawString("SoftwareEntwicklung III Funktional", new Font(FontFamily.GenericSansSerif, fontSizeTitle), PaintService.LINEPEN.Brush, header);
+
+            //TODO: |f| finish that when there is a way to get parent information
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            DrawContent(e.Graphics);
+            PaintContent(e.Graphics);
         }
 
         protected override void OnResize(EventArgs eventargs)
         {
             base.OnResize(eventargs);
 
-            //TODO: Do we need to do anything here?
+            this.Refresh();
         }
     }
 }

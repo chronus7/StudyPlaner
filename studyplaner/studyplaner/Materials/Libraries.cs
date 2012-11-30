@@ -1,4 +1,4 @@
-﻿using Studyplaner.Materials.Uni;
+﻿using Studyplaner.Materials.University;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +12,24 @@ namespace Studyplaner.Materials
     [XmlRoot(ElementName="libraries")]
     public class Libraries : IXmlSerializable
     {
-        private List<UniLibrary> _list;
+        private List<UniversityLibrary> _list;
 
         public Libraries()
         {
-            _list = new List<UniLibrary>();
+            _list = new List<UniversityLibrary>();
         }
 
-        public Libraries(List<UniLibrary> list)
+        public Libraries(List<UniversityLibrary> list)
         {
             _list = list;
         }
 
-        public void Add(UniLibrary uniLib)
+        public void Add(UniversityLibrary uniLib)
         {
             _list.Add(uniLib);
         }
 
-        public void Remove(UniLibrary uniLib)
+        public void Remove(UniversityLibrary uniLib)
         {
             _list.Remove(uniLib);
         }
@@ -39,13 +39,13 @@ namespace Studyplaner.Materials
             _list.RemoveAt(index);
         }
 
-        public UniLibrary this[int index]
+        public UniversityLibrary this[int index]
         {
             get { return _list[index]; }
             set { _list[index] = value; }//TODO | dj | maybe also file adding etc.
         }
 
-        public IEnumerator<UniLibrary> GetEnumerator()
+        public IEnumerator<UniversityLibrary> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
@@ -66,7 +66,7 @@ namespace Studyplaner.Materials
                 reader.ReadEndElement();
 
                 String path = @"..\..\Data\uniLib_" + id + ".xml"; //TODO | dj | change to userchosen path
-                UniLibrary ul = XmlParser<UniLibrary>.Deserialize(path);
+                UniversityLibrary ul = XmlSerializer<UniversityLibrary>.Deserialize(path);
                 Console.Out.WriteLine(ul.ID);
                 _list.Add(ul);
             }
@@ -75,7 +75,7 @@ namespace Studyplaner.Materials
 
         public void WriteXml(XmlWriter writer)
         {
-            foreach (UniLibrary lib in _list)
+            foreach (UniversityLibrary lib in _list)
             {
                 writer.WriteStartElement("uni");
                 writer.WriteElementString("id", lib.ID.ToString());

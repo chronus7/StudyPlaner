@@ -15,7 +15,7 @@ namespace Studyplaner.Services
         /// <summary>
         /// Pen, used for the normal lines.
         /// </summary>
-        private static readonly Pen LINEPEN = new Pen(Color.Black, 2);
+        public static readonly Pen LINEPEN = new Pen(Color.Black, 2);
 
         /// <summary>
         /// Paints the standard plan-grid to the
