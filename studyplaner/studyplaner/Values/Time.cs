@@ -24,13 +24,50 @@ namespace Studyplaner.Values
         /// </summary>
         public WeekInterval WeekInterval { get; private set; }
         /// <summary>
-        /// The Date of this Time. Check hasDate before using!
+        /// The Date of this Time.
         /// </summary>
-        public DateTime Date { get; private set; }
-        /// <summary>
-        /// True if there is a valid Date. False if not.
-        /// </summary>
-        public bool hasDate { get { return Date.Equals(DateTime.MinValue);}}
+        public DateTime Date 
+        {
+            get
+            {
+                if (WeekInterval == Enums.WeekInterval.FixedDate)
+                    return _date;
+                else
+                    return GetNextValidDate();
+            }
+            private set
+            {
+                _date = value;
+            }
+        }
+
+        private DateTime GetNextValidDate()
+        {
+            DateTime _newDate = new DateTime(_date.Year, _date.Month, _date.Day, _date.Hour, _date.Minute, _date.Second);
+            switch (WeekInterval)
+            {
+                case WeekInterval.EveryWeek:
+                    if (_newDate.Date >= DateTime.Now)
+                        break;
+                    else
+                        do
+                        {
+                            _newDate.AddDays(7);
+                        } while (_newDate.Date < DateTime.Now);
+                    break;
+                case WeekInterval.EvenWeeks:
+                    if(DateTime.Now.WeekOfYear
+                    break;
+                case WeekInterval.OddWeeks:
+                    break;
+                case WeekInterval.FixedDate:    // code doesnt get here.. might remove this case
+                    break;
+                default:
+                    break;
+            }
+            return _newDate;
+        }
+        private DateTime _date;
 
         /// <summary>
         /// New Time.
@@ -38,11 +75,11 @@ namespace Studyplaner.Values
         /// <param name="hours">The hours</param>
         /// <param name="minutes">The minutes</param>
         /// <param name="weekInterval">The WeekInterval of this event</param>
-        public Time(byte hours, byte minutes, WeekInterval weekInterval) : this()
+        public Time(byte hours, byte minutes, DateTime date, WeekInterval weekInterval) : this()
         {
             Hours = hours;
             Minutes = minutes;
-            Date = DateTime.MinValue;
+            Date = date;
             WeekInterval = weekInterval;
         }
 
@@ -53,12 +90,8 @@ namespace Studyplaner.Values
         /// <param name="minutes">The minutes</param>
         /// <param name="date">The exact date of this event.
         /// Just put the date. The time will be overridden</param>
-        public Time(byte hours, byte minutes, DateTime date) : this()
+        public Time(byte hours, byte minutes, DateTime date) : this(hours, minutes, date, WeekInterval.FixedDate)
         {
-            Hours = hours;
-            Minutes = minutes;
-            Date = new DateTime(date.Year, date.Month, date.Day, Hours, Minutes, 0);
-            WeekInterval = WeekInterval.FixedDate;
         }
 
         /// <summary>
