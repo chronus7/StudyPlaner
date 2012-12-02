@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Studyplaner.Materials.University
+namespace Studyplaner.Materials.UniversityStuff
 {
-    [XmlRootAttribute(ElementName="library")]
-    public class UniversityLibrary
+    [XmlRootAttribute(ElementName="university")]
+    public class University
     {
         /// <summary>
         /// The (hopefully) unique id of the uni.

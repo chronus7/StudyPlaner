@@ -87,16 +87,16 @@
     <Compile Include="GUI\Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manager\ModuleManager.cs" />
+    <Compile Include="Manager\UniversityManager.cs" />
     <Compile Include="Materials\Various\BatteryEventArgs.cs" />
     <Compile Include="Services\BatteryService.cs" />
-    <Compile Include="Materials\Libraries.cs" />
+    <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />
     <Compile Include="Values\Time.cs" />
-    <Compile Include="Materials\University\UniversityLibrary.cs" />
-    <Compile Include="Materials\University\UniversityEvent.cs" />
+    <Compile Include="Materials\UniversityStuff\University.cs" />
+    <Compile Include="Materials\UniversityStuff\UniversityEvent.cs" />
     <Compile Include="Enums\EventType.cs" />
-    <Compile Include="Materials\University\UniversityModule.cs" />
+    <Compile Include="Materials\UniversityStuff\UniversityModule.cs" />
     <Compile Include="Enums\WeekInterval.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,13 +128,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Data\Libs.xsd">
+    <None Include="Data\universities.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\Plans.xsd">
+    <None Include="Data\plans.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\uniLib.xsd">
+    <None Include="Data\university.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -149,13 +149,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Libs.xml">
+    <Content Include="Data\universities.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Data\Plans.xml">
+    <Content Include="Data\plans.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Data\uniLib_1111.xml" />
+    <Content Include="Data\university_1111.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

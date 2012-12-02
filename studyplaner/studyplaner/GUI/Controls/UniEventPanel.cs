@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.University;
+using Studyplaner.Materials.UniversityStuff;
 using Studyplaner.Services;
 
 namespace Studyplaner.GUI.Controls

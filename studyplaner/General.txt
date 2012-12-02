@@ -10,6 +10,8 @@ General Information / Important ToDos:
 - this explains how to serialize a timespan: http://stackoverflow.com/questions/637933/net-how-to-serialize-a-timespan-to-xml
  --- thanks :P
 
+- might need to change Time to a better Name and more important use FirstDate and LastDate. this could also be done as part of a semester class but then these would need to contain the data about their lenght and such
+
 
 -------------------------
  - I know we got the TODO-feature in VS but this is important: Time misses the Weekday. so if it isn't a fixed date, there should be an extra weekday. I can do this but just for notice :P

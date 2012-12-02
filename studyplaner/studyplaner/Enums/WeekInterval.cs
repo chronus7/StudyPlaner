@@ -7,9 +7,8 @@ namespace Studyplaner.Enums
 {
     public enum WeekInterval
     {
-        EveryWeek,
-        EvenWeeks,
-        OddWeeks,
-        FixedDate
+        FixedDate = 0,
+        EveryWeek = 1,
+        EveryTwoWeeks = 2
     }
 }

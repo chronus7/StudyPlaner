@@ -87,7 +87,12 @@ namespace Studyplaner.Values
         {
             Hours = hours;
             Minutes = minutes;
+<<<<<<< HEAD
+            // TODO | dj | WEEKDAY is missing!!!!!!!!
+            Date = DateTime.MinValue;
+=======
             Date = date;
+>>>>>>> master
             WeekInterval = weekInterval;
         }
 

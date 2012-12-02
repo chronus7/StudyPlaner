@@ -4,7 +4,7 @@ using Studyplaner.Enums;
 using Studyplaner.Values;
 using System.ComponentModel;
 
-namespace Studyplaner.Materials.University
+namespace Studyplaner.Materials.UniversityStuff
 {
     [XmlRootAttribute("event")]
     public class UniversityEvent

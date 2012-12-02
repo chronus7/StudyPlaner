@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using Studyplaner.Enums;
 
-namespace Studyplaner.Materials.University
+namespace Studyplaner.Materials.UniversityStuff
 {
     [XmlRootAttribute(ElementName="module")]
     public class UniversityModule
