@@ -46,7 +46,7 @@ namespace Studyplaner.Materials.UniversityStuff
         [XmlIgnore]
         public TimeSpan Duration { get; set; }
         /// <summary>
-        /// DO NOT USE THIS. IT JUST FOR SERIALIZATION!
+        /// DO NOT USE THIS. IT'S JUST FOR SERIALIZATION!
         /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)] // <-- seems not to work
         [XmlElement(ElementName = "duration")]

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.University;
+using Studyplaner.Materials.UniversityStuff;
 using System.Drawing;
 
 namespace Studyplaner.GUI.Controls
@@ -28,7 +28,7 @@ namespace Studyplaner.GUI.Controls
 
         public void Add(TreeNode node)
         {
-            if ((node as EventTreeNode) == null)
+            if ((node as HeadTreeNode) != null)
                 node.NodeFont = HEADERFONT;
             this.Nodes.Add(node);
             if (node.PrevVisibleNode != null)
@@ -44,12 +44,41 @@ namespace Studyplaner.GUI.Controls
 
     public class EventTreeNode : TreeNode
     {
-        public UniversityEvent UniEvent { get; set; }
+        public UniversityEvent UniEvent
+        {
+            get {
+                return _uniEvent;
+            }
+            set {
+                _uniEvent = value;
+                this.Text = (value.LVNum == null) ? " > New Event" : value.LVNum; // TODO | dj | maybe ToString()...
+            }
+        }
+        private UniversityEvent _uniEvent;
 
         public EventTreeNode(UniversityEvent ev)
         {
             UniEvent = ev;
-            Text = (ev.LVNum == null)? " > New Event" : ev.LVNum; // TODO | dj | maybe ToString()...
+        }
+    }
+
+    public class HeadTreeNode : TreeNode
+    {
+        public Studyplaner.Enums.EventType EventType
+        {
+            get {
+                return _evType;
+            }
+            set {
+                _evType = value;
+                this.Text = value.ToString();
+            }
+        }
+        private Studyplaner.Enums.EventType _evType;
+
+        public HeadTreeNode(Studyplaner.Enums.EventType eventType)
+        {
+            EventType = eventType;
         }
     }
 }

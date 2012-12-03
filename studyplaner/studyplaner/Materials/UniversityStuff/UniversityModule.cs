@@ -50,5 +50,10 @@ namespace Studyplaner.Materials.UniversityStuff
         [XmlArray(ElementName="events")]
         [XmlArrayItem(ElementName="event")]
         public List<UniversityEvent> Events { get; set; }
+
+        public UniversityModule()
+        {
+            Events = new List<UniversityEvent>();
+        }
     }
 }

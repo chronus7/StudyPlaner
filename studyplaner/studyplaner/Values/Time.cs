@@ -47,23 +47,23 @@ namespace Studyplaner.Values
         // gets the next (upcoming) DateTime
         private DateTime GetNextValidDate()     // TODO: needs changes if we decide to use FirstDate and LastDate
         {
-            DateTime _newDate = new DateTime(_date.Year, _date.Month, _date.Day, _date.Hour, _date.Minute, _date.Second);
+            DateTime newDate = new DateTime(_date.Year, _date.Month, _date.Day, _date.Hour, _date.Minute, _date.Second);
             switch (WeekInterval)
             {
                 case WeekInterval.EveryWeek:
-                    if (_newDate.Date < DateTime.Now)
-                        _newDate = AddUntilValid(_newDate, 7);
+                    if (newDate.Date < DateTime.Now)
+                        newDate = AddUntilValid(newDate, 7);
                     break;
                 case WeekInterval.EveryTwoWeeks:
-                    if (_newDate.Date < DateTime.Now)
-                        _newDate = AddUntilValid(_newDate, 14);
+                    if (newDate.Date < DateTime.Now)
+                        newDate = AddUntilValid(newDate, 14);
                     break;
                 case WeekInterval.FixedDate:    // code doesnt get here.. might remove this case
                     break;
                 default:
                     break;
             }
-            return _newDate;
+            return newDate;
         }
 
         // helper method for AddUntilValid
