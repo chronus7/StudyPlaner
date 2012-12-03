@@ -5,9 +5,11 @@ using System.Text;
 
 namespace Studyplaner.Enums
 {
-    public enum LoggingType
+    [Flags]
+    public enum LogEventType
     {
-        Console = 0,
-        File = 1
+        DEBUG = 0x001,
+        WARNING = 0x010,
+        ERROR = 0x100
     }
 }

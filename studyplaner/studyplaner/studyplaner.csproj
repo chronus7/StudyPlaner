@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Studyplaner.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,10 +52,13 @@
   <ItemGroup>
     <Compile Include="Enums\Department.cs" />
     <Compile Include="Enums\LoadingState.cs" />
-    <Compile Include="Enums\LoggingType.cs" />
+    <Compile Include="Enums\LogEventType.cs" />
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Enums\Semester.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GUI\Controls\ReadOnlyListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GUI\Controls\UniEventPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +73,12 @@
     </Compile>
     <Compile Include="GUI\Forms\EditUniModuleForm.Designer.cs">
       <DependentUpon>EditUniModuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -88,7 +98,7 @@
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />
-    <Compile Include="Services\Logging\ConsoleLogTarget.cs" />
+    <Compile Include="Services\Logging\LogFormTarget.cs" />
     <Compile Include="Services\Logging\LogService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Values\Time.cs" />
@@ -106,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\EditUniModuleForm.resx">
       <DependentUpon>EditUniModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

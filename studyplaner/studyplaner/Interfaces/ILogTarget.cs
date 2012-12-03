@@ -7,6 +7,7 @@ namespace Studyplaner.Interfaces
 {
     public interface ILogTarget
     {
-        void WriteToLog(string message);
+        void SetTimeVisible(bool value);
+        void WriteToLog(Enums.LogEventType eventType, string message);
     }
 }

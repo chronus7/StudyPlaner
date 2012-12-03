@@ -27,16 +27,7 @@ namespace Studyplaner.GUI.Forms
             Initialize();
         }
 
-        private void Initialize()
-        {
-            this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
-
-            this._panelMain.Paint += new PaintEventHandler(PaintMainPanel);
-
-            InitializeDateTimeTimer();
-            InitializeBattery();
-        }
-
+        // kill us pleaase!
         private void TestEventPanel()
         {
             UniversityEvent ue = new UniversityEvent() { Type = EventType.Exercise };
@@ -46,12 +37,28 @@ namespace Studyplaner.GUI.Forms
             Timer t = new Timer();
             t.Interval = 5000;
             t.Tick += delegate(System.Object o, System.EventArgs e)
-            { 
-                UniversityEvent newue = new UniversityEvent(); 
-                int time = (int)DateTime.Now.Ticks; 
-                newue.Type = (time % 2 == 0) ? EventType.Lecture : EventType.Exercise; panel.EventToRepresent = newue; 
+            {
+                UniversityEvent newue = new UniversityEvent();
+                int time = (int)DateTime.Now.Ticks;
+                newue.Type = (time % 2 == 0) ? EventType.Lecture : EventType.Exercise; panel.EventToRepresent = newue;
             };
             t.Start();
+        }
+
+        private static void TestLog()
+        {
+            Services.Logging.LogService.SwitchToConsole();
+            Services.Logging.LogService.LogToOutput(Enums.LogEventType.DEBUG, "test");
+        }
+
+        private void Initialize()
+        {
+            this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+
+            this._panelMain.Paint += new PaintEventHandler(PaintMainPanel);
+
+            InitializeDateTimeTimer();
+            InitializeBattery();
         }
 
         private void InitializeDateTimeTimer()
@@ -182,6 +189,7 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Activated(object sender, EventArgs e)
         {
             TestEventPanel();
+            TestLog();
         }
     }
 }

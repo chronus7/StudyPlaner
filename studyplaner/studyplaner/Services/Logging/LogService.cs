@@ -10,14 +10,20 @@ namespace Studyplaner.Services.Logging
     {
         private static ILogTarget _logTarget;
 
+        /// <summary>
+        /// Wird nicht so bleiben ;)
+        /// </summary>
         public static void SwitchToConsole()
         {
-
+            LogFormTarget target = _logTarget as LogFormTarget;
+            if(target == null)
+                _logTarget = new LogFormTarget();
         }
 
-        public static void LogToOutput(string message)
+        public static void LogToOutput(Enums.LogEventType eventType, string message)
         {
-
+            if(_logTarget != null)
+                _logTarget.WriteToLog(eventType, message);
         }
     }
 }
