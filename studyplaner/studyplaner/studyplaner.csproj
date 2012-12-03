@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Enums\Department.cs" />
     <Compile Include="Enums\LoadingState.cs" />
+    <Compile Include="Enums\LoggingType.cs" />
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Enums\Semester.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -81,11 +82,15 @@
     <Compile Include="GUI\Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ILogTarget.cs" />
     <Compile Include="Manager\UniversityManager.cs" />
     <Compile Include="Materials\Various\BatteryEventArgs.cs" />
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />
+    <Compile Include="Services\Logging\ConsoleLogTarget.cs" />
+    <Compile Include="Services\Logging\LogService.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Values\Time.cs" />
     <Compile Include="Materials\UniversityStuff\University.cs" />
     <Compile Include="Materials\UniversityStuff\UniversityEvent.cs" />

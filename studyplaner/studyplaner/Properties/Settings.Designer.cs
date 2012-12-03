@@ -82,5 +82,29 @@ namespace Studyplaner.Properties {
                 this["USER_COLOR_TUTORIAL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool USER_LOG_ENABLED {
+            get {
+                return ((bool)(this["USER_LOG_ENABLED"]));
+            }
+            set {
+                this["USER_LOG_ENABLED"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("log.txt")]
+        public string USER_LOG_PATH {
+            get {
+                return ((string)(this["USER_LOG_PATH"]));
+            }
+            set {
+                this["USER_LOG_PATH"] = value;
+            }
+        }
     }
 }
