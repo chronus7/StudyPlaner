@@ -1,5 +1,5 @@
 ﻿using Studyplaner.Enums;
-using Studyplaner.Various.InheritedEventArgs;
+using Studyplaner.Various.EventArgs;
 using System;
 using System.Timers;
 using System.Windows.Forms;
