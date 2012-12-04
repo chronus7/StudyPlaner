@@ -94,12 +94,13 @@
     </Compile>
     <Compile Include="Interfaces\ILogTarget.cs" />
     <Compile Include="Manager\UniversityManager.cs" />
+    <Compile Include="Services\Logging\FileLogTarget.cs" />
     <Compile Include="Various\EventArgs\BatteryEventArgs.cs" />
     <Compile Include="Various\Exceptions\LoggingException.cs" />
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />
-    <Compile Include="Services\Logging\LogFormTarget.cs" />
+    <Compile Include="Services\Logging\FormLogTarget.cs" />
     <Compile Include="Services\Logging\LogService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Values\Time.cs" />

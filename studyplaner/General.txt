@@ -19,7 +19,7 @@ General Information / Important ToDos:
 
  - Moved the Exceptions and EventArgs into a seperate folder/namespace.. might be a better idea to move the whole structure in a feature orientated way and put them in the right namspaces
 
-
+ - Not sure wether we want to put bool writeTime to settings so the user can decide that..
 _____________________________________________________________
 
  Sources: 

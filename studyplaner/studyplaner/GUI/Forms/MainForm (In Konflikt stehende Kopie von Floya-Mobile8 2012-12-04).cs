@@ -56,7 +56,7 @@ namespace Studyplaner.GUI.Forms
             else
                 _logFrm.Show();
 
-            Services.Logging.LoggingService.SwitchTarget(new FormLogTarget());
+            Services.Logging.LoggingService.SwitchTarget(new FormLogTarget(_logFrm));
             Services.Logging.LoggingService.LogToOutput(Enums.LogEventType.DEBUG, "test");
         }
 
@@ -102,7 +102,7 @@ namespace Studyplaner.GUI.Forms
             {
                 if(_logFrm == null)
                     _logFrm = new LogForm();
-                Services.Logging.LoggingService.SwitchTarget(new FormLogTarget());
+                Services.Logging.LoggingService.SwitchTarget(new FormLogTarget(_logFrm));
             }
         }
 

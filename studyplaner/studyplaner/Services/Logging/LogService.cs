@@ -1,16 +1,25 @@
 ﻿using Studyplaner.Interfaces;
-using Studyplaner.Various.InheritedExceptions;
+using Studyplaner.Various.Exceptions;
 
 namespace Studyplaner.Services.Logging
 {
-    public static class LogService
+    public static class LoggingService
     {
         private const string ERROR_TARGET_NULL = "The ILogTarget has not been set yet!";
 
         private static ILogTarget _logTarget;
 
         /// <summary>
-        /// Wird nicht so bleiben ;)
+        /// Returns wether a valid ILogTarget has been chosen and initialized
+        /// </summary>
+        /// <returns>the value</returns>
+        public static bool HasValidTarget()
+        {
+            return _logTarget != null;
+        }
+
+        /// <summary>
+        /// Selects a new ILogTarget to log to TODO: |f| might want to add a feature to carry over existing logs
         /// </summary>
         public static void SwitchTarget(ILogTarget target)
         {
@@ -24,18 +33,13 @@ namespace Studyplaner.Services.Logging
         /// <param name="message">corresponding message</param>
         public static void LogToOutput(Enums.LogEventType eventType, string message)
         {
-            if(_logTarget != null)
-                _logTarget.WriteToLog(eventType, message);
-            else
-                throw new LoggingException(ERROR_TARGET_NULL);
-        }
-
-        public static ILogTarget GetLogTarget()
-        {
-            if (_logTarget != null)
-                return _logTarget;
-
-            throw new LoggingException(ERROR_TARGET_NULL);
+            if (Properties.Settings.Default.USER_LOG_ENABLED)
+            {
+                if (HasValidTarget())
+                    _logTarget.WriteToLog(eventType, message);
+                else
+                    throw new LoggingException(ERROR_TARGET_NULL);
+            }
         }
     }
 }
