@@ -59,6 +59,16 @@
     <Compile Include="GUI\Controls\ReadOnlyListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GUI\Controls\EventTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\Controls\EventTree.Designer.cs">
+      <DependentUpon>EventTree.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="GUI\Controls\EventTree.Designer.cs">
+      <DependentUpon>EventTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Controls\UniEventPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -113,6 +123,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PaintService.cs" />
     <Compile Include="Services\Xml\XmlSerializer.cs" />
+    <EmbeddedResource Include="GUI\Controls\EventTree.resx">
+      <DependentUpon>EventTree.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\EditPlanForm.resx">
       <DependentUpon>EditPlanForm.cs</DependentUpon>
     </EmbeddedResource>
