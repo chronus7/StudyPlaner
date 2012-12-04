@@ -8,53 +8,65 @@ namespace Studyplaner.Manager
 {
     public class UniversityManager
     {
-        private List<int> _usedIDs;
+        private HashSet<int> _usedIDs;
 
         private Dictionary<int, University> _universities;
 
         public UniversityManager(string uniDirectory)
         {
-            _usedIDs = new List<int>();
+            _usedIDs = new HashSet<int>();
 
             _universities = LoadUniversities(uniDirectory);
         }
 
         public void foo(int[] values)
         {
-            _usedIDs.AddRange(values);
+
         }
 
+        /// <summary>
+        /// Generates the next valid ID for a new University
+        /// </summary>
+        /// <returns>The next ID if there is one, else -1</returns>
         public int GenerateNextID()
         {
-            int id = -1;
-            if (_usedIDs.Count == 0)
-                id = 1;
-            else
-                id = FindNextID(0);
-            _usedIDs.Add(id);
-            return id;
+            int i = 1;
+            while (_usedIDs.Contains(i))
+            {
+                if (i < int.MaxValue)
+                    i++;
+                else
+                    return -1;
+            }
+            return i;
         }
 
-        private int FindNextID(int index)
+        /// <summary>
+        /// Registers a new ID
+        /// </summary>
+        /// <param name="id">The ID to register</param>
+        /// <returns>A value representing the success of the operation.
+        ///     - true, if the id was added
+        ///     - false oherwise</returns>
+        public bool RegisterNewID(int id)
         {
-            if (_usedIDs.Count == (index + 1))
-                return index + 2;
-            if (_usedIDs[index] == -1)
-                return ++index;
+            if (_usedIDs.Contains(id))
+                return false;
 
-            return FindNextID(++index);
+            _usedIDs.Add(id);
+            return true;
         }
 
         private Dictionary<int, University> LoadUniversities(string uniDirectory)
         {
-            //TODO: |f| load universities from given path.. remember to increase _maxID;
+            //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
 
             return null;
         }
 
         /// <summary>
-        /// Fügt dem Manager eine Universität hinzu. 
-        /// Im Kontruktor werden so die bereits vorhandenen Universitäten geladen
+        /// Adds a University o the manager
+        /// Get called at constrution time to build the initial University-List
         /// </summary>
         /// <param name="toAdd">Die Universität, die hinzugefügt werden soll</param>
         public void AddUniversity(University toAdd)
