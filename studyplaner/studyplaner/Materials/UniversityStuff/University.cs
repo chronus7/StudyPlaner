@@ -22,7 +22,7 @@ namespace Studyplaner.Materials.UniversityStuff
         /// The abbreviation of the uni's name.
         /// </summary>
         [XmlElement(ElementName="short")]
-        public string Short { get; set; }
+        public string ShortName { get; set; }
 
         /// <summary>
         /// The modules of this uni.
