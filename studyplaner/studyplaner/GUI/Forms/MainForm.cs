@@ -1,8 +1,9 @@
 ﻿using Studyplaner.Enums;
 using Studyplaner.GUI.Controls;
 using Studyplaner.Materials.UniversityStuff;
-using Studyplaner.Materials.Various;
 using Studyplaner.Services;
+using Studyplaner.Services.Logging;
+using Studyplaner.Various.InheritedEventArgs;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -53,7 +54,7 @@ namespace Studyplaner.GUI.Forms
             else
                 _logFrm.Show();
 
-            Services.Logging.LogService.SwitchToConsole(_logFrm);
+            Services.Logging.LogService.SwitchTarget(new LogFormTarget(_logFrm));
             Services.Logging.LogService.LogToOutput(Enums.LogEventType.DEBUG, "test");
         }
 
@@ -192,7 +193,7 @@ namespace Studyplaner.GUI.Forms
             LaunchSettingsDialog();
         }
 
-        private void MainForm_Activated(object sender, EventArgs e)
+        private void MainForm_Loaded(object sender, EventArgs e)
         {
             TestEventPanel();
             TestLog();

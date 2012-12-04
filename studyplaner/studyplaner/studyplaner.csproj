@@ -94,7 +94,8 @@
     </Compile>
     <Compile Include="Interfaces\ILogTarget.cs" />
     <Compile Include="Manager\UniversityManager.cs" />
-    <Compile Include="Materials\Various\BatteryEventArgs.cs" />
+    <Compile Include="Various\InheritedEventArgs\BatteryEventArgs.cs" />
+    <Compile Include="Various\InheritedExceptions\LoggingException.cs" />
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />

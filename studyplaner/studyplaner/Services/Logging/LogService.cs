@@ -1,29 +1,20 @@
-﻿using Studyplaner.GUI.Forms;
-using Studyplaner.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Studyplaner.Interfaces;
+using Studyplaner.Various.InheritedExceptions;
 
 namespace Studyplaner.Services.Logging
 {
     public static class LogService
     {
+        private const string ERROR_TARGET_NULL = "The ILogTarget has not been set yet!";
+
         private static ILogTarget _logTarget;
 
         /// <summary>
         /// Wird nicht so bleiben ;)
         /// </summary>
-        public static void SwitchToConsole(LogForm form)
+        public static void SwitchTarget(ILogTarget target)
         {
-            LogFormTarget target = _logTarget as LogFormTarget;
-            if(target == null)
-                _logTarget = new LogFormTarget(form);
-        }
-
-        public static void SwitchToFile(string fileName)
-        {
-            throw new NotImplementedException();
+            _logTarget = target;
         }
 
         /// <summary>
@@ -35,11 +26,16 @@ namespace Studyplaner.Services.Logging
         {
             if(_logTarget != null)
                 _logTarget.WriteToLog(eventType, message);
+            else
+                throw new LoggingException(ERROR_TARGET_NULL);
         }
 
         public static ILogTarget GetLogTarget()
         {
-            return _logTarget;
+            if (_logTarget != null)
+                return _logTarget;
+
+            throw new LoggingException(ERROR_TARGET_NULL);
         }
     }
 }

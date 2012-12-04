@@ -15,7 +15,9 @@ General Information / Important ToDos:
 
 -------------------------
  - I know we got the TODO-feature in VS but this is important: Time misses the Weekday. so if it isn't a fixed date, there should be an extra weekday. I can do this but just for notice :P
+  --- isnt this fixed?
 
+ - Moved the Exceptions and EventArgs into a seperate folder/namespace.. might be a better idea to move the whole structure in a feature orientated way and put them in the right namspaces
 
 
 _____________________________________________________________

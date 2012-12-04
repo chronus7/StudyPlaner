@@ -1,7 +1,7 @@
 ﻿using Studyplaner.Enums;
 using System;
 
-namespace Studyplaner.Materials.Various
+namespace Studyplaner.Various.InheritedEventArgs
 {
     /// <summary>
     /// Provides additional information about the power state of the pc at eventtime.
