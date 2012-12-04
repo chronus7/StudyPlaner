@@ -19,7 +19,6 @@ namespace Studyplaner.GUI.Forms
         {
             InitializeComponent();
             Init();
-            // TODO | dj | DYNAMIC!!!!!! - resize has to be implemented! -
             // TODO | dj | Tooltips for properties?!?
         }
 
@@ -43,9 +42,11 @@ namespace Studyplaner.GUI.Forms
             _cmBoxDepartment.DataSource = Enum.GetValues(typeof(Department));
             _cmBoxEventType.DataSource = Enum.GetValues(typeof(EventType));
             _cmBoxWeekInterval.DataSource = Enum.GetValues(typeof(WeekInterval));
+
+            _panelEventData.Visible = false;
         }
 
-        // adds all UniEvents to the tree. Also their correspondending
+        // adds all UniEvents to the tree. Also their corresponding
         // type-nodes.
         private void buildTree()
         {
@@ -75,23 +76,6 @@ namespace Studyplaner.GUI.Forms
             _eventTree.ExpandAll();
         }
 
-        private void Add_Click(object sender, EventArgs e)
-        {
-            UniversityEvent ev = new UniversityEvent();
-            EventTreeNode etn = new EventTreeNode(ev);
-            _eventTree.Add(etn);
-            _eventTree.SelectedNode = etn;
-        }
-
-        private void Remove_Click(object sender, EventArgs e)
-        {
-            EventTreeNode etn = _eventTree.SelectedNode as EventTreeNode;
-            if (etn != null)
-            {
-                _eventTree.Nodes.Remove(etn);
-            }
-        }
-
         private void Name_TextChanged(object sender, EventArgs e)
         {
             if (!_shortModified)
@@ -116,9 +100,75 @@ namespace Studyplaner.GUI.Forms
             _shortModified = true;
         }
 
-        private void Form_Resize(object sender, EventArgs e)
+        private void EventTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            _txBoxName.Size = new Size(_lblShort.Location.X - _txBoxName.Location.X - 6, _txBoxName.Size.Height);
+            if (e.Node == null ^ (e.Node as HeadTreeNode) != null)
+            {
+                _panelEventData.Visible = false;
+            }
+            else
+            {
+                _panelEventData.Visible = true;
+                emptyEventFields();
+                if (e.Node.Parent != null)
+                    showEventData((e.Node as EventTreeNode));
+            }
+        }
+
+        private void emptyEventFields()
+        {
+            _txBoxLVNum.Clear();
+            _txBoxLocation.Clear();
+            _txBoxLecturer.Clear();
+            _cmBoxEventType.SelectedIndex = 0;
+            _cmBoxWeekInterval.SelectedIndex = 0;
+            _dtPickerDate.Value = DateTime.Now;
+            _dtPickerTime.Value = DateTime.Now;
+            _dtPickerDuration.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 1, 30, 0);
+            _trackBarImportance.Value = _trackBarImportance.Maximum;
+            _ckBoxPower.Checked = false;
+        }
+
+        private void showEventData(EventTreeNode node)
+        {
+            UniversityEvent ev = node.UniEvent;
+            _txBoxLVNum.Text = ev.LVNum;
+            _cmBoxEventType.SelectedItem = ev.Type;
+            _dtPickerDate.Value = ev.Date.Date;
+            int a = ev.Date.Date.Year;
+            int b = ev.Date.Date.Month;
+            int c = ev.Date.Date.Day;
+            _dtPickerTime.Value = new DateTime(a, b, c, ev.Date.Hours, ev.Date.Minutes, 0);
+            _cmBoxWeekInterval.SelectedItem = ev.Date.WeekInterval;
+            _dtPickerDuration.Value = new DateTime(a, b, c, ev.Duration.Hours, ev.Duration.Minutes, ev.Duration.Seconds);
+            _txBoxLocation.Text = ev.Location;
+            _txBoxLecturer.Text = ev.Lecturer;
+            _trackBarImportance.Value = ev.Importance;
+            _ckBoxPower.Checked = ev.Power;
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            UniversityEvent ev = new UniversityEvent();
+            EventTreeNode etn = new EventTreeNode(ev);
+            _eventTree.Add(etn);
+            _eventTree.Focus();
+            _eventTree.SelectedNode = etn;
+        }
+
+        private void Remove_Click(object sender, EventArgs e)
+        {
+            EventTreeNode etn = _eventTree.SelectedNode as EventTreeNode;
+            if (etn != null)
+            {
+                _eventTree.Nodes.Remove(etn);
+            }
+        }
+
+        private void CancelModule_Click(object sender, EventArgs e)
+        {
+            // TODO | dj | ask user wether really want to cancel or save modifications...
+            this.Close();
         }
     }
 }
