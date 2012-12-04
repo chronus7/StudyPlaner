@@ -35,11 +35,14 @@
             // 
             this.roBxLog.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.roBxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roBxLog.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roBxLog.ForeColor = System.Drawing.Color.LimeGreen;
             this.roBxLog.FormattingEnabled = true;
+            this.roBxLog.ItemHeight = 16;
             this.roBxLog.Location = new System.Drawing.Point(0, 0);
             this.roBxLog.Name = "roBxLog";
-            this.roBxLog.ReadOnly = false;
+            this.roBxLog.ReadOnly = true;
+            this.roBxLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.roBxLog.Size = new System.Drawing.Size(509, 286);
             this.roBxLog.TabIndex = 0;
             // 
@@ -53,6 +56,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 250);
             this.Name = "LogForm";
             this.Text = "LogForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogForm_FormClosing);
             this.ResumeLayout(false);
 
         }

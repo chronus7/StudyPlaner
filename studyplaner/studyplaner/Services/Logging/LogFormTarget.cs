@@ -9,14 +9,14 @@ namespace Studyplaner.Services.Logging
 {
     public class LogFormTarget : ILogTarget
     {
-        private bool _writeTime = false;
+        private bool _writeTime;
         private StringBuilder _builder;
 
         private ReadOnlyListBox _output;
 
-        public LogFormTarget()
+        public LogFormTarget(LogForm form)
         {
-            LogForm form = new LogForm();
+            _writeTime = true;
             _output = form.GetOutput();
 
             form.Show();
@@ -27,7 +27,8 @@ namespace Studyplaner.Services.Logging
         /// </summary>
         ~LogFormTarget()
         {
-            _output.FindForm().Dispose();
+            //if (_output != null && _output.FindForm() != null)
+            //    _output.FindForm().Dispose();
         }
 
         /// <summary>

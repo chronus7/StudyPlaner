@@ -16,6 +16,7 @@ namespace Studyplaner.GUI.Forms
                                                                 //            in fullscreen mode
         private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
 
+        private LogForm _logFrm;
         private SettingsForm _settingsFrm;
 
         private BatteryService _batteryService;
@@ -45,9 +46,14 @@ namespace Studyplaner.GUI.Forms
             t.Start();
         }
 
-        private static void TestLog()
+        private void TestLog()
         {
-            Services.Logging.LogService.SwitchToConsole();
+            if (_logFrm == null)
+                _logFrm = new LogForm();
+            else
+                _logFrm.Show();
+
+            Services.Logging.LogService.SwitchToConsole(_logFrm);
             Services.Logging.LogService.LogToOutput(Enums.LogEventType.DEBUG, "test");
         }
 

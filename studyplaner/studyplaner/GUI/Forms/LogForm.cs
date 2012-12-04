@@ -26,6 +26,12 @@ namespace Studyplaner.GUI.Forms
         public ReadOnlyListBox GetOutput()
         {
             return this.roBxLog;
+        }
+
+        private void LogForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }    
     }
 }
