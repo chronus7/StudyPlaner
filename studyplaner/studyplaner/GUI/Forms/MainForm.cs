@@ -57,7 +57,7 @@ namespace Studyplaner.GUI.Forms
                 _logFrm.Show();
 
             Services.Logging.LoggingService.SwitchTarget(new FormLogTarget());
-            Services.Logging.LoggingService.LogToOutput(Enums.LogEventType.DEBUG, "test");
+            Services.Logging.LoggingService.LogEvent(Enums.LogEventType.DEBUG, "test");
         }
 
         private void Initialize()
@@ -146,7 +146,7 @@ namespace Studyplaner.GUI.Forms
             }
 
             this._statusElementBattery.Image = img;
-            LoggingService.LogToOutput(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
+            LoggingService.LogEvent(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
         }
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)

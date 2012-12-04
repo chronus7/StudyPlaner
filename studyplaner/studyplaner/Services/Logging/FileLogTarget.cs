@@ -60,8 +60,23 @@ namespace Studyplaner.Services.Logging
             }
             catch (IOException ioEx)
             {
-                throw new LoggingException("There was an error writing to the file-log");
+                throw new LoggingException("There was an error writing to the file-log", ioEx);
             }
+        }
+
+        public override int GetHashCode()
+        {
+            return _fileName.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            FileLogTarget other = obj as FileLogTarget;
+
+            if (other == null)
+                return false;
+
+            return (this.GetHashCode() == other.GetHashCode()) && (this._fileName == other._fileName) && (this._writeTime == other._writeTime);
         }
     }
 }

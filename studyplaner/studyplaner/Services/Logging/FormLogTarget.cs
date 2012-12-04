@@ -33,20 +33,11 @@ namespace Studyplaner.Services.Logging
                 _output.FindForm().Dispose();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
         void ILogTarget.SetTimeVisible(bool value)
         {
             _writeTime = value;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="eventType"></param>
-        /// <param name="message"></param>
         void ILogTarget.WriteToLog(Enums.LogEventType eventType, string message)
         {
             if (_builder == null)
@@ -64,6 +55,21 @@ namespace Studyplaner.Services.Logging
             _builder.Append("\t" + message);
 
             _output.Items.Add(_builder.ToString());
+        }
+
+        public override int GetHashCode()
+        {
+            return _output.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            FormLogTarget other = obj as FormLogTarget;
+
+            if (other == null)
+                return false;
+
+            return (this.GetHashCode() == other.GetHashCode()) && (this._writeTime == other._writeTime) && (this._output == other._output); // TODO: |f| not sure wether this is enough for List.Contains to work properly
         }
     }
 }
