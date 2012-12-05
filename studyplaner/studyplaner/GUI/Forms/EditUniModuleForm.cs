@@ -6,6 +6,7 @@ using Studyplaner.Enums;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Drawing;
+using Studyplaner.Values;
 
 namespace Studyplaner.GUI.Forms
 {
@@ -50,6 +51,9 @@ namespace Studyplaner.GUI.Forms
         // type-nodes.
         private void buildTree()
         {
+            _headNodes.Clear();
+            _eventTree.Nodes.Clear();
+
             foreach (UniversityEvent ev in _module.Events)
             {
                 HeadTreeNode htn = null;
@@ -102,7 +106,7 @@ namespace Studyplaner.GUI.Forms
 
         private void EventTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node == null ^ (e.Node as HeadTreeNode) != null)
+            if ((e.Node as HeadTreeNode) != null)
             {
                 _panelEventData.Visible = false;
             }
@@ -169,6 +173,62 @@ namespace Studyplaner.GUI.Forms
         {
             // TODO | dj | ask user wether really want to cancel or save modifications...
             this.Close();
+        }
+
+        // TODO | dj | implement module saving
+
+        private void DiscardEvent_Click(object sender, EventArgs e)
+        {
+            if (_eventTree.SelectedNode.Parent == null)
+                emptyEventFields();
+            else
+                showEventData((_eventTree.SelectedNode as EventTreeNode));
+        }
+
+        private void SaveEvent_Click(object sender, EventArgs e)
+        {
+            EventTreeNode etn = (_eventTree.SelectedNode as EventTreeNode);
+            if (etn == null)
+                return;
+
+            UniversityEvent ev = etn.UniEvent;
+
+            // security checks??
+
+            string lvnum = _txBoxLVNum.Text;
+            EventType type = (EventType)_cmBoxEventType.SelectedItem;
+            DateTime startDateRAW = _dtPickerDate.Value;
+            DateTime startTimeRAW = _dtPickerTime.Value;
+            DateTime durationRAW = _dtPickerDuration.Value;
+            WeekInterval weekInterval = (WeekInterval)_cmBoxWeekInterval.SelectedItem;
+            string location = _txBoxLocation.Text;
+            string lecturer = _txBoxLecturer.Text;
+            int importance = _trackBarImportance.Value;
+            bool power = _ckBoxPower.Checked;
+
+            Time startTime = new Time((byte)startTimeRAW.Hour, (byte)startTimeRAW.Minute, startDateRAW, weekInterval);
+            TimeSpan duration = new TimeSpan(durationRAW.Hour, durationRAW.Minute, 0);
+
+            ev.LVNum = lvnum;
+            ev.ModuleID = _module.ID;
+            ev.Type = type;
+            ev.Date = startTime;
+            ev.Duration = duration;
+            ev.Location = location;
+            ev.Lecturer = lecturer;
+            ev.Importance = (byte)importance;
+            ev.Power = power;
+            // ID won't be changed (only generated for new Events (below))
+
+            //if it's a new Event
+            if (etn.Parent == null)
+            {
+                // TODO | dj | Here should be the id-generator!!!
+                ev.ID = new Random().Next(_trackBarImportance.Minimum, _trackBarImportance.Maximum);
+                _module.Events.Add(ev);
+            }
+
+            buildTree();
         }
     }
 }

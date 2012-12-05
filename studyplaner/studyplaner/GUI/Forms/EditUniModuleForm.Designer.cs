@@ -62,9 +62,9 @@
             this._lblLVNum = new System.Windows.Forms.Label();
             this._btnAdd = new System.Windows.Forms.Button();
             this._btnRemove = new System.Windows.Forms.Button();
+            this._eventTree = new Studyplaner.GUI.Controls.EventTree(this.components);
             this._btnSaveModule = new System.Windows.Forms.Button();
             this._btnCancelModule = new System.Windows.Forms.Button();
-            this._eventTree = new Studyplaner.GUI.Controls.EventTree(this.components);
             this._grpBoxEvent.SuspendLayout();
             this._panelEventData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarImportance)).BeginInit();
@@ -201,6 +201,7 @@
             this._btnDiscardEvent.TabIndex = 27;
             this._btnDiscardEvent.Text = "Discard";
             this._btnDiscardEvent.UseVisualStyleBackColor = true;
+            this._btnDiscardEvent.Click += new System.EventHandler(this.DiscardEvent_Click);
             // 
             // _btnSaveEvent
             // 
@@ -211,6 +212,7 @@
             this._btnSaveEvent.TabIndex = 26;
             this._btnSaveEvent.Text = "Save Event";
             this._btnSaveEvent.UseVisualStyleBackColor = true;
+            this._btnSaveEvent.Click += new System.EventHandler(this.SaveEvent_Click);
             // 
             // _ckBoxPower
             // 
@@ -416,6 +418,20 @@
             this._btnRemove.UseVisualStyleBackColor = true;
             this._btnRemove.Click += new System.EventHandler(this.Remove_Click);
             // 
+            // _eventTree
+            // 
+            this._eventTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this._eventTree.FullRowSelect = true;
+            this._eventTree.Location = new System.Drawing.Point(6, 19);
+            this._eventTree.Name = "_eventTree";
+            this._eventTree.ShowLines = false;
+            this._eventTree.ShowPlusMinus = false;
+            this._eventTree.ShowRootLines = false;
+            this._eventTree.Size = new System.Drawing.Size(156, 181);
+            this._eventTree.TabIndex = 0;
+            this._eventTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.EventTree_AfterSelect);
+            // 
             // _btnSaveModule
             // 
             this._btnSaveModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -436,20 +452,6 @@
             this._btnCancelModule.Text = "Cancel";
             this._btnCancelModule.UseVisualStyleBackColor = true;
             this._btnCancelModule.Click += new System.EventHandler(this.CancelModule_Click);
-            // 
-            // _eventTree
-            // 
-            this._eventTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this._eventTree.FullRowSelect = true;
-            this._eventTree.Location = new System.Drawing.Point(6, 19);
-            this._eventTree.Name = "_eventTree";
-            this._eventTree.ShowLines = false;
-            this._eventTree.ShowPlusMinus = false;
-            this._eventTree.ShowRootLines = false;
-            this._eventTree.Size = new System.Drawing.Size(156, 181);
-            this._eventTree.TabIndex = 0;
-            this._eventTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.EventTree_AfterSelect);
             // 
             // EditUniModuleForm
             // 
