@@ -51,17 +51,20 @@ namespace Studyplaner.GUI.Controls
 
             switch (eventType)
             {
-                case Studyplaner.Enums.EventType.Lecture:
+                case Enums.EventType.Lecture:
                     bg = Properties.Settings.Default.USER_COLOR_LECTURE;
                     break;
-                case Studyplaner.Enums.EventType.Exercise:
+                case Enums.EventType.Exercise:
                     bg = Properties.Settings.Default.USER_COLOR_EXERCISE;
                     break;
-                case Studyplaner.Enums.EventType.Tutorial:
+                case Enums.EventType.Tutorial:
                     bg = Properties.Settings.Default.USER_COLOR_TUTORIAL;
                     break;
-                case Studyplaner.Enums.EventType.Internship:
+                case Enums.EventType.Internship:
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
+                    break;
+                case Enums.EventType.CustomEvent:
+                    bg = Color.Blue;        //TODO: USER setting hier einfügen..
                     break;
                 default:
                     bg = Color.Gray;
