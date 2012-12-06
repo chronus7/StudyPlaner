@@ -213,8 +213,8 @@ namespace Studyplaner.GUI.Forms
 
         private void MainForm_Loaded(object sender, EventArgs e)
         {
-            TestEventPanel();
-            TestLog();
+            //TestEventPanel();         //TODO: implement properly
+            //TestLog();
         }
     }
 }
