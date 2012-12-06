@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Studyplaner.Services.Logging
 {
-    public static class LoggingService
+    public static class LoggingManager
     {
         private const string ERROR_TARGET_NULL = "A valid ILogTarget has not been set yet!";
 
