@@ -1,11 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
 using Studyplaner.UniversityStuff;
-using Studyplaner.UniversityStuff;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Drawing;
 using Studyplaner.Various;
 
 namespace Studyplaner.GUI.Forms

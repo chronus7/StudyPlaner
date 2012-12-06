@@ -11,6 +11,7 @@ namespace Studyplaner.Logging.Targets
         private bool _writeTime;
         private StringBuilder _builder;
 
+        private LogForm _logForm;
         private ReadOnlyListBox _output;
 
         /// <summary>
@@ -19,10 +20,8 @@ namespace Studyplaner.Logging.Targets
         public FormLogTarget()
         {
             _writeTime = true;
-            LogForm form = new LogForm();
-            _output = form.GetOutput();
-
-            form.Show();
+            _logForm = new LogForm();
+            _output = _logForm.GetOutput();
         }
 
         /// <summary>
@@ -31,8 +30,8 @@ namespace Studyplaner.Logging.Targets
         /// </summary>
         ~FormLogTarget()
         {
-            if (_output != null && _output.FindForm() != null)
-                _output.FindForm().Dispose();
+            if (_logForm != null)
+                _logForm.Dispose();
         }
 
         void ILogTarget.SetTimeVisible(bool value)
@@ -40,8 +39,11 @@ namespace Studyplaner.Logging.Targets
             _writeTime = value;
         }
 
-        void ILogTarget.WriteToLog(UniversityStuff.LogEventType eventType, string message)
+        void ILogTarget.WriteToLog(LogEventType eventType, string message)
         {
+            if (!_logForm.Visible)
+                _logForm.Show();
+
             if (_builder == null)
                 _builder = new StringBuilder();
             else
@@ -57,6 +59,7 @@ namespace Studyplaner.Logging.Targets
             _builder.Append("\t" + message);
 
             _output.Items.Add(_builder.ToString());
+            _output.SelectedIndex = _output.Items.Count - 1;
         }
 
         public override int GetHashCode()

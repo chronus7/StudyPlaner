@@ -42,7 +42,6 @@
             this.roBxLog.Location = new System.Drawing.Point(0, 0);
             this.roBxLog.Name = "roBxLog";
             this.roBxLog.ReadOnly = true;
-            this.roBxLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.roBxLog.Size = new System.Drawing.Size(509, 276);
             this.roBxLog.TabIndex = 0;
             // 

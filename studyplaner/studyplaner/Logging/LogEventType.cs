@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Studyplaner.UniversityStuff
+namespace Studyplaner.Logging
 {
     [Flags]
     public enum LogEventType

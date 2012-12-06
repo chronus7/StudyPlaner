@@ -26,7 +26,7 @@ namespace Studyplaner.Logging.Targets
             _writeTime = value;
         }
 
-        void ILogTarget.WriteToLog(UniversityStuff.LogEventType eventType, string message)
+        void ILogTarget.WriteToLog(LogEventType eventType, string message)
         {
             if (_builder == null)
                 _builder = new StringBuilder();
