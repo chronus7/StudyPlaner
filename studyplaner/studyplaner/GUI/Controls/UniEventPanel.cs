@@ -64,7 +64,7 @@ namespace Studyplaner.GUI.Controls
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
                     break;
                 case UniversityStuff.EventType.Custom:
-                    bg = Color.Blue;        //TODO: USER setting hier einfügen..
+                    bg = Properties.Settings.Default.USER_COLOR_CUSTOM;
                     break;
                 default:
                     bg = Color.Gray;

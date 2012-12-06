@@ -67,7 +67,6 @@ namespace Studyplaner.UniversityStuff
 
                 String path = @"..\..\Data\university_" + id + ".xml"; //TODO | dj | change to userchosen path
                 University ul = XmlSerializer<University>.Deserialize(path);
-                Console.Out.WriteLine(ul.ID);
                 _list.Add(ul);
             }
             reader.ReadEndElement();

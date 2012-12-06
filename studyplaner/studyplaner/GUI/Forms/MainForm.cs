@@ -99,7 +99,8 @@ namespace Studyplaner.GUI.Forms
         private void UpdateStatusBarDateTime()
         {
             this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString(); // TODO: "\t" will irgendwie nicht richtig, daher die spaces
-            // TODO: ergibt "Montag, 19. November 2012" nicht genau das, was wir wollten, aber die anderen Methoden sind schlechter und ich will den string nicht selber zusammenbauen                                                                    
+            // TODO: ergibt "Montag, 19. November 2012" nicht genau das, was wir wollten, aber die anderen Methoden sind schlechter und ich will den string nicht selber zusammenbauen 
+            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
         }
 
         private void UpdateStatusBarBatteryState(BatteryState batteryState)
@@ -142,9 +143,13 @@ namespace Studyplaner.GUI.Forms
                 Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
                 // TODO | dj | here should be more... (method extraction) :P
                 this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Updated properties");
             }
             else
+            {
                 Properties.Settings.Default.Reload();
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Settings-window canceled and reloaded properties.");
+            }
         }
 
         private void dateTimeTimer_Tick(object sender, EventArgs e)

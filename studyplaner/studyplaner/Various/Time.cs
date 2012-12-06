@@ -136,6 +136,21 @@ namespace Studyplaner.Various
             return String.Format("{0:00}:{1:00}", Hours, Minutes);
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Time))
+                return false;
+
+            Time t = (Time) obj;
+            return ((Hours == t.Hours) && (Minutes == t.Minutes) &&
+                (Date == t.Date) && (WeekInterval == t.WeekInterval));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public System.Xml.Schema.XmlSchema GetSchema()
         {
             return null;

@@ -21,6 +21,9 @@ namespace Studyplaner.PowerManagement
         protected virtual void OnBatteryStateChanged(BatteryEventArgs e)
         {
             BatteryStateChanged.Raise(this, e);
+            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "BatteryState changed: " + e.BatteryState);
+            if(e.ChargingState == ChargingState.OnBattery)
+                Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Battery remaining: " + e.BatteryRemaining);
         }
 
         private bool _isChargeable, _isCharging;

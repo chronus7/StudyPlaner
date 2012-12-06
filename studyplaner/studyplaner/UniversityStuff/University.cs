@@ -9,7 +9,7 @@ namespace Studyplaner.UniversityStuff
         /// <summary>
         /// The (hopefully) unique id of the uni.
         /// </summary>
-        [XmlElement(ElementName="id")]
+        [XmlElement(ElementName = "id")]
         public int ID { get; set; }
 
         /// <summary>
