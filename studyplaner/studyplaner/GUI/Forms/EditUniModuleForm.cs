@@ -172,7 +172,13 @@ namespace Studyplaner.GUI.Forms
             this.Close();
         }
 
-        // TODO | dj | implement module saving
+        private void SaveModule_Click(object sender, EventArgs e)
+        {
+            
+            // TODO | dj | implement module saving
+            this.Close();
+            // TODO | dj | refreshing of mainForm etc. (in mainform with dialogresult).
+        }
 
         private void DiscardEvent_Click(object sender, EventArgs e)
         {
@@ -221,7 +227,7 @@ namespace Studyplaner.GUI.Forms
             if (etn.Parent == null)
             {
                 // TODO | dj | Here should be the id-generator!!!
-                ev.ID = new Random().Next(_trackBarImportance.Minimum, _trackBarImportance.Maximum);
+                ev.ID = new Random().Next(500, 5000);
                 _module.Events.Add(ev);
             }
 

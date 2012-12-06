@@ -62,9 +62,9 @@
             this._lblLVNum = new System.Windows.Forms.Label();
             this._btnAdd = new System.Windows.Forms.Button();
             this._btnRemove = new System.Windows.Forms.Button();
-            this._eventTree = new Studyplaner.GUI.Controls.EventTree(this.components);
             this._btnSaveModule = new System.Windows.Forms.Button();
             this._btnCancelModule = new System.Windows.Forms.Button();
+            this._eventTree = new Studyplaner.GUI.Controls.EventTree(this.components);
             this._grpBoxEvent.SuspendLayout();
             this._panelEventData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._trackBarImportance)).BeginInit();
@@ -418,6 +418,30 @@
             this._btnRemove.UseVisualStyleBackColor = true;
             this._btnRemove.Click += new System.EventHandler(this.Remove_Click);
             // 
+            // _btnSaveModule
+            // 
+            this._btnSaveModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnSaveModule.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._btnSaveModule.Location = new System.Drawing.Point(353, 306);
+            this._btnSaveModule.Name = "_btnSaveModule";
+            this._btnSaveModule.Size = new System.Drawing.Size(119, 23);
+            this._btnSaveModule.TabIndex = 9;
+            this._btnSaveModule.Text = "Save Module";
+            this._btnSaveModule.UseVisualStyleBackColor = true;
+            this._btnSaveModule.Click += new System.EventHandler(this.SaveModule_Click);
+            // 
+            // _btnCancelModule
+            // 
+            this._btnCancelModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnCancelModule.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._btnCancelModule.Location = new System.Drawing.Point(228, 306);
+            this._btnCancelModule.Name = "_btnCancelModule";
+            this._btnCancelModule.Size = new System.Drawing.Size(119, 23);
+            this._btnCancelModule.TabIndex = 10;
+            this._btnCancelModule.Text = "Cancel";
+            this._btnCancelModule.UseVisualStyleBackColor = true;
+            this._btnCancelModule.Click += new System.EventHandler(this.CancelModule_Click);
+            // 
             // _eventTree
             // 
             this._eventTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -432,31 +456,12 @@
             this._eventTree.TabIndex = 0;
             this._eventTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.EventTree_AfterSelect);
             // 
-            // _btnSaveModule
-            // 
-            this._btnSaveModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnSaveModule.Location = new System.Drawing.Point(353, 306);
-            this._btnSaveModule.Name = "_btnSaveModule";
-            this._btnSaveModule.Size = new System.Drawing.Size(119, 23);
-            this._btnSaveModule.TabIndex = 9;
-            this._btnSaveModule.Text = "Save Module";
-            this._btnSaveModule.UseVisualStyleBackColor = true;
-            // 
-            // _btnCancelModule
-            // 
-            this._btnCancelModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnCancelModule.Location = new System.Drawing.Point(228, 306);
-            this._btnCancelModule.Name = "_btnCancelModule";
-            this._btnCancelModule.Size = new System.Drawing.Size(119, 23);
-            this._btnCancelModule.TabIndex = 10;
-            this._btnCancelModule.Text = "Cancel";
-            this._btnCancelModule.UseVisualStyleBackColor = true;
-            this._btnCancelModule.Click += new System.EventHandler(this.CancelModule_Click);
-            // 
             // EditUniModuleForm
             // 
+            this.AcceptButton = this._btnSaveModule;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._btnCancelModule;
             this.ClientSize = new System.Drawing.Size(484, 337);
             this.Controls.Add(this._btnCancelModule);
             this.Controls.Add(this._btnSaveModule);
