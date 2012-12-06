@@ -5,12 +5,12 @@ namespace Studyplaner.UniversityStuff
 {
     public class UniversityManager
     {
-        private HashSet<int> _usedIDs;
-        private Dictionary<int, University> _universities;
+        private HashSet<ushort> _usedIDs;
+        private Dictionary<ushort, University> _universities;
 
         public UniversityManager(string uniDirectory)
         {
-            _usedIDs = new HashSet<int>();
+            _usedIDs = new HashSet<ushort>();
 
             _universities = LoadUniversities(uniDirectory);
         }
@@ -19,17 +19,17 @@ namespace Studyplaner.UniversityStuff
         /// Generates the next valid ID for a new University
         /// </summary>
         /// <returns>The next ID if there is one, else -1</returns>
-        public int GenerateNextID()
+        private ushort GenerateNextID()
         {
-            int i = 1;
-            while (_usedIDs.Contains(i))
+            ushort s = 1;
+            while (_usedIDs.Contains(s))
             {
-                if (i < int.MaxValue)
-                    i++;
+                if (s < ushort.MaxValue)
+                    s++;
                 else
-                    return -1;
+                    return 0;
             }
-            return i;
+            return s;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Studyplaner.UniversityStuff
         /// <returns>A value representing the success of the operation.
         ///     - true, if the id was added
         ///     - false oherwise</returns>
-        public bool RegisterNewID(int id)
+        private bool RegisterNewID(ushort id)
         {
             if (_usedIDs.Contains(id))
                 return false;
@@ -48,7 +48,7 @@ namespace Studyplaner.UniversityStuff
             return true;
         }
 
-        private Dictionary<int, University> LoadUniversities(string uniDirectory)
+        private Dictionary<ushort, University> LoadUniversities(string uniDirectory)
         {
             //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
             //by the way... do we really wanna it this way??
@@ -61,14 +61,26 @@ namespace Studyplaner.UniversityStuff
         /// Get called at constrution time to build the initial University-List
         /// </summary>
         /// <param name="toAdd">Die Universität, die hinzugefügt werden soll</param>
-        public void AddUniversity(University toAdd)
+        public void AddUniversity(University toAdd)         //TODO: might want to return the id of the added uni?
         {
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            int id = (toAdd.ID == -1 || _usedIDs.Contains(toAdd.ID)) ? GenerateNextID() : toAdd.ID;
+        }
+
+        public void RemoveUniversity(ushort id)
+        {
+            
+        }
+
+        public void AddModule(ushort uniID, UniversityModule module)
+        {
+            
+        }
+
+        public void RemoveModule(ushort uniID, uint moduleID)
+        {
 
         }
- 
     }
 }
