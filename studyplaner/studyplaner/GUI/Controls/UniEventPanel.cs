@@ -63,7 +63,7 @@ namespace Studyplaner.GUI.Controls
                 case Enums.EventType.Internship:
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
                     break;
-                case Enums.EventType.CustomEvent:
+                case Enums.EventType.Custom:
                     bg = Color.Blue;        //TODO: USER setting hier einfügen..
                     break;
                 default:

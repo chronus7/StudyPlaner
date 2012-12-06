@@ -7,6 +7,6 @@ namespace Studyplaner.Enums
         Exercise = 1,
         Tutorial = 2,
         Internship = 3,
-        CustomEvent = 4
+        Custom = 4
     }
 }
