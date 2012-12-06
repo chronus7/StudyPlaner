@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.UniversityStuff;
+using Studyplaner.UniversityStuff;
 using Studyplaner.Services;
 
 namespace Studyplaner.GUI.Controls
@@ -45,25 +45,25 @@ namespace Studyplaner.GUI.Controls
         }
 
 
-        private Color GetBackgroundColorFromEventType(Enums.EventType eventType)
+        private Color GetBackgroundColorFromEventType(UniversityStuff.EventType eventType)
         {
             Color bg = Color.LightGray;
 
             switch (eventType)
             {
-                case Enums.EventType.Lecture:
+                case UniversityStuff.EventType.Lecture:
                     bg = Properties.Settings.Default.USER_COLOR_LECTURE;
                     break;
-                case Enums.EventType.Exercise:
+                case UniversityStuff.EventType.Exercise:
                     bg = Properties.Settings.Default.USER_COLOR_EXERCISE;
                     break;
-                case Enums.EventType.Tutorial:
+                case UniversityStuff.EventType.Tutorial:
                     bg = Properties.Settings.Default.USER_COLOR_TUTORIAL;
                     break;
-                case Enums.EventType.Internship:
+                case UniversityStuff.EventType.Internship:
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
                     break;
-                case Enums.EventType.Custom:
+                case UniversityStuff.EventType.Custom:
                     bg = Color.Blue;        //TODO: USER setting hier einfügen..
                     break;
                 default:

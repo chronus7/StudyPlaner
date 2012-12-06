@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Studyplaner.Materials.UniversityStuff;
 using System.Drawing;
+using Studyplaner.UniversityStuff;
 
 namespace Studyplaner.GUI.Controls
 {
@@ -64,7 +64,7 @@ namespace Studyplaner.GUI.Controls
 
     public class HeadTreeNode : TreeNode
     {
-        public Studyplaner.Enums.EventType EventType
+        public Studyplaner.UniversityStuff.EventType EventType
         {
             get {
                 return _evType;
@@ -74,9 +74,9 @@ namespace Studyplaner.GUI.Controls
                 this.Text = value.ToString();
             }
         }
-        private Studyplaner.Enums.EventType _evType;
+        private Studyplaner.UniversityStuff.EventType _evType;
 
-        public HeadTreeNode(Studyplaner.Enums.EventType eventType)
+        public HeadTreeNode(Studyplaner.UniversityStuff.EventType eventType)
         {
             EventType = eventType;
         }

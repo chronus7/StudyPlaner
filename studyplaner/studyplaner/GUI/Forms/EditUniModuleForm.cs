@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
-using Studyplaner.Materials.UniversityStuff;
-using Studyplaner.Enums;
+using Studyplaner.UniversityStuff;
+using Studyplaner.UniversityStuff;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Drawing;
-using Studyplaner.Values;
+using Studyplaner.Various;
 
 namespace Studyplaner.GUI.Forms
 {

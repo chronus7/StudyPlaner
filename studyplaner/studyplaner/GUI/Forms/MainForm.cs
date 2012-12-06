@@ -1,9 +1,9 @@
-﻿using Studyplaner.Enums;
+﻿using Studyplaner.UniversityStuff;
 using Studyplaner.GUI.Controls;
-using Studyplaner.Materials.UniversityStuff;
-using Studyplaner.Services;
-using Studyplaner.Services.Logging;
-using Studyplaner.Various.EventArgs;
+using Studyplaner.Logging;
+using Studyplaner.Logging.Targets;
+using Studyplaner.PowerManagement;
+using Studyplaner.UniversityStuff;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -56,8 +56,8 @@ namespace Studyplaner.GUI.Forms
             else
                 _logFrm.Show();
 
-            Services.Logging.LoggingManager.SwitchTarget(new FormLogTarget());
-            Services.Logging.LoggingManager.LogEvent(Enums.LogEventType.DEBUG, "test");
+            LoggingManager.SwitchTarget(new FormLogTarget());
+            LoggingManager.LogEvent(UniversityStuff.LogEventType.DEBUG, "test");
         }
 
         private void Initialize()
@@ -102,7 +102,7 @@ namespace Studyplaner.GUI.Forms
             {
                 if(_logFrm == null)
                     _logFrm = new LogForm();
-                Services.Logging.LoggingManager.SwitchTarget(new FormLogTarget());
+                LoggingManager.SwitchTarget(new FormLogTarget());
             }
         }
 
