@@ -14,6 +14,9 @@ namespace Studyplaner.Services.Logging
 
         private ReadOnlyListBox _output;
 
+        /// <summary>
+        /// Creates a new FormLogTarget which creates its own LogForm to show the Log in
+        /// </summary>
         public FormLogTarget()
         {
             _writeTime = true;

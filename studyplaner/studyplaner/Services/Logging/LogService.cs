@@ -14,12 +14,16 @@ namespace Studyplaner.Services.Logging
         /// <summary>
         /// Returns wether a valid ILogTarget has been chosen and initialized
         /// </summary>
-        /// <returns>the value</returns>
+        /// <returns>The result</returns>
         public static bool HasValidTarget()
         {
             return (_logTargets != null && _logTargets.Count > 0);
         }
 
+        /// <summary>
+        /// Adds an ILogTarget to the LogService
+        /// </summary>
+        /// <param name="target">The ILogTarget to add</param>
         public static void AddTarget(ILogTarget target)
         {
             if (target == null)
@@ -36,10 +40,12 @@ namespace Studyplaner.Services.Logging
         /// </summary>
         public static void SwitchTarget(ILogTarget target)
         {
-            if (_logTargets == null)
-                _logTargets = new List<ILogTarget>();
+            if (target == null)
+                throw new ArgumentNullException("target");
 
-            
+            _logTargets = new List<ILogTarget>();       // no need to check for null since we want to replace the whole list
+
+            _logTargets.Add(target);
         }
 
         /// <summary>
