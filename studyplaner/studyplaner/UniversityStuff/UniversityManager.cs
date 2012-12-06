@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Studyplaner.UniversityStuff
 {
     public class UniversityManager
     {
         private HashSet<int> _usedIDs;
-
         private Dictionary<int, University> _universities;
 
         public UniversityManager(string uniDirectory)
@@ -13,11 +13,6 @@ namespace Studyplaner.UniversityStuff
             _usedIDs = new HashSet<int>();
 
             _universities = LoadUniversities(uniDirectory);
-        }
-
-        public void foo(int[] values)
-        {
-
         }
 
         /// <summary>
@@ -56,6 +51,7 @@ namespace Studyplaner.UniversityStuff
         private Dictionary<int, University> LoadUniversities(string uniDirectory)
         {
             //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
+            //by the way... do we really wanna it this way??
 
             return null;
         }
@@ -67,6 +63,10 @@ namespace Studyplaner.UniversityStuff
         /// <param name="toAdd">Die Universität, die hinzugefügt werden soll</param>
         public void AddUniversity(University toAdd)
         {
+            if (toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            int id = (toAdd.ID == -1 || _usedIDs.Contains(toAdd.ID)) ? GenerateNextID() : toAdd.ID;
 
         }
  
