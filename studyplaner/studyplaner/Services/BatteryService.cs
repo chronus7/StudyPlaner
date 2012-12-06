@@ -1,5 +1,5 @@
 ﻿using Studyplaner.Enums;
-using Studyplaner.Materials.Various;
+using Studyplaner.Various.EventArgs;
 using System;
 using System.Timers;
 using System.Windows.Forms;
@@ -12,7 +12,7 @@ namespace Studyplaner.Services
     /// </summary>
     public class BatteryService
     {
-        // Grenzen für BatteryState Berechnungen
+        // Thresholds for BatteryState Calculations
         private const int BATTERYTHRESHOLD_EMPTY = 10;
         private const int BATTERYTHRESHOLD_LOW = 30;
         private const int BATTERYTHRESHOLD_MEDIUM = 60;
@@ -133,7 +133,7 @@ namespace Studyplaner.Services
         /// <summary>
         /// Gets the current remaining time, until the battery runs out of power
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A Timespan representing the remaining time</returns>
         public TimeSpan GetCurrentRemainingTime()
         {
             return CalculateBatteryRemaining(_batteryRemaining);

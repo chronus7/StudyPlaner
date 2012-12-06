@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Studyplaner.GUI.Forms;
 using Studyplaner.Materials.UniversityStuff;
+using System.Runtime.InteropServices;
 
 namespace Studyplaner
 {
@@ -15,8 +16,8 @@ namespace Studyplaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
-            Application.Run(new EditUniModuleForm(mockup()));
+            Application.Run(new MainForm());
+            //Application.Run(new EditUniModuleForm(mockup()));
         }
 
         private static UniversityModule mockup()

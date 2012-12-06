@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Studyplaner.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,9 +52,13 @@
   <ItemGroup>
     <Compile Include="Enums\Department.cs" />
     <Compile Include="Enums\LoadingState.cs" />
+    <Compile Include="Enums\LogEventType.cs" />
     <Compile Include="Enums\PowerState.cs" />
     <Compile Include="Enums\Semester.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GUI\Controls\ReadOnlyListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GUI\Controls\EventTree.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -75,6 +80,12 @@
     <Compile Include="GUI\Forms\EditUniModuleForm.Designer.cs">
       <DependentUpon>EditUniModuleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,11 +98,16 @@
     <Compile Include="GUI\Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ILogTarget.cs" />
     <Compile Include="Manager\UniversityManager.cs" />
-    <Compile Include="Materials\Various\BatteryEventArgs.cs" />
+    <Compile Include="Services\Logging\FileLogTarget.cs" />
+    <Compile Include="Various\EventArgs\BatteryEventArgs.cs" />
+    <Compile Include="Various\Exceptions\LoggingException.cs" />
     <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Materials\Universities.cs" />
     <Compile Include="Materials\Plan.cs" />
+    <Compile Include="Services\Logging\FormLogTarget.cs" />
+    <Compile Include="Services\Logging\LogManager.cs" />
     <Compile Include="Values\Time.cs" />
     <Compile Include="Materials\UniversityStuff\University.cs" />
     <Compile Include="Materials\UniversityStuff\UniversityEvent.cs" />
@@ -110,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\EditUniModuleForm.resx">
       <DependentUpon>EditUniModuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

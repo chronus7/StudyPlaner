@@ -56,8 +56,8 @@ namespace Studyplaner.GUI.Forms
             else
                 _logFrm.Show();
 
-            Services.Logging.LoggingManager.SwitchTarget(new FormLogTarget());
-            Services.Logging.LoggingManager.LogEvent(Enums.LogEventType.DEBUG, "test");
+            Services.Logging.LoggingService.SwitchTarget(new FormLogTarget(_logFrm));
+            Services.Logging.LoggingService.LogToOutput(Enums.LogEventType.DEBUG, "test");
         }
 
         private void Initialize()
@@ -102,7 +102,7 @@ namespace Studyplaner.GUI.Forms
             {
                 if(_logFrm == null)
                     _logFrm = new LogForm();
-                Services.Logging.LoggingManager.SwitchTarget(new FormLogTarget());
+                Services.Logging.LoggingService.SwitchTarget(new FormLogTarget(_logFrm));
             }
         }
 
@@ -146,7 +146,7 @@ namespace Studyplaner.GUI.Forms
             }
 
             this._statusElementBattery.Image = img;
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
+            LoggingService.LogToOutput(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
         }
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)
@@ -213,8 +213,8 @@ namespace Studyplaner.GUI.Forms
 
         private void MainForm_Loaded(object sender, EventArgs e)
         {
-            //TestEventPanel();         //TODO: implement properly
-            //TestLog();
+            TestEventPanel();
+            TestLog();
         }
     }
 }

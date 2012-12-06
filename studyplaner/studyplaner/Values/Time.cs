@@ -7,9 +7,9 @@ namespace Studyplaner.Values
 {
     public struct Time : IXmlSerializable
     {
-        private static readonly Regex TIMEFULLREGEX = new Regex("^[0-2]?[\\d](:[0-5][\\d])?$");
-        private static readonly Regex TIMEHOURSREGEX = new Regex("[\\d]{1,2}");
-        private static readonly Regex TIMEMINUTESREGEX = new Regex(":[\\d]{2}");
+        //private static readonly Regex TIMEFULLREGEX = new Regex("^[0-2]?[\\d](:[0-5][\\d])?$");
+        //private static readonly Regex TIMEHOURSREGEX = new Regex("[\\d]{1,2}");
+        //private static readonly Regex TIMEMINUTESREGEX = new Regex(":[\\d]{2}");
 
         /// <summary>
         /// The hours of this Time.
