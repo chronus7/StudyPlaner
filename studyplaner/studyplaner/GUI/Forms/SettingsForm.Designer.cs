@@ -33,6 +33,8 @@
             this._btnColorLecture = new System.Windows.Forms.Button();
             this._lblColorLecture = new System.Windows.Forms.Label();
             this._grpBoxGeneral = new System.Windows.Forms.GroupBox();
+            this._ckBoxOutputFile = new System.Windows.Forms.CheckBox();
+            this._ckBoxOutputConsole = new System.Windows.Forms.CheckBox();
             this._lblOutput = new System.Windows.Forms.Label();
             this._txBoxOutputFile = new System.Windows.Forms.TextBox();
             this._ckBoxLogging = new System.Windows.Forms.CheckBox();
@@ -42,8 +44,7 @@
             this._btnCancel = new System.Windows.Forms.Button();
             this._btnSave = new System.Windows.Forms.Button();
             this._colorDialog = new System.Windows.Forms.ColorDialog();
-            this._ckBoxOutputConsole = new System.Windows.Forms.CheckBox();
-            this._ckBoxOutputFile = new System.Windows.Forms.CheckBox();
+            this._fileDialog = new System.Windows.Forms.OpenFileDialog();
             this._mainPanel.SuspendLayout();
             this._grpBoxEventSettings.SuspendLayout();
             this._grpBoxGeneral.SuspendLayout();
@@ -115,6 +116,29 @@
             this._grpBoxGeneral.TabStop = false;
             this._grpBoxGeneral.Text = "General";
             // 
+            // _ckBoxOutputFile
+            // 
+            this._ckBoxOutputFile.AutoSize = true;
+            this._ckBoxOutputFile.Location = new System.Drawing.Point(219, 46);
+            this._ckBoxOutputFile.Name = "_ckBoxOutputFile";
+            this._ckBoxOutputFile.Size = new System.Drawing.Size(42, 17);
+            this._ckBoxOutputFile.TabIndex = 7;
+            this._ckBoxOutputFile.Text = "File";
+            this._ckBoxOutputFile.UseVisualStyleBackColor = true;
+            this._ckBoxOutputFile.Visible = false;
+            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.OutputFile_CheckedChanged);
+            // 
+            // _ckBoxOutputConsole
+            // 
+            this._ckBoxOutputConsole.AutoSize = true;
+            this._ckBoxOutputConsole.Location = new System.Drawing.Point(149, 46);
+            this._ckBoxOutputConsole.Name = "_ckBoxOutputConsole";
+            this._ckBoxOutputConsole.Size = new System.Drawing.Size(64, 17);
+            this._ckBoxOutputConsole.TabIndex = 4;
+            this._ckBoxOutputConsole.Text = "Console";
+            this._ckBoxOutputConsole.UseVisualStyleBackColor = true;
+            this._ckBoxOutputConsole.Visible = false;
+            // 
             // _lblOutput
             // 
             this._lblOutput.AutoSize = true;
@@ -132,6 +156,7 @@
             this._txBoxOutputFile.Size = new System.Drawing.Size(179, 20);
             this._txBoxOutputFile.TabIndex = 5;
             this._txBoxOutputFile.Visible = false;
+            this._txBoxOutputFile.Click += new System.EventHandler(this.OutputFile_Click);
             // 
             // _ckBoxLogging
             // 
@@ -200,28 +225,12 @@
             this._colorDialog.AnyColor = true;
             this._colorDialog.FullOpen = true;
             // 
-            // _ckBoxOutputConsole
+            // _fileDialog
             // 
-            this._ckBoxOutputConsole.AutoSize = true;
-            this._ckBoxOutputConsole.Location = new System.Drawing.Point(149, 46);
-            this._ckBoxOutputConsole.Name = "_ckBoxOutputConsole";
-            this._ckBoxOutputConsole.Size = new System.Drawing.Size(64, 17);
-            this._ckBoxOutputConsole.TabIndex = 4;
-            this._ckBoxOutputConsole.Text = "Console";
-            this._ckBoxOutputConsole.UseVisualStyleBackColor = true;
-            this._ckBoxOutputConsole.Visible = false;
-            // 
-            // _ckBoxOutputFile
-            // 
-            this._ckBoxOutputFile.AutoSize = true;
-            this._ckBoxOutputFile.Location = new System.Drawing.Point(219, 46);
-            this._ckBoxOutputFile.Name = "_ckBoxOutputFile";
-            this._ckBoxOutputFile.Size = new System.Drawing.Size(42, 17);
-            this._ckBoxOutputFile.TabIndex = 7;
-            this._ckBoxOutputFile.Text = "File";
-            this._ckBoxOutputFile.UseVisualStyleBackColor = true;
-            this._ckBoxOutputFile.Visible = false;
-            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.OutputFile_CheckedChanged);
+            this._fileDialog.CheckFileExists = false;
+            this._fileDialog.DefaultExt = "log";
+            this._fileDialog.FileName = "studyplaner.log";
+            this._fileDialog.Title = "Select logfile directory";
             // 
             // SettingsForm
             // 
@@ -266,5 +275,6 @@
         private System.Windows.Forms.Label _lblOutput;
         private System.Windows.Forms.CheckBox _ckBoxOutputFile;
         private System.Windows.Forms.CheckBox _ckBoxOutputConsole;
+        private System.Windows.Forms.OpenFileDialog _fileDialog;
     }
 }

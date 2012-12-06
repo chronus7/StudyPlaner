@@ -23,6 +23,7 @@ namespace Studyplaner.GUI.Forms
             changeMainBgColor();
             changeEventColors();
             initLogInfo();
+            _fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
         private void changeMainBgColor()
@@ -85,6 +86,19 @@ namespace Studyplaner.GUI.Forms
             if (ckBox != null)
             {
                 _txBoxOutputFile.Visible = ckBox.Checked;
+            }
+        }
+
+        private void OutputFile_Click(object sender, EventArgs e)
+        {
+            TextBox txBox = sender as TextBox;
+            if (txBox != null)
+            {
+                if (_fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    txBox.Text = _fileDialog.FileName;
+                    // TODO | dj | create file if not exist when saving.
+                }
             }
         }
     }
