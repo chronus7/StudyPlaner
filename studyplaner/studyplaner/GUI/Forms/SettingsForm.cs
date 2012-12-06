@@ -22,6 +22,7 @@ namespace Studyplaner.GUI.Forms
         {
             changeMainBgColor();
             changeEventColors();
+            initLogInfo();
         }
 
         private void changeMainBgColor()
@@ -33,6 +34,14 @@ namespace Studyplaner.GUI.Forms
         private void changeEventColors()
         {
             _btnColorLecture.BackColor = Properties.Settings.Default.USER_COLOR_LECTURE;
+        }
+
+        private void initLogInfo()
+        {
+            _ckBoxLogging.Checked = Properties.Settings.Default.USER_LOG_ENABLED;
+            _ckBoxOutputConsole.Checked = Properties.Settings.Default.USER_LOG_TOCONSOLE;
+            _ckBoxOutputFile.Checked = Properties.Settings.Default.USER_LOG_TOFILE;
+            _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOG_PATH;
         }
 
         private void ChangeColorClick(object sender, EventArgs e)
@@ -52,6 +61,31 @@ namespace Studyplaner.GUI.Forms
             //TODO | dj | not only this...
             changeMainBgColor();
             Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Reset properties to default.");
+        }
+
+        private void Logging_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ckBox = sender as CheckBox;
+            if (ckBox != null)
+            {
+                setLogOutputVisible(ckBox.Checked);
+            }
+        }
+
+        private void setLogOutputVisible(bool visible)
+        {
+            _lblOutput.Visible = visible;
+            _ckBoxOutputConsole.Visible = visible;
+            _ckBoxOutputFile.Visible = visible;
+        }
+
+        private void OutputFile_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ckBox = sender as CheckBox;
+            if (ckBox != null)
+            {
+                _txBoxOutputFile.Visible = ckBox.Checked;
+            }
         }
     }
 }

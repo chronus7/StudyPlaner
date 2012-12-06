@@ -26,5 +26,11 @@
     <Setting Name="USER_COLOR_CUSTOM" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">DarkOrange</Value>
     </Setting>
+    <Setting Name="USER_LOG_TOCONSOLE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="USER_LOG_TOFILE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
