@@ -52,7 +52,7 @@ namespace Studyplaner.Logging
         /// </summary>
         /// <param name="eventType">LogEventType of the event</param>
         /// <param name="message">corresponding message</param>
-        public static void LogEvent(UniversityStuff.LogEventType eventType, string message)
+        public static void LogEvent(LogEventType eventType, string message)
         {
             if (Properties.Settings.Default.USER_LOG_ENABLED)
             {
@@ -63,7 +63,7 @@ namespace Studyplaner.Logging
             }
         }
 
-        private static void WriteToTargets(UniversityStuff.LogEventType eventType, string message)
+        private static void WriteToTargets(LogEventType eventType, string message)
         {
             foreach (ILogTarget target in _logTargets)
                 target.WriteToLog(eventType, message);

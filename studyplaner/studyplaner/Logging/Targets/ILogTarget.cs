@@ -18,6 +18,6 @@ namespace Studyplaner.Logging.Targets
         /// </summary>
         /// <param name="eventType">The LogEventType of the event</param>
         /// <param name="message">The corresponding message to the event</param>
-        void WriteToLog(UniversityStuff.LogEventType eventType, string message);
+        void WriteToLog(LogEventType eventType, string message);
     }
 }

@@ -1,12 +1,11 @@
-﻿using Studyplaner.UniversityStuff;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
 using Studyplaner.Logging;
 using Studyplaner.Logging.Targets;
 using Studyplaner.PowerManagement;
 using Studyplaner.UniversityStuff;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Studyplaner.GUI.Forms
 {
@@ -17,12 +16,9 @@ namespace Studyplaner.GUI.Forms
                                                                 //            in fullscreen mode
         private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
 
-        private LogForm _logFrm;
         private SettingsForm _settingsFrm;
 
         private BatteryService _batteryService;
-
-        private bool _loggingEnabled = false;
 
         public MainForm()
         {
@@ -47,17 +43,6 @@ namespace Studyplaner.GUI.Forms
                 newue.Type = (time % 2 == 0) ? EventType.Lecture : EventType.Exercise; panel.EventToRepresent = newue;
             };
             t.Start();
-        }
-
-        private void TestLog()
-        {
-            if (_logFrm == null)
-                _logFrm = new LogForm();
-            else
-                _logFrm.Show();
-
-            LoggingManager.SwitchTarget(new FormLogTarget());
-            LoggingManager.LogEvent(UniversityStuff.LogEventType.DEBUG, "test");
         }
 
         private void Initialize()
@@ -96,14 +81,7 @@ namespace Studyplaner.GUI.Forms
 
         private void InitializeLogging()
         {
-            _loggingEnabled = Properties.Settings.Default.USER_LOG_ENABLED;
-
-            if(_loggingEnabled)
-            {
-                if(_logFrm == null)
-                    _logFrm = new LogForm();
-                LoggingManager.SwitchTarget(new FormLogTarget());
-            }
+            LoggingManager.SwitchTarget(new FormLogTarget());
         }
 
 
@@ -114,6 +92,7 @@ namespace Studyplaner.GUI.Forms
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 40, _panelInfo.Height);
             _panelInfo.Refresh(); //TODO | f | not so nice as well...
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Resized panel: " + _panelInfo.Size.ToString());
         }
 
         private void UpdateStatusBarDateTime()
@@ -151,7 +130,11 @@ namespace Studyplaner.GUI.Forms
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)
         {
-            this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + batteryLifeRemaining.Hours.ToString("D2") + ':' + batteryLifeRemaining.Minutes.ToString("D2");
+            string str;
+            if (_batteryService.GetCurrentChargingState() == ChargingState.Charging)
+                str = string.Empty;
+            else
+                this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + batteryLifeRemaining.Hours.ToString("D2") + ':' + batteryLifeRemaining.Minutes.ToString("D2");
         }
 
         private void LaunchSettingsDialog()
@@ -214,7 +197,6 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Loaded(object sender, EventArgs e)
         {
             //TestEventPanel();         //TODO: implement properly
-            //TestLog();
         }
     }
 }
