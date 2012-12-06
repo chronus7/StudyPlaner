@@ -143,9 +143,13 @@ namespace Studyplaner.GUI.Forms
                 Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
                 // TODO | dj | here should be more... (method extraction) :P
                 this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Updated properties");
             }
             else
+            {
                 Properties.Settings.Default.Reload();
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Settings-window canceled and reloaded properties.");
+            }
         }
 
         private void dateTimeTimer_Tick(object sender, EventArgs e)

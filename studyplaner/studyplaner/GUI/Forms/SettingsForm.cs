@@ -21,6 +21,7 @@ namespace Studyplaner.GUI.Forms
         private void Initialize()
         {
             changeMainBgColor();
+            changeEventColors();
         }
 
         private void changeMainBgColor()
@@ -29,8 +30,14 @@ namespace Studyplaner.GUI.Forms
             _btnBgColor.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
         }
 
+        private void changeEventColors()
+        {
+            _btnColorLecture.BackColor = Properties.Settings.Default.USER_COLOR_LECTURE;
+        }
+
         private void ChangeColorClick(object sender, EventArgs e)
         {
+            // TODO | dj | generalize...
             DialogResult dr = this._colorDialog.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -44,6 +51,7 @@ namespace Studyplaner.GUI.Forms
             Properties.Settings.Default.Reset();
             //TODO | dj | not only this...
             changeMainBgColor();
+            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Reset properties to default.");
         }
     }
 }

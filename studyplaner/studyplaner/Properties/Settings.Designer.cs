@@ -106,5 +106,17 @@ namespace Studyplaner.Properties {
                 this["USER_LOG_PATH"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkOrange")]
+        public global::System.Drawing.Color USER_COLOR_CUSTOM {
+            get {
+                return ((global::System.Drawing.Color)(this["USER_COLOR_CUSTOM"]));
+            }
+            set {
+                this["USER_COLOR_CUSTOM"] = value;
+            }
+        }
     }
 }
