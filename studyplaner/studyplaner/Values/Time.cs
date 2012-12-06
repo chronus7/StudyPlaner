@@ -92,7 +92,7 @@ namespace Studyplaner.Values
         }
 
         /// <summary>
-        /// New Time.
+        /// New Time. FixedDate
         /// </summary>
         /// <param name="hours">The hours</param>
         /// <param name="minutes">The minutes</param>
