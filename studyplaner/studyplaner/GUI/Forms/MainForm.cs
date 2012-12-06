@@ -27,7 +27,7 @@ namespace Studyplaner.GUI.Forms
             Initialize();
         }
 
-        // kill us pleaase!
+        // kill me pleaase!
         private void TestEventPanel()
         {
             UniversityEvent ue = new UniversityEvent() { Type = EventType.Exercise };
@@ -47,13 +47,14 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
+            InitializeLogging();
+
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
 
             this._panelMain.Paint += new PaintEventHandler(PaintMainPanel);
 
             InitializeDateTimeTimer();
             InitializeBattery();
-            InitializeLogging();
         }
 
         private void InitializeDateTimeTimer()
@@ -75,6 +76,7 @@ namespace Studyplaner.GUI.Forms
             {
                 this._batteryService = null;
                 this._statusElementBattery.Image = Properties.Resources.BATTERY_NOT_CHARGEABLE;
+                this._statusElementBattery.ToolTipText = string.Empty;
             }
         }
 
@@ -92,7 +94,6 @@ namespace Studyplaner.GUI.Forms
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 40, _panelInfo.Height);
             _panelInfo.Refresh(); //TODO | f | not so nice as well...
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Resized panel: " + _panelInfo.Size.ToString());
         }
 
         private void UpdateStatusBarDateTime()
@@ -130,11 +131,7 @@ namespace Studyplaner.GUI.Forms
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)
         {
-            string str;
-            if (_batteryService.GetCurrentChargingState() == ChargingState.Charging)
-                str = string.Empty;
-            else
-                this._statusElementBattery.ToolTipText = TOOLTIP_BATTERYLIFE + batteryLifeRemaining.Hours.ToString("D2") + ':' + batteryLifeRemaining.Minutes.ToString("D2");
+            this._statusElementBattery.ToolTipText  = TOOLTIP_BATTERYLIFE + batteryLifeRemaining.Hours.ToString("D2") + ':' + batteryLifeRemaining.Minutes.ToString("D2");
         }
 
         private void LaunchSettingsDialog()
