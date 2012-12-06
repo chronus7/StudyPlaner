@@ -28,7 +28,7 @@ namespace Studyplaner.Logging
             if (target == null)
                 throw new ArgumentNullException("target");
             if (_logTargets == null)
-                throw new LoggingException(ERROR_TARGET_NULL);
+                _logTargets = new List<ILogTarget>();
 
             if (!_logTargets.Contains(target))
                 _logTargets.Add(target);
