@@ -157,7 +157,7 @@ namespace Studyplaner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Data")]
         public string USER_DATAPATH {
             get {
                 return ((string)(this["USER_DATAPATH"]));

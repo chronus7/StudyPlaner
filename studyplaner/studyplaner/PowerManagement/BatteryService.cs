@@ -75,14 +75,11 @@ namespace Studyplaner.PowerManagement
                 _batteryState = batteryStateNow;
                 _batteryRemaining = batteryRemaining;
             }
-
-            // SystemInformation.PowerStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery 
-            // TODO: bisher gibt die Methode auf Desktoprechnern leere Batterie aus ansonsten könnte man diese Property checken, aber dann müsste die Struktur geändert werden
         }
 
         private BatteryState CalculateBatteryState(short batteryRemaining)
         {
-            if (batteryRemaining <= BATTERYTHRESHOLD_EMPTY)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
+            if (batteryRemaining <= BATTERYTHRESHOLD_EMPTY)
                 return BatteryState.Empty;
             else if (batteryRemaining <= BATTERYTHRESHOLD_LOW)
                 return BatteryState.Low;

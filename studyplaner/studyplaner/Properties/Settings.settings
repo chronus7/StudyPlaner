@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="USER_DATAPATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data</Value>
+      <Value Profile="(Default)">..\..\Data</Value>
     </Setting>
   </Settings>
 </SettingsFile>
