@@ -21,28 +21,9 @@ namespace Studyplaner.Logging.Targets
             _fileName = fileName;
         }
 
-        void ILogTarget.SetTimeVisible(bool value)
+        void ILogTarget.WriteToLog(string logEntry)
         {
-            _writeTime = value;
-        }
-
-        void ILogTarget.WriteToLog(LogEventType eventType, string message)
-        {
-            if (_builder == null)
-                _builder = new StringBuilder();
-            else
-                _builder.Clear();
-
-            _builder.Append('[' + eventType.ToString() + ']');
-
-            if (_writeTime)
-                _builder.Append('[' + DateTime.Now.ToShortTimeString() + ']');
-            else
-                _builder.Append('\t');
-
-            _builder.Append("\t" + message);
-
-            WriteToFile(_builder.ToString());
+            WriteToFile(logEntry);
         }
 
         private void WriteToFile(string message)

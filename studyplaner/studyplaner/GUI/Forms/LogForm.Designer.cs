@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.roBxLog = new ReadOnlyListBox();
+            this._worker = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // roBxLog
@@ -63,6 +64,7 @@
         #endregion
 
         private ReadOnlyListBox roBxLog;
+        private System.ComponentModel.BackgroundWorker _worker;
 
 
 

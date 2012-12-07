@@ -84,6 +84,7 @@ namespace Studyplaner.GUI.Forms
         private void InitializeLogging()
         {
             LoggingManager.SwitchTarget(new FormLogTarget());
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
         }
 
 
@@ -127,7 +128,7 @@ namespace Studyplaner.GUI.Forms
             }
 
             this._statusElementBattery.Image = img;
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Updated BatteryState icon: " + batteryState.ToString());
         }
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)

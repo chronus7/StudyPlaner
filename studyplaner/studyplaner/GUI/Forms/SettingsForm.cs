@@ -44,10 +44,10 @@ namespace Studyplaner.GUI.Forms
 
         private void initLogInfo()
         {
-            _ckBoxLogging.Checked = Properties.Settings.Default.USER_LOG_ENABLED;
-            _ckBoxOutputConsole.Checked = Properties.Settings.Default.USER_LOG_TOCONSOLE;
-            _ckBoxOutputFile.Checked = Properties.Settings.Default.USER_LOG_TOFILE;
-            _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOG_PATH;
+            _ckBoxLogging.Checked = Properties.Settings.Default.USER_LOGGING_ENABLED;
+            _ckBoxOutputConsole.Checked = Properties.Settings.Default.USER_LOGGING_TOCONSOLE;
+            _ckBoxOutputFile.Checked = Properties.Settings.Default.USER_LOGGING_TOFILE;
+            _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOGGING_PATH;
         }
 
         private void initPath()
