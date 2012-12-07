@@ -118,5 +118,29 @@ namespace Studyplaner.Properties {
                 this["USER_COLOR_CUSTOM"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool USER_LOG_TOCONSOLE {
+            get {
+                return ((bool)(this["USER_LOG_TOCONSOLE"]));
+            }
+            set {
+                this["USER_LOG_TOCONSOLE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool USER_LOG_TOFILE {
+            get {
+                return ((bool)(this["USER_LOG_TOFILE"]));
+            }
+            set {
+                this["USER_LOG_TOFILE"] = value;
+            }
+        }
     }
 }

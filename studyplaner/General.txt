@@ -31,7 +31,7 @@ Event.ID = dddd ddddd dd
           |----|-----|--|
            uni  module event
 
-so to get the events uni-id, you just calc (uint)(Event.ID / 10^7), for module (uint)(Event.ID / 10^2).
+so to get the events uni-id, you just calc (uint)(Event.ID / 10^9), for module (uint)(Event.ID / 10^2).
 
 Disadvantages: - additional calc-methods.
                - long/ulong for event.id, because the value will be to high (10^11 possible -- 4*10^9 max of uint, 1,8*10^19 max of ulong)
@@ -42,8 +42,8 @@ The same idea for the module's id:
 Module.ID = dddd ddddd
            |----|-----|
             uni  module
-GetModule -> Module.ID / 10^5
-this one (and the one of the uni) may be uints (10^7 possible -- see above).
+GetModule -> Module.ID / 10^4
+this one (and the one of the uni) may be uints (10^9 possible -- see above).
 
 
 _____________________________________________________________
