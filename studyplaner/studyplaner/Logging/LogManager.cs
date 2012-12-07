@@ -1,6 +1,7 @@
 ﻿using Studyplaner.Logging.Targets;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Studyplaner.Logging
 {
@@ -9,6 +10,14 @@ namespace Studyplaner.Logging
         private const string ERROR_TARGET_NULL = "A valid ILogTarget has not been set yet!";
 
         private static List<ILogTarget> _logTargets;
+        private static StringBuilder _builder;
+
+        private static bool _writeTime = Properties.Settings.Default.USER_LOGGING_WRITETIME;
+
+        public static void SetWriteTime(bool value)
+        {
+            _writeTime = value;
+        }
 
         /// <summary>
         /// Returns wether a valid ILogTarget has been chosen and initialized
@@ -54,19 +63,35 @@ namespace Studyplaner.Logging
         /// <param name="message">corresponding message</param>
         public static void LogEvent(LogEventType eventType, string message)
         {
-            if (Properties.Settings.Default.USER_LOG_ENABLED)
+            if (Properties.Settings.Default.USER_LOGGING_ENABLED)
             {
                 if (HasValidTarget())
-                    WriteToTargets(eventType, message);
+                {
+                    if (_builder == null)
+                        _builder = new StringBuilder();
+                    else
+                        _builder.Clear();
+
+                    _builder.Append('[' + eventType.ToString() + ']');
+
+                    if (_writeTime)
+                        _builder.Append('[' + DateTime.Now.ToShortTimeString() + ']');
+                    else
+                        _builder.Append('\t');
+
+                    _builder.Append("\t" + message);
+
+                    WriteToTargets(_builder.ToString());
+                }
                 else
                     throw new LoggingException(ERROR_TARGET_NULL);
             }
         }
 
-        private static void WriteToTargets(LogEventType eventType, string message)
+        private static void WriteToTargets(string logEntry)
         {
             foreach (ILogTarget target in _logTargets)
-                target.WriteToLog(eventType, message);
+                target.WriteToLog(logEntry);
         }
     }
 }

@@ -8,16 +8,9 @@ namespace Studyplaner.Logging.Targets
     public interface ILogTarget
     {
         /// <summary>
-        /// Sets a value indicating wether the time of an event shall be written to the ILogTarget
+        /// Writes a LogEntry to the ILogTarget
         /// </summary>
-        /// <param name="value">Value indicating wether the time of an event shall be written to the ILogTarget</param>
-        void SetTimeVisible(bool value);
-
-        /// <summary>
-        /// Writes a Message and a given LogEventType to the ILogTarget
-        /// </summary>
-        /// <param name="eventType">The LogEventType of the event</param>
-        /// <param name="message">The corresponding message to the event</param>
-        void WriteToLog(LogEventType eventType, string message);
+        /// <param name="message">The LogEntry to write</param>
+        void WriteToLog(string logEntry);
     }
 }

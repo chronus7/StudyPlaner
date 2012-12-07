@@ -11,11 +11,11 @@ namespace Studyplaner.GUI.Forms
 {
     public partial class LogForm : Form
     {
+        delegate void AddLogEntryCallback(string message);
+
         public LogForm()
         {
             InitializeComponent();
-
-            InitializeLogView();
         }
 
         private void InitializeLogView()
@@ -23,9 +23,22 @@ namespace Studyplaner.GUI.Forms
 
         }
 
-        public ReadOnlyListBox GetOutput()
+        /// <summary>
+        /// Adds a LogEntry threadsafe to the LogForm
+        /// </summary>
+        /// <param name="entry"></param>
+        public void AddLogEntry(string entry)
         {
-            return this.roBxLog;
+            if (roBxLog.InvokeRequired)
+            {
+                AddLogEntryCallback callback = new AddLogEntryCallback(AddLogEntry);
+                this.Invoke(callback, new object[] { entry });
+            }
+            else
+            {
+                this.roBxLog.Items.Add(entry);
+                this.roBxLog.SelectedIndex = roBxLog.Items.Count - 1;
+            }
         }
 
         private void LogForm_FormClosing(object sender, FormClosingEventArgs e)

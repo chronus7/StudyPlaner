@@ -84,6 +84,7 @@ namespace Studyplaner.GUI.Forms
         private void InitializeLogging()
         {
             LoggingManager.SwitchTarget(new FormLogTarget());
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
         }
 
 
@@ -105,29 +106,37 @@ namespace Studyplaner.GUI.Forms
 
         private void UpdateStatusBarBatteryState(BatteryState batteryState)
         {
-            Image img = null;
+            Image previous = _statusElementBattery.Image, next = null;
 
             switch (batteryState)
             {
                 case BatteryState.Empty:
-                    img = Properties.Resources.BATTERY_EMPTY;
+                    next = Properties.Resources.BATTERY_EMPTY;
                     break;
                 case BatteryState.Low:
-                    img = Properties.Resources.BATTERY_LOW;
+                    next = Properties.Resources.BATTERY_LOW;
                     break;
                 case BatteryState.Medium:
-                    img = Properties.Resources.BATTERY_MEDIUM;
+                    next = Properties.Resources.BATTERY_MEDIUM;
                     break;
                 case BatteryState.High:
-                    img = Properties.Resources.BATTERY_HIGH;
+                    next = Properties.Resources.BATTERY_HIGH;
                     break;
                 case BatteryState.FullyCharged:
-                    img = Properties.Resources.BATTERY_FULLYCHARGED;
+                    next = Properties.Resources.BATTERY_FULLYCHARGED;
                     break;
             }
 
-            this._statusElementBattery.Image = img;
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Updated BatteryState to " + batteryState.ToString());
+            if (previous == null)
+            {
+                this._statusElementBattery.Image = next;
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Initialized BatteryState icon to: " + batteryState.ToString());
+            }
+            else if (previous != next)
+            {
+                this._statusElementBattery.Image = next;
+                LoggingManager.LogEvent(LogEventType.DEBUG, "Updated BatteryState icon to: " + batteryState.ToString());
+            }
         }
 
         private void UpdateBatteryToolTipText(TimeSpan batteryLifeRemaining)
@@ -159,7 +168,7 @@ namespace Studyplaner.GUI.Forms
 
         private void OnBatteryStateChanged(object sender, BatteryEventArgs e)
         {
-            UpdateStatusBarBatteryState(e.BatteryState);
+            UpdateStatusBarBatteryState(e.BatteryState);        // TODO: might want to save this state and compare to save time 
             UpdateBatteryToolTipText(e.BatteryRemaining);
         }
 
