@@ -146,6 +146,7 @@ namespace Studyplaner.GUI.Forms
 
         private void LaunchSettingsDialog()
         {
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Launching settings dialog.");
             this._settingsFrm = new SettingsForm();
             if (_settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

@@ -106,6 +106,7 @@ namespace Studyplaner.GUI.Forms
             if (ckBox != null)
             {
                 setLogOutputVisible(ckBox.Checked);
+                Properties.Settings.Default.USER_LOGGING_ENABLED = ckBox.Checked;
             }
         }
 
@@ -116,12 +117,18 @@ namespace Studyplaner.GUI.Forms
             _ckBoxOutputFile.Visible = visible;
         }
 
-        private void OutputFile_CheckedChanged(object sender, EventArgs e)
+        private void Output_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox ckBox = sender as CheckBox;
             if (ckBox != null)
             {
-                _txBoxOutputFile.Visible = ckBox.Checked;
+                if (ckBox == _ckBoxOutputConsole)
+                    Properties.Settings.Default.USER_LOGGING_TOCONSOLE = ckBox.Checked;
+                else // if (ckBox == _ckBoxOutputFile)
+                {
+                    _txBoxOutputFile.Visible = ckBox.Checked;
+                    Properties.Settings.Default.USER_LOGGING_TOFILE = ckBox.Checked;
+                }
             }
         }
 

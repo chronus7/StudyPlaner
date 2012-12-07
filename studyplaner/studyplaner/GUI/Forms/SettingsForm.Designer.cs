@@ -30,6 +30,14 @@
         {
             this._mainPanel = new System.Windows.Forms.Panel();
             this._grpBoxEventSettings = new System.Windows.Forms.GroupBox();
+            this._btnColorCustoms = new System.Windows.Forms.Button();
+            this._lblColorCustoms = new System.Windows.Forms.Label();
+            this._btnColorTutorials = new System.Windows.Forms.Button();
+            this._lblColorTutorials = new System.Windows.Forms.Label();
+            this._btnColorInternships = new System.Windows.Forms.Button();
+            this._lblColorInternships = new System.Windows.Forms.Label();
+            this._btnColorExercises = new System.Windows.Forms.Button();
+            this._lblColorExercises = new System.Windows.Forms.Label();
             this._btnColorLecture = new System.Windows.Forms.Button();
             this._lblColorLecture = new System.Windows.Forms.Label();
             this._grpBoxGeneral = new System.Windows.Forms.GroupBox();
@@ -48,14 +56,6 @@
             this._colorDialog = new System.Windows.Forms.ColorDialog();
             this._fileDialog = new System.Windows.Forms.SaveFileDialog();
             this._folderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this._btnColorExercises = new System.Windows.Forms.Button();
-            this._lblColorExercises = new System.Windows.Forms.Label();
-            this._btnColorInternships = new System.Windows.Forms.Button();
-            this._lblColorInternships = new System.Windows.Forms.Label();
-            this._btnColorTutorials = new System.Windows.Forms.Button();
-            this._lblColorTutorials = new System.Windows.Forms.Label();
-            this._btnColorCustoms = new System.Windows.Forms.Button();
-            this._lblColorCustoms = new System.Windows.Forms.Label();
             this._mainPanel.SuspendLayout();
             this._grpBoxEventSettings.SuspendLayout();
             this._grpBoxGeneral.SuspendLayout();
@@ -97,6 +97,86 @@
             this._grpBoxEventSettings.TabIndex = 6;
             this._grpBoxEventSettings.TabStop = false;
             this._grpBoxEventSettings.Text = "Events";
+            // 
+            // _btnColorCustoms
+            // 
+            this._btnColorCustoms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorCustoms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorCustoms.Location = new System.Drawing.Point(241, 45);
+            this._btnColorCustoms.Name = "_btnColorCustoms";
+            this._btnColorCustoms.Size = new System.Drawing.Size(20, 20);
+            this._btnColorCustoms.TabIndex = 11;
+            this._btnColorCustoms.UseVisualStyleBackColor = false;
+            this._btnColorCustoms.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorCustoms
+            // 
+            this._lblColorCustoms.AutoSize = true;
+            this._lblColorCustoms.Location = new System.Drawing.Point(144, 49);
+            this._lblColorCustoms.Name = "_lblColorCustoms";
+            this._lblColorCustoms.Size = new System.Drawing.Size(74, 13);
+            this._lblColorCustoms.TabIndex = 10;
+            this._lblColorCustoms.Text = "Color Customs";
+            // 
+            // _btnColorTutorials
+            // 
+            this._btnColorTutorials.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorTutorials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorTutorials.Location = new System.Drawing.Point(241, 19);
+            this._btnColorTutorials.Name = "_btnColorTutorials";
+            this._btnColorTutorials.Size = new System.Drawing.Size(20, 20);
+            this._btnColorTutorials.TabIndex = 9;
+            this._btnColorTutorials.UseVisualStyleBackColor = false;
+            this._btnColorTutorials.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorTutorials
+            // 
+            this._lblColorTutorials.AutoSize = true;
+            this._lblColorTutorials.Location = new System.Drawing.Point(144, 23);
+            this._lblColorTutorials.Name = "_lblColorTutorials";
+            this._lblColorTutorials.Size = new System.Drawing.Size(74, 13);
+            this._lblColorTutorials.TabIndex = 8;
+            this._lblColorTutorials.Text = "Color Tutorials";
+            // 
+            // _btnColorInternships
+            // 
+            this._btnColorInternships.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorInternships.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorInternships.Location = new System.Drawing.Point(105, 71);
+            this._btnColorInternships.Name = "_btnColorInternships";
+            this._btnColorInternships.Size = new System.Drawing.Size(20, 20);
+            this._btnColorInternships.TabIndex = 7;
+            this._btnColorInternships.UseVisualStyleBackColor = false;
+            this._btnColorInternships.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorInternships
+            // 
+            this._lblColorInternships.AutoSize = true;
+            this._lblColorInternships.Location = new System.Drawing.Point(8, 75);
+            this._lblColorInternships.Name = "_lblColorInternships";
+            this._lblColorInternships.Size = new System.Drawing.Size(85, 13);
+            this._lblColorInternships.TabIndex = 6;
+            this._lblColorInternships.Text = "Color Internships";
+            // 
+            // _btnColorExercises
+            // 
+            this._btnColorExercises.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorExercises.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorExercises.Location = new System.Drawing.Point(105, 45);
+            this._btnColorExercises.Name = "_btnColorExercises";
+            this._btnColorExercises.Size = new System.Drawing.Size(20, 20);
+            this._btnColorExercises.TabIndex = 5;
+            this._btnColorExercises.UseVisualStyleBackColor = false;
+            this._btnColorExercises.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorExercises
+            // 
+            this._lblColorExercises.AutoSize = true;
+            this._lblColorExercises.Location = new System.Drawing.Point(8, 49);
+            this._lblColorExercises.Name = "_lblColorExercises";
+            this._lblColorExercises.Size = new System.Drawing.Size(79, 13);
+            this._lblColorExercises.TabIndex = 4;
+            this._lblColorExercises.Text = "Color Exercises";
             // 
             // _btnColorLecture
             // 
@@ -165,7 +245,7 @@
             this._ckBoxOutputFile.Text = "File";
             this._ckBoxOutputFile.UseVisualStyleBackColor = true;
             this._ckBoxOutputFile.Visible = false;
-            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.OutputFile_CheckedChanged);
+            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.Output_CheckedChanged);
             // 
             // _ckBoxOutputConsole
             // 
@@ -177,6 +257,7 @@
             this._ckBoxOutputConsole.Text = "Console";
             this._ckBoxOutputConsole.UseVisualStyleBackColor = true;
             this._ckBoxOutputConsole.Visible = false;
+            this._ckBoxOutputConsole.CheckedChanged += new System.EventHandler(this.Output_CheckedChanged);
             // 
             // _lblOutput
             // 
@@ -274,86 +355,6 @@
             // _folderDialog
             // 
             this._folderDialog.Description = "Directory containing the important datafiles.";
-            // 
-            // _btnColorExercises
-            // 
-            this._btnColorExercises.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorExercises.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorExercises.Location = new System.Drawing.Point(105, 45);
-            this._btnColorExercises.Name = "_btnColorExercises";
-            this._btnColorExercises.Size = new System.Drawing.Size(20, 20);
-            this._btnColorExercises.TabIndex = 5;
-            this._btnColorExercises.UseVisualStyleBackColor = false;
-            this._btnColorExercises.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorExercises
-            // 
-            this._lblColorExercises.AutoSize = true;
-            this._lblColorExercises.Location = new System.Drawing.Point(8, 49);
-            this._lblColorExercises.Name = "_lblColorExercises";
-            this._lblColorExercises.Size = new System.Drawing.Size(79, 13);
-            this._lblColorExercises.TabIndex = 4;
-            this._lblColorExercises.Text = "Color Exercises";
-            // 
-            // _btnColorInternships
-            // 
-            this._btnColorInternships.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorInternships.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorInternships.Location = new System.Drawing.Point(105, 71);
-            this._btnColorInternships.Name = "_btnColorInternships";
-            this._btnColorInternships.Size = new System.Drawing.Size(20, 20);
-            this._btnColorInternships.TabIndex = 7;
-            this._btnColorInternships.UseVisualStyleBackColor = false;
-            this._btnColorInternships.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorInternships
-            // 
-            this._lblColorInternships.AutoSize = true;
-            this._lblColorInternships.Location = new System.Drawing.Point(8, 75);
-            this._lblColorInternships.Name = "_lblColorInternships";
-            this._lblColorInternships.Size = new System.Drawing.Size(85, 13);
-            this._lblColorInternships.TabIndex = 6;
-            this._lblColorInternships.Text = "Color Internships";
-            // 
-            // _btnColorTutorials
-            // 
-            this._btnColorTutorials.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorTutorials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorTutorials.Location = new System.Drawing.Point(241, 19);
-            this._btnColorTutorials.Name = "_btnColorTutorials";
-            this._btnColorTutorials.Size = new System.Drawing.Size(20, 20);
-            this._btnColorTutorials.TabIndex = 9;
-            this._btnColorTutorials.UseVisualStyleBackColor = false;
-            this._btnColorTutorials.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorTutorials
-            // 
-            this._lblColorTutorials.AutoSize = true;
-            this._lblColorTutorials.Location = new System.Drawing.Point(144, 23);
-            this._lblColorTutorials.Name = "_lblColorTutorials";
-            this._lblColorTutorials.Size = new System.Drawing.Size(74, 13);
-            this._lblColorTutorials.TabIndex = 8;
-            this._lblColorTutorials.Text = "Color Tutorials";
-            // 
-            // _btnColorCustoms
-            // 
-            this._btnColorCustoms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorCustoms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorCustoms.Location = new System.Drawing.Point(241, 45);
-            this._btnColorCustoms.Name = "_btnColorCustoms";
-            this._btnColorCustoms.Size = new System.Drawing.Size(20, 20);
-            this._btnColorCustoms.TabIndex = 11;
-            this._btnColorCustoms.UseVisualStyleBackColor = false;
-            this._btnColorCustoms.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorCustoms
-            // 
-            this._lblColorCustoms.AutoSize = true;
-            this._lblColorCustoms.Location = new System.Drawing.Point(144, 49);
-            this._lblColorCustoms.Name = "_lblColorCustoms";
-            this._lblColorCustoms.Size = new System.Drawing.Size(74, 13);
-            this._lblColorCustoms.TabIndex = 10;
-            this._lblColorCustoms.Text = "Color Customs";
             // 
             // SettingsForm
             // 
