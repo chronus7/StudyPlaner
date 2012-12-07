@@ -152,6 +152,7 @@ namespace Studyplaner.Properties {
             }
             set {
                 this["USER_LOGGING_WRITETIME"] = value;
+<<<<<<< Updated upstream
             }
         }
         
@@ -164,6 +165,8 @@ namespace Studyplaner.Properties {
             }
             set {
                 this["USER_DATAPATH"] = value;
+=======
+>>>>>>> Stashed changes
             }
         }
     }

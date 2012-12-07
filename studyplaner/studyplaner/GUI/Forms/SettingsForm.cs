@@ -48,11 +48,14 @@ namespace Studyplaner.GUI.Forms
             _ckBoxOutputConsole.Checked = Properties.Settings.Default.USER_LOGGING_TOCONSOLE;
             _ckBoxOutputFile.Checked = Properties.Settings.Default.USER_LOGGING_TOFILE;
             _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOGGING_PATH;
+<<<<<<< Updated upstream
         }
 
         private void initPath()
         {
             _txBoxDatapath.Text = Properties.Settings.Default.USER_DATAPATH;
+=======
+>>>>>>> Stashed changes
         }
 
         private void ChangeColorClick(object sender, EventArgs e)

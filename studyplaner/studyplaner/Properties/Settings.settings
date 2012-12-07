@@ -35,8 +35,11 @@
     <Setting Name="USER_LOGGING_WRITETIME" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+<<<<<<< Updated upstream
     <Setting Name="USER_DATAPATH" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+=======
+>>>>>>> Stashed changes
   </Settings>
 </SettingsFile>
