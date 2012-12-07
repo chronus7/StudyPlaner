@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 using Studyplaner.UniversityStuff;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.UniversityStuff
 {

@@ -25,27 +25,27 @@ namespace Studyplaner
             UniversityModule mod = new UniversityModule();
             mod.Name = "Algorithmen und Datenstrukturen";
             mod.Short = "AD";
-            mod.Semester = UniversityStuff.Semester.Winter;
-            mod.Department = UniversityStuff.Department.IT;
+            mod.Semester = UniversityStuff.Enums.Semester.Winter;
+            mod.Department = UniversityStuff.Enums.Department.IT;
             mod.ID = 12354;
             
             UniversityEvent ev = new UniversityEvent();
             ev.LVNum = "67-125";
-            ev.Type = UniversityStuff.EventType.Lecture;
+            ev.Type = UniversityStuff.Enums.EventType.Lecture;
             ev.Date = new Various.Time(8, 15, new DateTime(2012, 12, 4));
             ev.Duration = new TimeSpan(1, 30, 0);
             mod.Events.Add(ev);
 
             UniversityEvent ev2 = new UniversityEvent();
             ev2.LVNum = "67-126";
-            ev2.Type = UniversityStuff.EventType.Internship;
+            ev2.Type = UniversityStuff.Enums.EventType.Internship;
             ev2.Date = new Various.Time(10, 15, new DateTime(2012, 12, 4));
             ev2.Duration = new TimeSpan(1, 30, 0);
             mod.Events.Add(ev2);
 
             UniversityEvent ev3 = new UniversityEvent();
             ev3.LVNum = "67-127";
-            ev3.Type = UniversityStuff.EventType.Internship;
+            ev3.Type = UniversityStuff.Enums.EventType.Internship;
             ev3.Date = new Various.Time(12, 15, new DateTime(2012, 12, 4));
             ev3.Duration = new TimeSpan(1, 30, 0);
             mod.Events.Add(ev3);

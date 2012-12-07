@@ -6,6 +6,7 @@ using Studyplaner.Logging;
 using Studyplaner.Logging.Targets;
 using Studyplaner.PowerManagement;
 using Studyplaner.UniversityStuff;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.GUI.Forms
 {

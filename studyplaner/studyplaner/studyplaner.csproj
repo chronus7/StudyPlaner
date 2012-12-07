@@ -61,11 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UniversityStuff\Department.cs" />
+    <Compile Include="UniversityStuff\Enums\Department.cs" />
     <Compile Include="PowerManagement\LoadingState.cs" />
     <Compile Include="Logging\LogEventType.cs" />
     <Compile Include="PowerManagement\PowerState.cs" />
-    <Compile Include="UniversityStuff\Semester.cs" />
+    <Compile Include="UniversityStuff\Enums\Semester.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="GUI\Controls\ReadOnlyListBox.cs">
       <SubType>Component</SubType>
@@ -122,9 +122,9 @@
     <Compile Include="Various\Time.cs" />
     <Compile Include="UniversityStuff\University.cs" />
     <Compile Include="UniversityStuff\UniversityEvent.cs" />
-    <Compile Include="UniversityStuff\EventType.cs" />
+    <Compile Include="UniversityStuff\Enums\EventType.cs" />
     <Compile Include="UniversityStuff\UniversityModule.cs" />
-    <Compile Include="UniversityStuff\WeekInterval.cs" />
+    <Compile Include="UniversityStuff\Enums\WeekInterval.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\PaintService.cs" />

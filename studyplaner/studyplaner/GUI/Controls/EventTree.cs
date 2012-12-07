@@ -64,7 +64,7 @@ namespace Studyplaner.GUI.Controls
 
     public class HeadTreeNode : TreeNode
     {
-        public Studyplaner.UniversityStuff.EventType EventType
+        public Studyplaner.UniversityStuff.Enums.EventType EventType
         {
             get {
                 return _evType;
@@ -74,9 +74,9 @@ namespace Studyplaner.GUI.Controls
                 this.Text = value.ToString();
             }
         }
-        private Studyplaner.UniversityStuff.EventType _evType;
+        private Studyplaner.UniversityStuff.Enums.EventType _evType;
 
-        public HeadTreeNode(Studyplaner.UniversityStuff.EventType eventType)
+        public HeadTreeNode(Studyplaner.UniversityStuff.Enums.EventType eventType)
         {
             EventType = eventType;
         }

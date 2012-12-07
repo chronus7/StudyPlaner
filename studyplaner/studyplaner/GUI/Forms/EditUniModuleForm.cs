@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
 using Studyplaner.UniversityStuff;
 using Studyplaner.Various;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.GUI.Forms
 {
