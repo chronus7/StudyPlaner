@@ -1,0 +1,18 @@
+== CONCEPT FOR ID-STRUCTURE/BUILDUP ==
+
+-- complete event.id:
+representing:      uni module event
+values/scheme:     dddd ddddd dd
+                  |----|           10^4
+				       |-----|     10^5
+					         |--|  10^2
+				  |----------|     10^9
+				  |-------------|  10^11
+
+-- maximum values:
+short                    32768 ~~ 3*10^4
+ushort                   65536 ~~ 6*10^4
+int                 2147483648 ~~ 2*10^9
+uint                4294967276 ~~ 4*10^9
+long       9223372036854775808 ~~ 9*10^18
+ulong     18446744073709551616 ~~ 1*10^19

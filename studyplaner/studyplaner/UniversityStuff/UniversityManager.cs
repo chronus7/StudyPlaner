@@ -61,7 +61,7 @@ namespace Studyplaner.UniversityStuff
         /// <param name="id">The ID to register</param>
         /// <returns>A value representing the success of the operation.
         ///     - true, if the id was added
-        ///     - false oherwise</returns>
+        ///     - false otherwise</returns>
         private static bool RegisterNewID(ushort id)       // might want to put that together with adding
         {
             //if (_usedIDs.Contains(id))
@@ -79,6 +79,7 @@ namespace Studyplaner.UniversityStuff
 
             if (id < MAXSIZE_UNIVERSITY)
                 return ContainsUniversity((ushort)id);
+
             if (id < MAXSIZE_MODULE)
                 return ContainsModule((uint)id);
 
