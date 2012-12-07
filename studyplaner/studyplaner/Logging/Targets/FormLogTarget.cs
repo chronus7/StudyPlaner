@@ -32,12 +32,9 @@ namespace Studyplaner.Logging.Targets
 
         void ILogTarget.WriteToLog(string logEntry)
         {
-<<<<<<< Updated upstream
             if (!_logForm.Visible)
                 _logForm.Show();
 
-=======
->>>>>>> Stashed changes
             _logForm.AddLogEntry(logEntry);
         }
 

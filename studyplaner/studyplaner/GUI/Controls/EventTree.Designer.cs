@@ -3,7 +3,8 @@ namespace Studyplaner.GUI.Controls
 {
     partial class EventTree : TreeView
     {
-        /// <summary>
+        /// 
+        /// summary>
         /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
