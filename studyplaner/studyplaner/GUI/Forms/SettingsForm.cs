@@ -24,6 +24,7 @@ namespace Studyplaner.GUI.Forms
             changeEventColors();
             initLogInfo();
             _fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            initPath();
         }
 
         private void changeMainBgColor()
@@ -45,6 +46,11 @@ namespace Studyplaner.GUI.Forms
             _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOG_PATH;
         }
 
+        private void initPath()
+        {
+            _txBoxDatapath.Text = Properties.Settings.Default.USER_DATAPATH;
+        }
+
         private void ChangeColorClick(object sender, EventArgs e)
         {
             // TODO | dj | generalize...
@@ -61,6 +67,9 @@ namespace Studyplaner.GUI.Forms
             Properties.Settings.Default.Reset();
             //TODO | dj | not only this...
             changeMainBgColor();
+            changeEventColors();
+            initLogInfo();
+            initPath();
             Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Reset properties to default.");
         }
 
@@ -97,7 +106,18 @@ namespace Studyplaner.GUI.Forms
                 if (_fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     txBox.Text = _fileDialog.FileName;
-                    // TODO | dj | create file if not exist when saving.
+                }
+            }
+        }
+
+        private void Datapath_Click(object sender, EventArgs e)
+        {
+            TextBox txBox = sender as TextBox;
+            if (txBox != null)
+            {
+                if (_folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    txBox.Text = _folderDialog.SelectedPath;
                 }
             }
         }

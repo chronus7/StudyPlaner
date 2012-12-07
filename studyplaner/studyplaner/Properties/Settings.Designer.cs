@@ -142,5 +142,17 @@ namespace Studyplaner.Properties {
                 this["USER_LOG_TOFILE"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string USER_DATAPATH {
+            get {
+                return ((string)(this["USER_DATAPATH"]));
+            }
+            set {
+                this["USER_DATAPATH"] = value;
+            }
+        }
     }
 }
