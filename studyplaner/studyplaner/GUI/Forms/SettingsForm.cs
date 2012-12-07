@@ -36,6 +36,10 @@ namespace Studyplaner.GUI.Forms
         private void changeEventColors()
         {
             _btnColorLecture.BackColor = Properties.Settings.Default.USER_COLOR_LECTURE;
+            _btnColorExercises.BackColor = Properties.Settings.Default.USER_COLOR_EXERCISE;
+            _btnColorInternships.BackColor = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
+            _btnColorTutorials.BackColor = Properties.Settings.Default.USER_COLOR_TUTORIAL;
+            _btnColorCustoms.BackColor = Properties.Settings.Default.USER_COLOR_CUSTOM;
         }
 
         private void initLogInfo()
@@ -53,12 +57,35 @@ namespace Studyplaner.GUI.Forms
 
         private void ChangeColorClick(object sender, EventArgs e)
         {
-            // TODO | dj | generalize...
-            DialogResult dr = this._colorDialog.ShowDialog();
-            if (dr == DialogResult.OK)
+            Button btn = sender as Button;
+            if (btn != null)
             {
-                Properties.Settings.Default.USER_COLOR_BACKGROUND = this._colorDialog.Color;
-                changeMainBgColor();
+                DialogResult dr = this._colorDialog.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    // selected colour
+                    Color c = _colorDialog.Color;
+
+                    if (btn == _btnBgColor)
+                    {
+                        Properties.Settings.Default.USER_COLOR_BACKGROUND = c;
+                        changeMainBgColor();
+                    }
+                    else
+                    {
+                        if (btn == _btnColorLecture)
+                            Properties.Settings.Default.USER_COLOR_LECTURE = c;
+                        else if (btn == _btnColorExercises)
+                            Properties.Settings.Default.USER_COLOR_EXERCISE = c;
+                        else if (btn == _btnColorInternships)
+                            Properties.Settings.Default.USER_COLOR_INTERNSHIP = c;
+                        else if (btn == _btnColorTutorials)
+                            Properties.Settings.Default.USER_COLOR_TUTORIAL = c;
+                        else// if (btn == _btnColorCustoms)
+                            Properties.Settings.Default.USER_COLOR_CUSTOM = c;
+                        changeEventColors();
+                    }
+                }
             }
         }
 
