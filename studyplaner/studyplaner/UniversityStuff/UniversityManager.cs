@@ -6,6 +6,7 @@ namespace Studyplaner.UniversityStuff
     public static class UniversityManager
     {
         private const string ERROR_NOT_INITIALIZED = "The UniversityManager has not been correctly initialized! Call .Initialize() before using.";
+        private const string ERROR_ID_OVERFLOW = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well formulated.
         private const ulong MAXSIZE_UNIVERSITY  = 10000;
         private const ulong MAXSIZE_MODULE = 1000000000;
         private const ulong MAXSIZE_EVENT = 100000000000;
@@ -62,6 +63,7 @@ namespace Studyplaner.UniversityStuff
         /// Gets called multiple times at constrution time to build the initial University-List
         /// </summary>
         /// <param name="toAdd">The University to add</param>
+        /// <returns>The ID that was used to add the University</returns>
         public static ushort AddUniversity(University toAdd)         //TODO: might want to return the id of the added uni?
         {
             CheckInitialization();
@@ -69,7 +71,9 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            //TODO: |f| add the University ;)
+            ushort newID = (ushort)toAdd.ID; //TODO: need to change the id fields in the classes to the proper type
+            if (ContainsUniversity(newID))
+                newID = GenerateNewID();
 
             return (ushort)toAdd.ID;
         }
@@ -87,6 +91,8 @@ namespace Studyplaner.UniversityStuff
         public static void RemoveUniversity(ushort id)
         {
             CheckInitialization();
+
+            _universities.Remove(id);       //TODO: can be called even if the key doesnt exist.. do we want to do nothing or throw an exception?
         }
 
         public static uint AddModule(ushort uniID, UniversityModule module)
@@ -101,8 +107,10 @@ namespace Studyplaner.UniversityStuff
             CheckInitialization();
         }
 
-        private static bool IsValidID(ulong id)
+        public static bool IsValidID(ulong id)
         {
+            CheckInitialization();
+
             if (id > MAXSIZE_EVENT)
                 return false;
 
@@ -113,6 +121,30 @@ namespace Studyplaner.UniversityStuff
                 return ContainsModule((uint)id);
 
             return ContainsEvent(id);
+        }
+
+        private static ushort GenerateNewID()
+        {
+            ushort id = 1;
+            while (ContainsUniversity(id))
+            {
+                if (id < ushort.MaxValue)
+                    id++;
+                else
+                    throw new OverflowException(ERROR_ID_OVERFLOW);
+            }
+
+            return id;
+        }
+
+        private static uint GenerateNewID(ushort universityID)
+        {
+            return 0;
+        }
+
+        private static ulong GenerateNewID(uint moduleID)
+        {
+            return 0;
         }
 
         private static bool ContainsUniversity(ushort id)
