@@ -78,7 +78,10 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            return _universities[id];        //TODO: should return null if the id is not used.. should we do it that way or throw an exception  
+            if (ContainsUniversity(id))
+                return _universities[id];
+
+            return null;                    //TODO: return null or throw an exception?
         }
 
         public static void RemoveUniversity(ushort id)
