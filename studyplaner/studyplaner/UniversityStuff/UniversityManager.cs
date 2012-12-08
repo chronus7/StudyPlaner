@@ -15,7 +15,7 @@ namespace Studyplaner.UniversityStuff
         private static Dictionary<uint, UniversityModule> _modules;
         private static Dictionary<ulong, UniversityEvent> _events;
 
-        private static bool _initialized = false;
+        public static bool Initialized { get; private set; }
 
         /// <summary>
         /// Initializes the UniversityManager and loads all previously persisted data from xmls
@@ -28,7 +28,7 @@ namespace Studyplaner.UniversityStuff
 
             // TODO: deserialize values with path from settings
 
-            _initialized = true;
+            Initialized = true;
         }
 
         private static Dictionary<ushort, University> LoadUniversities(string uniDirectory)
@@ -40,21 +40,12 @@ namespace Studyplaner.UniversityStuff
         }
 
         /// <summary>
-        /// Returns a value wether the UniversityManager has been correctly initialized
-        /// </summary>
-        /// <returns>Has the UniversityManager been correctly initialized?</returns>
-        public static bool IsInitialized()
-        {
-            return _initialized;
-        }
-
-        /// <summary>
         /// Kinda weird i think but we use this way too often to write it all the time like this
         /// In public methods this should always be called first to ensure consistency
         /// </summary>
         private static void CheckInitialization()
         {
-            if (!IsInitialized())
+            if (!Initialized)
                 throw new InvalidOperationException(ERROR_NOT_INITIALIZED);
         }
 

@@ -8,8 +8,6 @@ namespace Studyplaner.Logging.Targets
 {
     public class FormLogTarget : ILogTarget
     {
-        private StringBuilder _builder;
-
         private LogForm _logForm;
 
         /// <summary>
