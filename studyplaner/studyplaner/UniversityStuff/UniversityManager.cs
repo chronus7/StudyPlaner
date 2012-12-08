@@ -71,7 +71,7 @@ namespace Studyplaner.UniversityStuff
 
             //TODO: |f| add the University ;)
 
-            return toAdd.ID;
+            return (ushort)toAdd.ID;
         }
 
         public static University GetUniversity(ushort id)
