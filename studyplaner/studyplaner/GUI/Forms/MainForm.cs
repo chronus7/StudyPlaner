@@ -48,7 +48,7 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
-            InitializeLogging();
+            LoggingManager.Initialize();
 
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
 
@@ -80,15 +80,7 @@ namespace Studyplaner.GUI.Forms
                 this._statusElementBattery.ToolTipText = string.Empty;
             }
         }
-
-
-        private void InitializeLogging()
-        {
-            LoggingManager.SwitchTarget(new FormLogTarget());
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
-        }
-
-
+        
         private void ResizePanels()
         {
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);

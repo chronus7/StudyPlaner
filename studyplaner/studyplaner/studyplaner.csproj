@@ -118,7 +118,7 @@
     <Compile Include="UniversityStuff\Universities.cs" />
     <Compile Include="User\Plan.cs" />
     <Compile Include="Logging\Targets\FormLogTarget.cs" />
-    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Logging\LoggingManager.cs" />
     <Compile Include="Various\Time.cs" />
     <Compile Include="UniversityStuff\University.cs" />
     <Compile Include="UniversityStuff\UniversityEvent.cs" />

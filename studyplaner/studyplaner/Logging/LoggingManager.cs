@@ -14,6 +14,27 @@ namespace Studyplaner.Logging
 
         private static bool _writeTime = Properties.Settings.Default.USER_LOGGING_WRITETIME;
 
+        /// <summary>
+        /// Initializes logging.
+        /// Does stuff like setting the targets etc.
+        /// </summary>
+        public static void Initialize()
+        {
+            ILogTarget lt;
+            if (Properties.Settings.Default.USER_LOGGING_TOCONSOLE)
+                lt = new FormLogTarget();
+            else // if (Properties.Settings.Default.USER_LOGGING_TOFILE)
+                lt = new FileLogTarget(Properties.Settings.Default.USER_LOGGING_PATH);
+
+            SwitchTarget(lt);
+            LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
+        }
+
+        /// <summary>
+        /// Sets the value wether the current time shall be
+        /// appended to the log or not.
+        /// </summary>
+        /// <param name="value">True to enable the time. False else.</param>
         public static void SetWriteTime(bool value)
         {
             _writeTime = value;
