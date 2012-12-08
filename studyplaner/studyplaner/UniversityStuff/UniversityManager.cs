@@ -5,6 +5,7 @@ namespace Studyplaner.UniversityStuff
 {
     public static class UniversityManager
     {
+        private const string ERROR_NOT_INITIALIZED = "The UniversityManager has not been correctly initialized! Call .Initialize() before using.";
         private const ulong MAXSIZE_UNIVERSITY  = 10000;
         private const ulong MAXSIZE_MODULE = 1000000000;
         private const ulong MAXSIZE_EVENT = 100000000000;
@@ -29,6 +30,14 @@ namespace Studyplaner.UniversityStuff
             _initialized = true;
         }
 
+        private static Dictionary<ushort, University> LoadUniversities(string uniDirectory)
+        {
+            //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
+            //by the way... do we really wanna it this way??
+
+            return null;
+        }
+
         /// <summary>
         /// Returns a value wether the UniversityManager has been correctly initialized
         /// </summary>
@@ -39,37 +48,54 @@ namespace Studyplaner.UniversityStuff
         }
 
         /// <summary>
-        /// Generates the next valid ID for a new University
+        /// Kinda weird i think but we use this way too often to write it all the time like this
+        /// In public methods this should always be called first to ensure consistency
         /// </summary>
-        /// <returns>The next ID if there is one, else -1</returns> //TODO: change to fit
-        private static ushort GenerateNextID()
+        private static void CheckInitialization()
         {
-            ushort s = 1;
-            //while (_usedIDs.Contains(s))
-            //{
-            //    if (s < ushort.MaxValue)
-            //        s++;
-            //    else
-            //        return 0;
-            //}
-            return s;
+            if (!IsInitialized())
+                throw new InvalidOperationException(ERROR_NOT_INITIALIZED);
         }
 
         /// <summary>
-        /// Registers a new ID
+        /// Adds a University o the manager
+        /// Gets called multiple times at constrution time to build the initial University-List
         /// </summary>
-        /// <param name="id">The ID to register</param>
-        /// <returns>A value representing the success of the operation.
-        ///     - true, if the id was added
-        ///     - false otherwise</returns>
-        private static bool RegisterNewID(ushort id)       // might want to put that together with adding
+        /// <param name="toAdd">The University to add</param>
+        public static ushort AddUniversity(University toAdd)         //TODO: might want to return the id of the added uni?
         {
-            //if (_usedIDs.Contains(id))
-            //    return false;
+            CheckInitialization();
 
-            //_usedIDs.Add(id);
-            //return true;
-            return false;
+            if (toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            //TODO: |f| add the University ;)
+
+            return toAdd.ID;
+        }
+
+        public static University GetUniversity(ushort id)
+        {
+            CheckInitialization();
+
+            return _universities[id];        //TODO: should return null if the id is not used.. should we do it that way or throw an exception  
+        }
+
+        public static void RemoveUniversity(ushort id)
+        {
+            CheckInitialization();
+        }
+
+        public static uint AddModule(ushort uniID, UniversityModule module)
+        {
+            CheckInitialization();
+
+            return 0;
+        }
+
+        public static void RemoveModule(ushort uniID, uint moduleID)
+        {
+            CheckInitialization();
         }
 
         private static bool IsValidID(ulong id)
@@ -88,70 +114,17 @@ namespace Studyplaner.UniversityStuff
 
         private static bool ContainsUniversity(ushort id)
         {
-            foreach (ushort key in _universities.Keys)
-            {
-                if (id == key)
-                    return true;
-            }
-
-            return false;
+            return _universities.ContainsKey(id);
         }
 
         private static bool ContainsModule(uint id)
         {
-            foreach (uint key in _modules.Keys)
-            {
-                if (id == key)
-                    return true;
-            }
-
-            return false;
+            return _modules.ContainsKey(id);
         }
 
         private static bool ContainsEvent(ulong id)
         {
-            foreach (ulong key in _events.Keys)
-            {
-                if (id == key)
-                    return true;
-            }
-
-            return false;
-        }
-
-        private static Dictionary<ushort, University> LoadUniversities(string uniDirectory)
-        {
-            //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
-            //by the way... do we really wanna it this way??
-
-            return null;
-        }
-
-        /// <summary>
-        /// Adds a University o the manager
-        /// Get called at constrution time to build the initial University-List
-        /// </summary>
-        /// <param name="toAdd">Die Universität, die hinzugefügt werden soll</param>
-        public static void AddUniversity(University toAdd)         //TODO: might want to return the id of the added uni?
-        {
-            if (toAdd == null)
-                throw new ArgumentNullException("toAdd");
-
-        }
-
-        public static void RemoveUniversity(ushort id)
-        {
-            
-        }
-
-        public static void AddModule(ushort uniID, UniversityModule module)
-        {
-            
-        }
-
-        public static void RemoveModule(ushort uniID, uint moduleID)
-        {
-
+            return _events.ContainsKey(id);
         }
     }
 }
