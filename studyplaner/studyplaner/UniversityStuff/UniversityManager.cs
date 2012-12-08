@@ -5,11 +5,16 @@ namespace Studyplaner.UniversityStuff
 {
     public static class UniversityManager
     {
-        private const string ERROR_NOT_INITIALIZED = "The UniversityManager has not been correctly initialized! Call .Initialize() before using.";
-        private const string ERROR_ID_OVERFLOW = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well formulated.
-        private const ulong MAXSIZE_UNIVERSITY  = 10000;
-        private const ulong MAXSIZE_MODULE = 1000000000;
-        private const ulong MAXSIZE_EVENT = 100000000000;
+        private const string ERROR_NOT_INITIALIZED  = "The UniversityManager has not been correctly initialized! Call UniversityManager.Initialize() before using.";
+        private const string ERROR_ID_OVERFLOW      = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well written ;)
+
+        //TODO: We can save ram here by using the appropiate types
+        private const ulong MAXSIZE_UNIVERSITY      = 10000;
+        private const ulong MAXSIZE_MODULE          = 1000000000;
+        private const ulong MAXSIZE_EVENT           = 100000000000;
+
+        private const uint MULTIPLYER_UNIVERSITY    = 100000;
+        private const uint MULTIPLYER_MODULE        = 100;
 
         private static Dictionary<ushort, University> _universities;
         private static Dictionary<uint, UniversityModule> _modules;
@@ -40,7 +45,7 @@ namespace Studyplaner.UniversityStuff
         }
 
         /// <summary>
-        /// Kinda weird i think but we use this way too often to write it all the time like this
+        /// Kinda weird i think, but we use this way too often to write it all the time like this
         /// In public methods this should always be called first to ensure consistency
         /// </summary>
         private static void CheckInitialization()
@@ -86,11 +91,20 @@ namespace Studyplaner.UniversityStuff
             _universities.Remove(id);       //TODO: can be called even if the key doesnt exist.. do we want to do nothing or throw an exception?
         }
 
-        public static uint AddModule(ushort uniID, UniversityModule module)
+        public static uint AddModule(ushort uniID, UniversityModule toAdd)
         {
             CheckInitialization();
 
-            return 0;
+            CheckInitialization();
+
+            if (toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            uint newID = (uint)toAdd.ID; //TODO: need to change the id fields in the classes to the proper type
+            if (ContainsModule(newID))
+                newID = GenerateNewID();
+
+            return (uint)toAdd.ID;
         }
 
         public static void RemoveModule(ushort uniID, uint moduleID)
@@ -99,6 +113,28 @@ namespace Studyplaner.UniversityStuff
         }
 
         public static bool IsValidID(ulong id)
+        {
+            ushort uni = (ushort)(id / (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE));
+            uint module = (uint)(id % (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE) / MULTIPLYER_MODULE);
+            ulong evnt = id % MULTIPLYER_MODULE;
+
+            return (IsValidID(uni) && IsValidID(module) && (evnt > 0) && (evnt < MULTIPLYER_MODULE));
+        }
+
+        public static bool IsValidID(uint id)
+        {
+            ushort uni = (ushort)(id / MULTIPLYER_UNIVERSITY);
+            uint module = id % MULTIPLYER_UNIVERSITY;
+
+            return (IsValidID(uni) && (module > 0 && module < MULTIPLYER_UNIVERSITY));
+        }
+
+        public static bool IsValidID(ushort id)
+        {
+            return (id > 0) && (id < MAXSIZE_UNIVERSITY);
+        }
+
+        public static bool ContainsID(ulong id)
         {
             CheckInitialization();
 
@@ -130,7 +166,16 @@ namespace Studyplaner.UniversityStuff
 
         private static uint GenerateNewID(ushort universityID)
         {
-            return 0;
+            uint id = universityID * MULTIPLYER_UNIVERSITY;
+            while (ContainsModule(id))
+            {
+                if (id < uint.MaxValue)
+                    id++;
+                else
+                    throw new OverflowException(ERROR_ID_OVERFLOW);
+            }
+
+            return id;
         }
 
         private static ulong GenerateNewID(uint moduleID)
