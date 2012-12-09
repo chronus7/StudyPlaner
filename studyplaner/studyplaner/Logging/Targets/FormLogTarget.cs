@@ -20,7 +20,7 @@ namespace Studyplaner.Logging.Targets
 
         /// <summary>
         /// Secures that the created LogForm gets disposed, when our LogFormTarget gets destroyed
-        /// We might not actaully need this..^^
+        /// We might not actually need this..^^
         /// </summary>
         ~FormLogTarget()
         {

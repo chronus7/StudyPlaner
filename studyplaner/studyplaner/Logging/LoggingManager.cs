@@ -26,6 +26,7 @@ namespace Studyplaner.Logging
             else // if (Properties.Settings.Default.USER_LOGGING_TOFILE)
                 lt = new FileLogTarget(Properties.Settings.Default.USER_LOGGING_PATH);
 
+            SetWriteTime(Properties.Settings.Default.USER_LOGGING_WRITETIME); // for later initializing (after settings changed)
             SwitchTarget(lt);
             LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
         }
@@ -71,6 +72,8 @@ namespace Studyplaner.Logging
         {
             if (target == null)
                 throw new ArgumentNullException("target");
+
+            // TODO: | dj | does not kill previous target (e.g. dispose form)
 
             _logTargets = new List<ILogTarget>();       // no need to check for null since we want to replace the whole list
 

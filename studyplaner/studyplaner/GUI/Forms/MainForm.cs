@@ -145,6 +145,8 @@ namespace Studyplaner.GUI.Forms
                 Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
                 // TODO | dj | here should be more... (method extraction) :P
                 this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+                //LoggingManager.Initialize(); TODO | dj | shall reinitialize the Logging, but the Form still remains -.-'
+                                            // and after the second form an exc. raises...
                 LoggingManager.LogEvent(LogEventType.DEBUG, "Updated properties");
             }
             else

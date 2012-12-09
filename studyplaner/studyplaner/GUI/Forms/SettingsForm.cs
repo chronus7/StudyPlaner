@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Studyplaner.GUI.Forms
@@ -44,10 +39,12 @@ namespace Studyplaner.GUI.Forms
 
         private void initLogInfo()
         {
-            _ckBoxLogging.Checked = Properties.Settings.Default.USER_LOGGING_ENABLED;
             _ckBoxOutputConsole.Checked = Properties.Settings.Default.USER_LOGGING_TOCONSOLE;
             _ckBoxOutputFile.Checked = Properties.Settings.Default.USER_LOGGING_TOFILE;
+            _ckBoxTime.Checked = Properties.Settings.Default.USER_LOGGING_WRITETIME;
             _txBoxOutputFile.Text = Properties.Settings.Default.USER_LOGGING_PATH;
+            _ckBoxTime.Enabled = Properties.Settings.Default.USER_LOGGING_ENABLED;
+            _txBoxOutputFile.Enabled = Properties.Settings.Default.USER_LOGGING_TOFILE;
         }
 
         private void initPath()
@@ -100,23 +97,6 @@ namespace Studyplaner.GUI.Forms
             Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Reset properties to default.");
         }
 
-        private void Logging_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox ckBox = sender as CheckBox;
-            if (ckBox != null)
-            {
-                setLogOutputVisible(ckBox.Checked);
-                Properties.Settings.Default.USER_LOGGING_ENABLED = ckBox.Checked;
-            }
-        }
-
-        private void setLogOutputVisible(bool visible)
-        {
-            _lblOutput.Visible = visible;
-            _ckBoxOutputConsole.Visible = visible;
-            _ckBoxOutputFile.Visible = visible;
-        }
-
         private void Output_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox ckBox = sender as CheckBox;
@@ -126,9 +106,12 @@ namespace Studyplaner.GUI.Forms
                     Properties.Settings.Default.USER_LOGGING_TOCONSOLE = ckBox.Checked;
                 else // if (ckBox == _ckBoxOutputFile)
                 {
-                    _txBoxOutputFile.Visible = ckBox.Checked;
+                    _txBoxOutputFile.Enabled = ckBox.Checked;
                     Properties.Settings.Default.USER_LOGGING_TOFILE = ckBox.Checked;
                 }
+                bool enabled = (_ckBoxOutputFile.Checked || _ckBoxOutputConsole.Checked);
+                _ckBoxTime.Enabled = enabled;
+                Properties.Settings.Default.USER_LOGGING_ENABLED = enabled;
             }
         }
 
@@ -153,6 +136,15 @@ namespace Studyplaner.GUI.Forms
                 {
                     txBox.Text = _folderDialog.SelectedPath;
                 }
+            }
+        }
+
+        private void WriteTime_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ckBox = sender as CheckBox;
+            if (ckBox != null)
+            {
+                Properties.Settings.Default.USER_LOGGING_WRITETIME = ckBox.Checked;
             }
         }
     }

@@ -27,7 +27,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="USER_LOGGING_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">log.txt</Value>
+      <Value Profile="(Default)">studyplaner.log</Value>
     </Setting>
     <Setting Name="USER_LOGGING_TOCONSOLE" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
