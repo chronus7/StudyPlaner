@@ -13,8 +13,8 @@ namespace Studyplaner.UniversityStuff
         private const ulong MAXSIZE_MODULE          = 1000000000;
         private const ulong MAXSIZE_EVENT           = 100000000000;
 
-        private const uint MULTIPLYER_UNIVERSITY    = 100000;
-        private const uint MULTIPLYER_MODULE        = 100;
+        public const uint MULTIPLYER_UNIVERSITY    = 100000;
+        public const uint MULTIPLYER_MODULE        = 100;
 
         private static Dictionary<ushort, University> _universities;
         private static Dictionary<uint, UniversityModule> _modules;

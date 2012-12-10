@@ -12,7 +12,7 @@ namespace Studyplaner.UniversityStuff
         /// The (hopefully) unique id of this module.
         /// </summary>
         [XmlElement(ElementName="id")]
-        public int ID { get; set; }
+        public uint ID { get; set; }
 
         /// <summary>
         /// The name of this module.
@@ -31,7 +31,20 @@ namespace Studyplaner.UniversityStuff
         /// module's parent uni.
         /// </summary>
         [XmlIgnore]
-        public ushort UniID { get; set; }
+        public ushort UniID
+        {
+            get
+            {
+                return (ushort)(ID / UniversityManager.MULTIPLYER_UNIVERSITY);
+                // TODO | dj | the exact same method is in UniversityManager.IsValidID(uint)...
+            }
+            set
+            {
+                uint modID = ID % UniversityManager.MULTIPLYER_UNIVERSITY;
+                ID = modID + (uint)(value * UniversityManager.MULTIPLYER_UNIVERSITY);
+                // TODO | dj | fun. if changing uniID here we will have to refresh the Dictonary in UniversityManager
+            }
+        }
         
         /// <summary>
         /// The semester, the module is available.
