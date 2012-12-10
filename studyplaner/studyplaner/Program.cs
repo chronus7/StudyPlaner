@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Studyplaner.GUI.Forms;
 using System.Runtime.InteropServices;
 using Studyplaner.UniversityStuff;
+using System.Collections.Generic;
 
 namespace Studyplaner
 {
@@ -16,11 +17,27 @@ namespace Studyplaner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            //Application.Run(new EditUniModuleForm(mockup()));
+            //Application.Run(new MainForm());
+            //Application.Run(new EditUniModuleForm(mockupEditModuleForm()));
+            mockupSerialization();
         }
 
-        private static UniversityModule mockup()
+        private static void mockupSerialization()
+        {
+            University uni = new University();
+            uni.ID = 111;
+            uni.Name = "Uni Hamburg";
+            uni.ShortName = "UHH";
+            uni.Modules = new List<uint>() { 5, 1235, 32135, 1541, 13241, 6};
+
+            string s = "{ ";
+            foreach (uint i in uni.Modules) 
+                s += i + ", ";
+
+            Console.Out.WriteLine("Initial uni: " + uni.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
+        }
+
+        private static UniversityModule mockupEditModuleForm()
         {
             UniversityModule mod = new UniversityModule();
             mod.Name = "Algorithmen und Datenstrukturen";
