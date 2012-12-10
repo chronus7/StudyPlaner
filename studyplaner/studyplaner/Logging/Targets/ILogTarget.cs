@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Studyplaner.Logging.Targets
 {
-    public interface ILogTarget
+    public interface ILogTarget : IDisposable
     {
         /// <summary>
         /// Writes a LogEntry to the ILogTarget

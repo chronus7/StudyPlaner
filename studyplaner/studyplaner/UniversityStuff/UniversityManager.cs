@@ -113,7 +113,17 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            return 0;
+            if (toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            uint newID = (uint)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            if (!IsValidID(newID) || ContainsModule(newID))
+                newID = GenerateNewID();
+
+            toAdd.ID = (int)newID;
+            _modules.Add(newID, toAdd);
+
+            return (uint)toAdd.ID;
         }
 
         /// <summary>
@@ -125,7 +135,10 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            return null;            //TODO: haha
+            if (ContainsModule(moduleID))
+                return _modules[moduleID];
+
+            return null;
         }
 
         /// <summary>
@@ -137,10 +150,34 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            //TODO: REmove the module
+            _modules.Remove(moduleID);
         }
 
-        private static bool IsValidID(ulong id)
+        public static ulong AddEvent(uint moduleID, UniversityEvent evnt)
+        {
+            CheckInitialization();
+
+            return 0;
+        }
+
+        public static UniversityEvent GetEvent(ulong evntID)
+        {
+            CheckInitialization();
+
+            if (ContainsEvent(evntID))
+                return _events[evntID];
+
+            return null;
+        }
+
+        public static void RemoveEvent(ulong evntID)
+        {
+            CheckInitialization();
+
+            _events.Remove(evntID);
+        }
+
+        public static bool IsValidID(ulong id)
         {
             ushort uni = (ushort)(id / (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE));
             uint module = (uint)(id % (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE) / MULTIPLYER_MODULE);
@@ -149,7 +186,7 @@ namespace Studyplaner.UniversityStuff
             return (IsValidID(uni) && IsValidID(module) && (evnt > 0) && (evnt < MULTIPLYER_MODULE));
         }
 
-        private static bool IsValidID(uint id)
+        public static bool IsValidID(uint id)
         {
             ushort uni = (ushort)(id / MULTIPLYER_UNIVERSITY);
             uint module = id % MULTIPLYER_UNIVERSITY;
@@ -157,7 +194,7 @@ namespace Studyplaner.UniversityStuff
             return (IsValidID(uni) && (module > 0 && module < MULTIPLYER_UNIVERSITY));
         }
 
-        private static bool IsValidID(ushort id)
+        public static bool IsValidID(ushort id)
         {
             return (id > 0) && (id < MAXSIZE_UNIVERSITY);
         }
