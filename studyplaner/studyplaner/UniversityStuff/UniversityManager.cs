@@ -120,7 +120,7 @@ namespace Studyplaner.UniversityStuff
             if (!IsValidID(newID) || ContainsModule(newID))
                 newID = GenerateNewID();
 
-            toAdd.ID = (int)newID;
+            toAdd.ID = newID;
             _modules.Add(newID, toAdd);
 
             return (uint)toAdd.ID;
