@@ -34,6 +34,8 @@ namespace Studyplaner.UniversityStuff
             return Name;
         }
 
+        //-- IXmlSerializable --\\s
+
         public XmlSchema GetSchema()
         {
             return null;
@@ -46,14 +48,11 @@ namespace Studyplaner.UniversityStuff
             ID = ushort.Parse(reader.ReadElementString("id"));
             Name = reader.ReadElementString("name");
             ShortName = reader.ReadElementString("short");
-            // might cause some bugs :P
+
             Modules = new List<uint>();
-            reader.ReadStartElement();
-            XmlReader r2 = reader.ReadSubtree();
-            while (r2.Name.Equals("moduleid"))
-            {
-                Modules.Add(uint.Parse(r2.ReadElementString()));
-            }
+            reader.ReadStartElement("modules");
+            while (reader.Name.Equals("moduleid"))
+                Modules.Add(uint.Parse(reader.ReadElementString()));
             reader.ReadEndElement();
 
             reader.ReadEndElement();

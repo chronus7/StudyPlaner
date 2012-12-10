@@ -33,8 +33,15 @@ namespace Studyplaner
             string s = "{ ";
             foreach (uint i in uni.Modules) 
                 s += i + ", ";
+            Console.Out.WriteLine("Initialized uni: " + uni.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
 
-            Console.Out.WriteLine("Initial uni: " + uni.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
+            Xml.XmlSerializer<University>.Serialize(@"..\..\Data\test.xml", uni);
+            University uniDes = Xml.XmlSerializer<University>.Deserialize(@"..\..\Data\test.xml");
+
+            s = "{ ";
+            foreach (uint i in uniDes.Modules)
+                s += i + ", ";
+            Console.Out.WriteLine("Deserialized uni: " + uniDes.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
         }
 
         private static UniversityModule mockupEditModuleForm()
