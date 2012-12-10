@@ -33,6 +33,9 @@
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._mainMenu_file = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_file_new = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_file_new_plan = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_file_new_uni = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainMenu_file_new_module = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_file_quit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_edit = new System.Windows.Forms.ToolStripMenuItem();
             this._mainMenu_extras = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,15 +87,50 @@
             // 
             // _mainMenu_file_new
             // 
+            this._mainMenu_file_new.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._mainMenu_file_new_plan,
+            this._mainMenu_file_new_uni,
+            this._mainMenu_file_new_module});
             this._mainMenu_file_new.Name = "_mainMenu_file_new";
-            this._mainMenu_file_new.Size = new System.Drawing.Size(142, 22);
+            this._mainMenu_file_new.Size = new System.Drawing.Size(152, 22);
             this._mainMenu_file_new.Text = "New";
+            this._mainMenu_file_new.ToolTipText = "Add/Create something new";
+            this._mainMenu_file_new.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
+            this._mainMenu_file_new.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
+            // 
+            // _mainMenu_file_new_plan
+            // 
+            this._mainMenu_file_new_plan.Name = "_mainMenu_file_new_plan";
+            this._mainMenu_file_new_plan.Size = new System.Drawing.Size(162, 22);
+            this._mainMenu_file_new_plan.Text = "New Plan...";
+            this._mainMenu_file_new_plan.ToolTipText = "Open a dialog to create a new plan";
+            this._mainMenu_file_new_plan.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
+            this._mainMenu_file_new_plan.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
+            // 
+            // _mainMenu_file_new_uni
+            // 
+            this._mainMenu_file_new_uni.Name = "_mainMenu_file_new_uni";
+            this._mainMenu_file_new_uni.Size = new System.Drawing.Size(162, 22);
+            this._mainMenu_file_new_uni.Text = "New University...";
+            this._mainMenu_file_new_uni.ToolTipText = "Open a dialog to create a new university";
+            this._mainMenu_file_new_uni.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
+            this._mainMenu_file_new_uni.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
+            // 
+            // _mainMenu_file_new_module
+            // 
+            this._mainMenu_file_new_module.Name = "_mainMenu_file_new_module";
+            this._mainMenu_file_new_module.Size = new System.Drawing.Size(162, 22);
+            this._mainMenu_file_new_module.Text = "New Module...";
+            this._mainMenu_file_new_module.ToolTipText = "Open a dialog to create a new module";
+            this._mainMenu_file_new_module.Click += new System.EventHandler(this._mainMenu_file_new_module_Click);
+            this._mainMenu_file_new_module.MouseEnter += new System.EventHandler(this.MenuItem_MouseEnter);
+            this._mainMenu_file_new_module.MouseLeave += new System.EventHandler(this.MenuItem_MouseLeave);
             // 
             // _mainMenu_file_quit
             // 
             this._mainMenu_file_quit.Name = "_mainMenu_file_quit";
             this._mainMenu_file_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this._mainMenu_file_quit.Size = new System.Drawing.Size(142, 22);
+            this._mainMenu_file_quit.Size = new System.Drawing.Size(152, 22);
             this._mainMenu_file_quit.Text = "Quit";
             this._mainMenu_file_quit.ToolTipText = "Close the application";
             this._mainMenu_file_quit.Click += new System.EventHandler(this.TotalQuitClick);
@@ -182,7 +220,7 @@
             // _dateTimeTimer
             // 
             this._dateTimeTimer.Interval = 30000;
-            this._dateTimeTimer.Tick += new System.EventHandler(this.dateTimeTimer_Tick);
+            this._dateTimeTimer.Tick += new System.EventHandler(this.DateTimeTimer_Tick);
             // 
             // MainForm
             // 
@@ -227,5 +265,8 @@
         private System.Windows.Forms.Timer _dateTimeTimer;
         private System.Windows.Forms.ToolStripMenuItem _mainMenu_extras;
         private System.Windows.Forms.ToolStripMenuItem _mainMenu_extras_settings;
+        private System.Windows.Forms.ToolStripMenuItem _mainMenu_file_new_plan;
+        private System.Windows.Forms.ToolStripMenuItem _mainMenu_file_new_uni;
+        private System.Windows.Forms.ToolStripMenuItem _mainMenu_file_new_module;
     }
 }

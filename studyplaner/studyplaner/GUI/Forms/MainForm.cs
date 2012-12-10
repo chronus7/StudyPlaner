@@ -17,8 +17,6 @@ namespace Studyplaner.GUI.Forms
                                                                 //            in fullscreen mode
         private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
 
-        private SettingsForm _settingsFrm;
-
         private BatteryService _batteryService;
 
         public MainForm()
@@ -93,7 +91,7 @@ namespace Studyplaner.GUI.Forms
         private void UpdateStatusBarDateTime()
         {
             this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString(); // "\t" will irgendwie nicht richtig, daher die spaces
-            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
+            LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
         }
 
         private void UpdateStatusBarBatteryState(BatteryState batteryState)
@@ -139,8 +137,8 @@ namespace Studyplaner.GUI.Forms
         private void LaunchSettingsDialog()
         {
             LoggingManager.LogEvent(LogEventType.DEBUG, "Launching settings dialog.");
-            this._settingsFrm = new SettingsForm();
-            if (_settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            SettingsForm settingsFrm = new SettingsForm();
+            if (settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
                 // TODO | dj | here should be more... (method extraction) :P
@@ -156,7 +154,29 @@ namespace Studyplaner.GUI.Forms
             }
         }
 
-        private void dateTimeTimer_Tick(object sender, EventArgs e)
+        private void LaunchModuleDialog()
+        {
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Launching new module dialog.");
+            
+            UniversitySelectForm usf = new UniversitySelectForm();
+            if (usf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                LoggingManager.LogEvent(LogEventType.DEBUG, "University selected: " + usf.SelectedUniversity.ID);
+                EditUniModuleForm moduleForm = new EditUniModuleForm(usf.SelectedUniversity.ID);
+                if (moduleForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    LoggingManager.LogEvent(LogEventType.DEBUG, "New Module created.");
+                    // refreshing. see todo in EditModuleForm
+                }
+                else
+                    LoggingManager.LogEvent(LogEventType.DEBUG, "Creation of a new module aborted.");
+            }
+            else
+                LoggingManager.LogEvent(LogEventType.DEBUG, "University selection canceled.");
+            
+        }
+
+        private void DateTimeTimer_Tick(object sender, EventArgs e)
         {
             UpdateStatusBarDateTime();
         }
@@ -203,6 +223,11 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Loaded(object sender, EventArgs e)
         {
             //TestEventPanel();         //TODO: implement properly
+        }
+
+        private void _mainMenu_file_new_module_Click(object sender, EventArgs e)
+        {
+            LaunchModuleDialog();
         }
     }
 }

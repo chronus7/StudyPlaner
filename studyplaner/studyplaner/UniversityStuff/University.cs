@@ -10,7 +10,7 @@ namespace Studyplaner.UniversityStuff
         /// The (hopefully) unique id of the uni.
         /// </summary>
         [XmlElement(ElementName = "id")]
-        public int ID { get; set; }
+        public ushort ID { get; set; }
 
         /// <summary>
         /// The uni's name.
@@ -30,5 +30,10 @@ namespace Studyplaner.UniversityStuff
         [XmlArray(ElementName="modules")]
         [XmlArrayItem(ElementName="module")]
         public List<UniversityModule> Modules { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

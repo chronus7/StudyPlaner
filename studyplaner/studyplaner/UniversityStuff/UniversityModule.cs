@@ -31,7 +31,7 @@ namespace Studyplaner.UniversityStuff
         /// module's parent uni.
         /// </summary>
         [XmlIgnore]
-        public int UniID { get; set; }
+        public ushort UniID { get; set; }
         
         /// <summary>
         /// The semester, the module is available.

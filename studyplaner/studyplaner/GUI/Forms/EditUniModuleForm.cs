@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
+using Studyplaner.Logging;
 using Studyplaner.UniversityStuff;
-using Studyplaner.Various;
 using Studyplaner.UniversityStuff.Enums;
+using Studyplaner.Various;
 
 namespace Studyplaner.GUI.Forms
 {
@@ -13,16 +14,18 @@ namespace Studyplaner.GUI.Forms
         private UniversityModule _module;
         private bool _shortModified;
         private List<HeadTreeNode> _headNodes;
+        private ushort _uniId;
 
-        public EditUniModuleForm()
+        public EditUniModuleForm(ushort uniid)
         {
             InitializeComponent();
+            _uniId = uniid;
             Init();
             // TODO | dj | Tooltips for properties?!?
         }
 
         public EditUniModuleForm(UniversityModule module)
-            : this()
+            : this(module.UniID)
         {
             this._module = module;
             this._shortModified = true;
@@ -35,6 +38,8 @@ namespace Studyplaner.GUI.Forms
 
         private void Init()
         {
+            _module = new UniversityModule();
+            _module.UniID = _uniId;
             _headNodes = new List<HeadTreeNode>();
 
             _cmBoxSemester.DataSource = Enum.GetValues(typeof(Semester));
@@ -156,6 +161,7 @@ namespace Studyplaner.GUI.Forms
             _eventTree.Add(etn);
             _eventTree.Focus();
             _eventTree.SelectedNode = etn;
+            LoggingManager.LogEvent(LogEventType.DEBUG, "New event added.");
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -187,6 +193,7 @@ namespace Studyplaner.GUI.Forms
                 emptyEventFields();
             else
                 showEventData((_eventTree.SelectedNode as EventTreeNode));
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Eventchanges discarded. Event: " + (_eventTree.SelectedNode as EventTreeNode).UniEvent.ID);
         }
 
         private void SaveEvent_Click(object sender, EventArgs e)
@@ -233,6 +240,7 @@ namespace Studyplaner.GUI.Forms
             }
 
             buildTree();
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Saved new event: " + ev.ID);
         }
     }
 }
