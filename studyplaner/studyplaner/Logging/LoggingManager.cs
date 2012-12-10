@@ -20,14 +20,12 @@ namespace Studyplaner.Logging
         /// </summary>
         public static void Initialize()
         {
-            ILogTarget lt;
             if (Properties.Settings.Default.USER_LOGGING_TOCONSOLE)
-                lt = new FormLogTarget();
-            else // if (Properties.Settings.Default.USER_LOGGING_TOFILE)
-                lt = new FileLogTarget(Properties.Settings.Default.USER_LOGGING_PATH);
+                AddTarget(new FormLogTarget());
+            else if (Properties.Settings.Default.USER_LOGGING_TOFILE)
+                AddTarget(new FileLogTarget(Properties.Settings.Default.USER_LOGGING_PATH));
 
-            SetWriteTime(Properties.Settings.Default.USER_LOGGING_WRITETIME); // for later initializing (after settings changed)
-            SwitchTarget(lt);
+            SetWriteTime(Properties.Settings.Default.USER_LOGGING_WRITETIME);
             LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
         }
 
@@ -68,13 +66,12 @@ namespace Studyplaner.Logging
         /// <summary>
         /// Selects a new ILogTarget to log to TODO: |f| might want to add a feature to carry over existing logs
         /// </summary>
-        public static void SwitchTarget(ILogTarget target)
+        public static void SelectSingleTarget(ILogTarget target)
         {
             if (target == null)
                 throw new ArgumentNullException("target");
 
-            // TODO: | dj | does not kill previous target (e.g. dispose form)
-
+            DisposeTargets();
             _logTargets = new List<ILogTarget>();       // no need to check for null since we want to replace the whole list
 
             _logTargets.Add(target);
@@ -89,26 +86,24 @@ namespace Studyplaner.Logging
         {
             if (Properties.Settings.Default.USER_LOGGING_ENABLED)
             {
-                if (HasValidTarget())
-                {
-                    if (_builder == null)
-                        _builder = new StringBuilder();
-                    else
-                        _builder.Clear();
-
-                    _builder.Append('[' + eventType.ToString() + ']');
-
-                    if (_writeTime)
-                        _builder.Append('[' + DateTime.Now.ToShortTimeString() + ']');
-                    else
-                        _builder.Append('\t');
-
-                    _builder.Append("\t" + message);
-
-                    WriteToTargets(_builder.ToString());
-                }
-                else
+                if (!HasValidTarget())
                     throw new LoggingException(ERROR_TARGET_NULL);
+
+                if (_builder == null)
+                    _builder = new StringBuilder();
+                else
+                    _builder.Clear();
+
+                _builder.Append('[' + eventType.ToString() + ']');
+
+                if (_writeTime)
+                    _builder.Append('[' + DateTime.Now.ToShortTimeString() + ']');
+                else
+                    _builder.Append('\t');
+
+                _builder.Append("\t" + message);
+
+                WriteToTargets(_builder.ToString());
             }
         }
 
@@ -116,6 +111,13 @@ namespace Studyplaner.Logging
         {
             foreach (ILogTarget target in _logTargets)
                 target.WriteToLog(logEntry);
+        }
+
+        private static void DisposeTargets()
+        {
+            if(_logTargets != null)
+                foreach (ILogTarget target in _logTargets)
+                    target.Dispose();
         }
     }
 }

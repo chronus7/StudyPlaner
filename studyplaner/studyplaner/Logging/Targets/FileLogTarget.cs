@@ -23,6 +23,13 @@ namespace Studyplaner.Logging.Targets
             WriteToFile(logEntry);
         }
 
+        /// <summary>
+        /// Nothing to do here
+        /// </summary>
+        void IDisposable.Dispose()
+        {
+        }
+
         private void WriteToFile(string message)
         {
             try

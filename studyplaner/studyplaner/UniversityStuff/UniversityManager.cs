@@ -140,7 +140,7 @@ namespace Studyplaner.UniversityStuff
             //TODO: REmove the module
         }
 
-        private static bool IsValidID(ulong id)
+        public static bool IsValidID(ulong id)
         {
             ushort uni = (ushort)(id / (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE));
             uint module = (uint)(id % (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE) / MULTIPLYER_MODULE);
@@ -149,7 +149,7 @@ namespace Studyplaner.UniversityStuff
             return (IsValidID(uni) && IsValidID(module) && (evnt > 0) && (evnt < MULTIPLYER_MODULE));
         }
 
-        private static bool IsValidID(uint id)
+        public static bool IsValidID(uint id)
         {
             ushort uni = (ushort)(id / MULTIPLYER_UNIVERSITY);
             uint module = id % MULTIPLYER_UNIVERSITY;
@@ -157,7 +157,7 @@ namespace Studyplaner.UniversityStuff
             return (IsValidID(uni) && (module > 0 && module < MULTIPLYER_UNIVERSITY));
         }
 
-        private static bool IsValidID(ushort id)
+        public static bool IsValidID(ushort id)
         {
             return (id > 0) && (id < MAXSIZE_UNIVERSITY);
         }
