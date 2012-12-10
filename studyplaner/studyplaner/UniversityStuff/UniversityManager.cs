@@ -113,7 +113,17 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            return 0;
+            if (toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            uint newID = (uint)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            if (!IsValidID(newID) || ContainsModule(newID))
+                newID = GenerateNewID();
+
+            toAdd.ID = (int)newID;
+            _modules.Add(newID, toAdd);
+
+            return (uint)toAdd.ID;
         }
 
         /// <summary>
@@ -125,7 +135,10 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            return null;            //TODO: haha
+            if (ContainsModule(moduleID))
+                return _modules[moduleID];
+
+            return null;
         }
 
         /// <summary>
@@ -137,7 +150,31 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            //TODO: REmove the module
+            _modules.Remove(moduleID);
+        }
+
+        public static ulong AddEvent(uint moduleID, UniversityEvent evnt)
+        {
+            CheckInitialization();
+
+            return 0;
+        }
+
+        public static UniversityEvent GetEvent(ulong evntID)
+        {
+            CheckInitialization();
+
+            if (ContainsEvent(evntID))
+                return _events[evntID];
+
+            return null;
+        }
+
+        public static void RemoveEvent(ulong evntID)
+        {
+            CheckInitialization();
+
+            _events.Remove(evntID);
         }
 
         public static bool IsValidID(ulong id)
