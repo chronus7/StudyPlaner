@@ -97,7 +97,7 @@ namespace Studyplaner.Logging
                 _builder.Append('[' + eventType.ToString() + ']');
 
                 if (_writeTime)
-                    _builder.Append('[' + DateTime.Now.ToShortTimeString() + ']');
+                    _builder.Append('[' + DateTime.Now.ToLongTimeString() + ']');
                 else
                     _builder.Append('\t');
 
