@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Studyplaner.UniversityStuff;
-using Studyplaner.Services;
 using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.GUI.Controls
