@@ -116,14 +116,19 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            uint newID = (uint)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            uint newID = toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
             if (!IsValidID(newID) || ContainsModule(newID))
-                newID = GenerateNewID();
+                newID = GenerateNewID(uniID); // TODO | dj | no manipulation/changes of modules allowed.
 
             toAdd.ID = newID;
             _modules.Add(newID, toAdd);
 
-            return (uint)toAdd.ID;
+            University uni = GetUniversity(uniID);
+            if (uni.Modules == null)
+                uni.Modules = new List<uint>();
+            uni.Modules.Add(newID);
+
+            return toAdd.ID;
         }
 
         /// <summary>

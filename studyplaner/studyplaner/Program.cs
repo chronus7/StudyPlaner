@@ -24,16 +24,29 @@ namespace Studyplaner
 
         private static void mockupSerialization()
         {
+            UniversityManager.Initialize();
+
             University uni = new University();
             uni.ID = 111;
             uni.Name = "Uni Hamburg";
             uni.ShortName = "UHH";
-            uni.Modules = new List<uint>() { 5, 1235, 32135, 1541, 13241, 6};
+            UniversityManager.AddUniversity(uni);
+
+            UniversityModule mod1 = new UniversityModule();
+            mod1.Name = "TestModule1";
+            mod1.Short = "TM1";
+            UniversityManager.AddModule(111, mod1);
+            
+            UniversityModule mod2 = new UniversityModule();
+            mod2.Name = "Test Module 2";
+            mod2.Short = "TM2";
+            UniversityManager.AddModule(111, mod2);
 
             string s = "{ ";
             foreach (uint i in uni.Modules) 
                 s += i + ", ";
             Console.Out.WriteLine("Initialized uni: " + uni.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
+            Console.Out.WriteLine("Initialized module: " + mod1.ID);
 
             Xml.XmlSerializer<University>.Serialize(@"..\..\Data\test.xml", uni);
             University uniDes = Xml.XmlSerializer<University>.Deserialize(@"..\..\Data\test.xml");

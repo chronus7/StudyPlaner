@@ -51,8 +51,15 @@ namespace Studyplaner.UniversityStuff
 
             Modules = new List<uint>();
             reader.ReadStartElement("modules");
-            while (reader.Name.Equals("moduleid"))
-                Modules.Add(uint.Parse(reader.ReadElementString()));
+            while (reader.Name.Equals("module"))
+            {
+                reader.ReadStartElement("module");
+                Modules.Add(uint.Parse(reader.ReadElementString("id")));
+                reader.ReadToNextSibling("events");
+                reader.ReadStartElement();
+
+                reader.ReadEndElement();
+            }
             reader.ReadEndElement();
 
             reader.ReadEndElement();
@@ -65,7 +72,8 @@ namespace Studyplaner.UniversityStuff
             writer.WriteElementString("short", ShortName);
             writer.WriteStartElement("modules");
             foreach (uint i in Modules)
-                writer.WriteElementString("moduleid", i.ToString());
+                new XmlSerializer(typeof(UniversityModule)).Serialize(writer, UniversityManager.GetModule(i));
+            //writer.WriteRaw(UniversityManager.GetModule(i)); //WriteElementString("moduleid", i.ToString());
             writer.WriteEndElement();
         }
     }
