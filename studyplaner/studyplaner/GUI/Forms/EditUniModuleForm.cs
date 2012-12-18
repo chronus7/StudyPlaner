@@ -30,7 +30,7 @@ namespace Studyplaner.GUI.Forms
             this._module = module;
             this._shortModified = true;
             _txBoxName.Text = module.Name;
-            _txBoxShort.Text = module.Short;
+            _txBoxShort.Text = module.ShortName;
             _cmBoxSemester.SelectedItem = module.Semester;
             _cmBoxDepartment.SelectedItem = module.Department;
             BuildTree();
@@ -55,28 +55,29 @@ namespace Studyplaner.GUI.Forms
             _headNodes.Clear();
             _eventTree.Nodes.Clear();
 
-            foreach (UniversityEvent ev in _module.Events)
-            {
-                HeadTreeNode htn = null;
-                foreach (HeadTreeNode htn2 in _headNodes)
-                {
-                    if (htn2.EventType == ev.Type)
-                    {
-                        htn = htn2;
-                        break;
-                    }
-                }
-                if (htn == null)
-                {
-                    htn = new HeadTreeNode(ev.Type);
-                    _eventTree.Add(htn);
-                }
+            // TODO | dj | FIXME!!!
+            //foreach (UniversityEvent ev in _module.Events)
+            //{
+            //    HeadTreeNode htn = null;
+            //    foreach (HeadTreeNode htn2 in _headNodes)
+            //    {
+            //        if (htn2.EventType == ev.Type)
+            //        {
+            //            htn = htn2;
+            //            break;
+            //        }
+            //    }
+            //    if (htn == null)
+            //    {
+            //        htn = new HeadTreeNode(ev.Type);
+            //        _eventTree.Add(htn);
+            //    }
 
-                _headNodes.Add(htn);
+            //    _headNodes.Add(htn);
 
-                EventTreeNode etn = new EventTreeNode(ev);
-                htn.Nodes.Add(etn);
-            }
+            //    EventTreeNode etn = new EventTreeNode(ev);
+            //    htn.Nodes.Add(etn);
+            //}
             _eventTree.Sort();
             _eventTree.ExpandAll();
         }
@@ -235,7 +236,7 @@ namespace Studyplaner.GUI.Forms
             {
                 // TODO | dj | Here should be the id-generator!!!
                 ev.ID = new Random().Next(500, 5000);
-                _module.Events.Add(ev);
+                //_module.Events.Add(ev); // TODO | dj | adjust this!
             }
 
             BuildTree();

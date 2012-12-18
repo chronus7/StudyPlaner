@@ -34,12 +34,16 @@ namespace Studyplaner
 
             UniversityModule mod1 = new UniversityModule();
             mod1.Name = "TestModule1";
-            mod1.Short = "TM1";
-            UniversityManager.AddModule(111, mod1);
+            mod1.ShortName = "TM1";
+            uint mod1id = UniversityManager.AddModule(111, mod1);
+
+            UniversityEvent ev1 = new UniversityEvent();
+            ev1.LVNum = "64-001";
+            UniversityManager.AddEvent(mod1id, ev1); // not working while not implemented!
             
             UniversityModule mod2 = new UniversityModule();
             mod2.Name = "Test Module 2";
-            mod2.Short = "TM2";
+            mod2.ShortName = "TM2";
             UniversityManager.AddModule(111, mod2);
 
             string s = "{ ";
@@ -61,7 +65,7 @@ namespace Studyplaner
         {
             UniversityModule mod = new UniversityModule();
             mod.Name = "Algorithmen und Datenstrukturen";
-            mod.Short = "AD";
+            mod.ShortName = "AD";
             mod.Semester = UniversityStuff.Enums.Semester.Winter;
             mod.Department = UniversityStuff.Enums.Department.IT;
             mod.ID = 12354;
@@ -71,21 +75,21 @@ namespace Studyplaner
             ev.Type = UniversityStuff.Enums.EventType.Lecture;
             ev.Date = new Various.Time(8, 15, new DateTime(2012, 12, 4));
             ev.Duration = new TimeSpan(1, 30, 0);
-            mod.Events.Add(ev);
+            //mod.Events.Add(ev);
 
             UniversityEvent ev2 = new UniversityEvent();
             ev2.LVNum = "67-126";
             ev2.Type = UniversityStuff.Enums.EventType.Internship;
             ev2.Date = new Various.Time(10, 15, new DateTime(2012, 12, 4));
             ev2.Duration = new TimeSpan(1, 30, 0);
-            mod.Events.Add(ev2);
+            //mod.Events.Add(ev2);
 
             UniversityEvent ev3 = new UniversityEvent();
             ev3.LVNum = "67-127";
             ev3.Type = UniversityStuff.Enums.EventType.Internship;
             ev3.Date = new Various.Time(12, 15, new DateTime(2012, 12, 4));
             ev3.Duration = new TimeSpan(1, 30, 0);
-            mod.Events.Add(ev3);
+            //mod.Events.Add(ev3);
 
             return mod;
         }

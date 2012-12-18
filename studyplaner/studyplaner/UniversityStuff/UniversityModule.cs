@@ -1,36 +1,34 @@
 ﻿using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-using Studyplaner.UniversityStuff;
 using Studyplaner.UniversityStuff.Enums;
+using System;
 
 namespace Studyplaner.UniversityStuff
 {
-    [XmlRootAttribute(ElementName="module")]
-    public class UniversityModule
+    [XmlRoot(ElementName="module")]
+    public class UniversityModule : IXmlSerializable
     {
         /// <summary>
         /// The (hopefully) unique id of this module.
         /// </summary>
-        [XmlElement(ElementName="id")]
         public uint ID { get; set; }
 
         /// <summary>
         /// The name of this module.
         /// </summary>
-        [XmlElement(ElementName="name")]
         public string Name { get; set; }
         
         /// <summary>
         /// The abbreviation of the module's name.
         /// </summary>
-        [XmlElement(ElementName="short")]
-        public string Short { get; set; }
+        public string ShortName { get; set; }
         
         /// <summary>
         /// The (hopefully) unique id of the
         /// module's parent uni.
         /// </summary>
-        [XmlIgnore]
         public ushort UniID
         {
             get
@@ -49,25 +47,65 @@ namespace Studyplaner.UniversityStuff
         /// <summary>
         /// The semester, the module is available.
         /// </summary>
-        [XmlElement(ElementName="semester")]
         public Semester Semester { get; set; }
         
         /// <summary>
         /// The department 'hosting' this module.
         /// </summary>
-        [XmlElement(ElementName="department")]
         public Department Department { get; set; }
         
         /// <summary>
         /// The list of all event of this module.
         /// </summary>
-        [XmlArray(ElementName="events")]
-        [XmlArrayItem(ElementName="event")]
-        public List<UniversityEvent> Events { get; set; }
+        public List<ulong> Events { get; set; }
 
         public UniversityModule()
         {
-            Events = new List<UniversityEvent>();
+            Events = new List<ulong>();
+        }
+
+        //-- IXmlSerializable --\\
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            reader.MoveToContent();
+            reader.ReadStartElement();
+            ID = uint.Parse(reader.ReadElementString("id"));
+            Name = reader.ReadElementString("name");
+            ShortName = reader.ReadElementString("short");
+            Semester = (Semester)Enum.Parse(typeof(Semester), reader.ReadElementString("semester"));
+            Department = (Department)Enum.Parse(typeof(Department), reader.ReadElementString("department"));
+
+            Events = new List<ulong>();
+            reader.ReadStartElement("events");
+            while (reader.Name.Equals("event"))
+            {
+                reader.ReadStartElement("event");
+                Events.Add(ulong.Parse(reader.ReadElementString("id")));
+                reader.ReadToNextSibling("event");
+                reader.ReadStartElement();
+                reader.ReadEndElement();
+            }
+            reader.ReadEndElement();
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            writer.WriteElementString("id", ID.ToString());
+            writer.WriteElementString("name", Name);
+            writer.WriteElementString("short", ShortName);
+            writer.WriteElementString("semester", Semester.ToString());
+            writer.WriteElementString("department", Department.ToString());
+            writer.WriteStartElement("events");
+            foreach (ulong ev in Events)
+                new XmlSerializer(typeof(UniversityEvent)).Serialize(writer, UniversityManager.GetEvent(ev));
+            writer.WriteEndElement();
         }
     }
 }

@@ -29,12 +29,17 @@ namespace Studyplaner.UniversityStuff
         /// </summary>
         public List<uint> Modules { get; set; }
 
-        public override string ToString()
+        public University()
         {
-            return Name;
+            Modules = new List<uint>();
         }
 
-        //-- IXmlSerializable --\\s
+        public override string ToString()
+        {
+            return Name; // TODO | dj | only this?
+        }
+
+        //-- IXmlSerializable --\\
 
         public XmlSchema GetSchema()
         {
