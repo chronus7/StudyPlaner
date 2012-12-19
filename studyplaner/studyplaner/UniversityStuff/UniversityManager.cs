@@ -67,14 +67,14 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            ushort newID = (ushort)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            ushort newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsUniversity(newID))
                 newID = GenerateNewID();
 
             toAdd.ID = newID;
             _universities.Add(newID, toAdd);
 
-            return (ushort)toAdd.ID;
+            return toAdd.ID;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            uint newID = toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            uint newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsModule(newID))
                 newID = GenerateNewID(uniID); // TODO | dj | no manipulation/changes of modules allowed.
 
@@ -158,11 +158,26 @@ namespace Studyplaner.UniversityStuff
             _modules.Remove(moduleID);
         }
 
-        public static ulong AddEvent(uint moduleID, UniversityEvent evnt)
+        public static ulong AddEvent(uint moduleID, UniversityEvent toAdd)
         {
             CheckInitialization();
 
-            return 0;
+            if(toAdd == null)
+                throw new ArgumentNullException("evnt");
+
+            ulong newID = toAdd.ID;
+            if (!IsValidID(newID) || ContainsEvent(newID)) // TODO see above...
+                newID = GenerateNewID(moduleID);
+
+            toAdd.ID = newID;
+            _events.Add(newID, toAdd);
+
+            UniversityModule module = GetModule(moduleID);
+            if (module.Events == null)
+                module.Events = new List<ulong>();
+            module.Events.Add(newID);
+
+            return toAdd.ID;
         }
 
         public static UniversityEvent GetEvent(ulong evntID)

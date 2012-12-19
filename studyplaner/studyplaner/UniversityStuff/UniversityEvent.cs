@@ -14,7 +14,7 @@ namespace Studyplaner.UniversityStuff
         /// The (hopefully) unique ID of the event.
         /// </summary>
         [XmlElement(ElementName="id")]
-        public int ID { get; set; }
+        public ulong ID { get; set; }
         
         /// <summary>
         /// The (hopefully) unique ID of the event's

@@ -55,19 +55,17 @@ namespace Studyplaner.UniversityStuff
             ShortName = reader.ReadElementString("short");
 
             Modules = new List<uint>();
-            reader.ReadStartElement("modules");
-            while (reader.Name.Equals("module"))
+            reader.MoveToContent();
+            XmlSerializer ser = new XmlSerializer(typeof(UniversityModule));
+            while (reader.ReadToFollowing("module"))
             {
-                reader.ReadStartElement("module");
-                Modules.Add(uint.Parse(reader.ReadElementString("id")));
-                reader.ReadToNextSibling("events");
-                reader.ReadStartElement();
+                XmlReader subreader = reader.ReadSubtree();
+                subreader.Read();
+                UniversityModule module = (UniversityModule)ser.Deserialize(subreader);
+                subreader.Close();
 
-                reader.ReadEndElement();
+                // TODO | dj | add module to lists...
             }
-            reader.ReadEndElement();
-
-            reader.ReadEndElement();
         }
 
         public void WriteXml(XmlWriter writer)

@@ -235,7 +235,7 @@ namespace Studyplaner.GUI.Forms
             if (etn.Parent == null)
             {
                 // TODO | dj | Here should be the id-generator!!!
-                ev.ID = new Random().Next(500, 5000);
+                ev.ID = (ulong)new Random().Next(500, 5000);
                 //_module.Events.Add(ev); // TODO | dj | adjust this!
             }
 

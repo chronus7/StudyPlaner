@@ -81,18 +81,18 @@ namespace Studyplaner.UniversityStuff
             Semester = (Semester)Enum.Parse(typeof(Semester), reader.ReadElementString("semester"));
             Department = (Department)Enum.Parse(typeof(Department), reader.ReadElementString("department"));
 
-            Events = new List<ulong>();
-            reader.ReadStartElement("events");
-            while (reader.Name.Equals("event"))
-            {
-                reader.ReadStartElement("event");
-                Events.Add(ulong.Parse(reader.ReadElementString("id")));
-                reader.ReadToNextSibling("event");
-                reader.ReadStartElement();
-                reader.ReadEndElement();
-            }
-            reader.ReadEndElement();
-            reader.ReadEndElement();
+            Events = new List<ulong>(); // TODO
+            //reader.ReadStartElement("events");
+            //while (reader.Name.Equals("event"))
+            //{
+            //    reader.ReadStartElement("event");
+            //    Events.Add(ulong.Parse(reader.ReadElementString("id")));
+            //    reader.ReadToNextSibling("type");
+            //    reader.ReadStartElement();
+            //    reader.ReadEndElement();
+            //}
+            //reader.ReadEndElement();
+            //reader.ReadEndElement();
         }
 
         public void WriteXml(XmlWriter writer)
