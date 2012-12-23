@@ -82,17 +82,17 @@ namespace Studyplaner.UniversityStuff
             Department = (Department)Enum.Parse(typeof(Department), reader.ReadElementString("department"));
 
             Events = new List<ulong>(); // TODO
-            //reader.ReadStartElement("events");
-            //while (reader.Name.Equals("event"))
-            //{
-            //    reader.ReadStartElement("event");
-            //    Events.Add(ulong.Parse(reader.ReadElementString("id")));
-            //    reader.ReadToNextSibling("type");
-            //    reader.ReadStartElement();
-            //    reader.ReadEndElement();
-            //}
-            //reader.ReadEndElement();
-            //reader.ReadEndElement();
+            reader.MoveToContent();
+            XmlSerializer ser = new XmlSerializer(typeof(UniversityEvent));
+            while (reader.ReadToFollowing("event"))
+            {
+                XmlReader subreader = reader.ReadSubtree();
+                subreader.Read();
+                UniversityEvent ev = (UniversityEvent)ser.Deserialize(subreader);
+                subreader.Close();
+
+                // TODO | dj | add to list...
+            }
         }
 
         public void WriteXml(XmlWriter writer)

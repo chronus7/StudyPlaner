@@ -39,7 +39,7 @@ namespace Studyplaner
 
             UniversityEvent ev1 = new UniversityEvent();
             ev1.LVNum = "64-001";
-            //UniversityManager.AddEvent(mod1id, ev1); // not working while not implemented!
+            UniversityManager.AddEvent(mod1id, ev1); // not working while not implemented!
             
             UniversityModule mod2 = new UniversityModule();
             mod2.Name = "Test Module 2";
