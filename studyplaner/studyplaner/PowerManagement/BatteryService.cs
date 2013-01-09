@@ -57,7 +57,7 @@ namespace Studyplaner.PowerManagement
 
         private void UpdateBatteryState()
         {
-            bool isChargingNow = SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online ? true : false; // TODO: PowerLineStatus.Unknown wird nicht behandelt und als !charging interpretiert ändern?
+            bool isChargingNow = (SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online); // TODO: PowerLineStatus.Unknown wird nicht behandelt |f| würde es so lassen
             short batteryStateNow = (short)Math.Floor(SystemInformation.PowerStatus.BatteryLifePercent * 100f);
             int batteryRemaining = SystemInformation.PowerStatus.BatteryLifeRemaining;
 

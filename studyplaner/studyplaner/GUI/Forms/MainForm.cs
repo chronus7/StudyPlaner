@@ -81,16 +81,17 @@ namespace Studyplaner.GUI.Forms
         
         private void ResizePanels()
         {
+            //TODO: |f| might wanna change this, but it works for now
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
-            _panelMain.Refresh(); //TODO | dj | not so nice...
+            _panelMain.Refresh();
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 40, _panelInfo.Height);
-            _panelInfo.Refresh(); //TODO | f | not so nice as well...
+            _panelInfo.Refresh();
         }
 
         private void UpdateStatusBarDateTime()
         {
-            this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString(); // "\t" will irgendwie nicht richtig, daher die spaces
+            this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString();
             LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
         }
 
