@@ -33,8 +33,7 @@ namespace Studyplaner.UniversityStuff
         {
             get
             {
-                return (ushort)(ID / UniversityManager.MULTIPLYER_UNIVERSITY);
-                // TODO | dj | the exact same method is in UniversityManager.IsValidID(uint)...
+                return UniversityFunctions.getUniID(this.ID);
             }
             set
             {

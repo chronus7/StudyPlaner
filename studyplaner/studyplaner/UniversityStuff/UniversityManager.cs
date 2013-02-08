@@ -240,6 +240,7 @@ namespace Studyplaner.UniversityStuff
             return ContainsEvent(id);
         }
 
+        #region Generate New ID
         private static ushort GenerateNewID()
         {
             ushort id = 1;
@@ -296,5 +297,6 @@ namespace Studyplaner.UniversityStuff
         {
             return _events.ContainsKey(id);
         }
+        #endregion
     }
 }

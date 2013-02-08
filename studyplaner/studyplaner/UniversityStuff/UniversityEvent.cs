@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Xml.Serialization;
-using Studyplaner.UniversityStuff;
-using Studyplaner.Various;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using Studyplaner.UniversityStuff.Enums;
+using Studyplaner.Various;
 
 namespace Studyplaner.UniversityStuff
 {
@@ -21,7 +20,18 @@ namespace Studyplaner.UniversityStuff
         /// parent module.
         /// </summary>
         [XmlIgnore]
-        public uint ModuleID { get; set; }
+        public uint ModuleID
+        {
+            get
+            {
+                return UniversityFunctions.getModuleID(this.ID);
+            }
+            set
+            {
+                throw new NotImplementedException();
+                // TODO | dj | see UniversityModule...
+            }
+        }
         
         /// <summary>
         /// The LV-Number of the event.
