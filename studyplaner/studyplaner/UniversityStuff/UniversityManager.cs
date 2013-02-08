@@ -118,7 +118,7 @@ namespace Studyplaner.UniversityStuff
 
             uint newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsModule(newID))
-                newID = GenerateNewID(uniID); // TODO | dj | no manipulation/changes of modules allowed.
+                newID = GenerateNewID(uniID); // TODO | dj | no manipulation/changes of modules allowed!?
 
             toAdd.ID = newID;
             _modules.Add(newID, toAdd);

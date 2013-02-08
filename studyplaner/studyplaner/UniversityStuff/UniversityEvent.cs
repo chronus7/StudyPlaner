@@ -24,7 +24,7 @@ namespace Studyplaner.UniversityStuff
         {
             get
             {
-                return UniversityFunctions.getModuleID(this.ID);
+                return UniversityFunctions.GetModuleID(this.ID);
             }
             set
             {

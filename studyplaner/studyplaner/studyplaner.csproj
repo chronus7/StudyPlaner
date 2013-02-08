@@ -117,6 +117,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Logging\Targets\ILogTarget.cs" />
+    <Compile Include="UniversityStuff\UniversityFunctions.cs" />
     <Compile Include="UniversityStuff\UniversityManager.cs" />
     <Compile Include="Logging\Targets\FileLogTarget.cs" />
     <Compile Include="PowerManagement\BatteryEventArgs.cs" />

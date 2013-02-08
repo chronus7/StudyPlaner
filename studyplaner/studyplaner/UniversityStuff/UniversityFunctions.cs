@@ -15,7 +15,7 @@ namespace Studyplaner.UniversityStuff
         /// </summary>
         /// <param name="moduleid">The UniversityModule's ID to get the related UniversityID</param>
         /// <returns>The University's ID</returns>
-        public static ushort getUniID(uint moduleid)
+        public static ushort GetUniID(uint moduleid)
         {
             return (ushort)(moduleid / UniversityManager.MULTIPLYER_UNIVERSITY);
         }
@@ -26,9 +26,9 @@ namespace Studyplaner.UniversityStuff
         /// </summary>
         /// <param name="eventid">The UniversityEvent's ID to get the related UniversityID</param>
         /// <returns>The University's ID</returns>
-        public static ushort getUniID(ulong eventid)
+        public static ushort GetUniID(ulong eventid)
         {
-            return getUniID(getModuleID(eventid));
+            return GetUniID(GetModuleID(eventid));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Studyplaner.UniversityStuff
         /// </summary>
         /// <param name="eventid">The UniversityEvent's ID to get the related UniversityModuleID</param>
         /// <returns>The UniversityModule's ID</returns>
-        public static uint getModuleID(ulong eventid)
+        public static uint GetModuleID(ulong eventid)
         {
             return (uint)(eventid / (UniversityManager.MULTIPLYER_MODULE
                 * UniversityManager.MULTIPLYER_UNIVERSITY)); // TODO ??

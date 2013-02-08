@@ -33,7 +33,7 @@ namespace Studyplaner.UniversityStuff
         {
             get
             {
-                return UniversityFunctions.getUniID(this.ID);
+                return UniversityFunctions.GetUniID(this.ID);
             }
             set
             {
