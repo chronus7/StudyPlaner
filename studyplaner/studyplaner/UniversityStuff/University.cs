@@ -64,7 +64,9 @@ namespace Studyplaner.UniversityStuff
                 UniversityModule module = (UniversityModule)ser.Deserialize(subreader);
                 subreader.Close();
 
-                // TODO | dj | add module to lists...
+                // add module to lists...
+                Modules.Add(module.ID);
+                UniversityManager.AddModule(this.ID, module);
             }
         }
 

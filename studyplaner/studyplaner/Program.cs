@@ -39,7 +39,7 @@ namespace Studyplaner
 
             UniversityEvent ev1 = new UniversityEvent();
             ev1.LVNum = "64-001";
-            UniversityManager.AddEvent(mod1id, ev1); // not working while not implemented!
+            UniversityManager.AddEvent(mod1id, ev1);
             
             UniversityModule mod2 = new UniversityModule();
             mod2.Name = "Test Module 2";
@@ -47,18 +47,31 @@ namespace Studyplaner
             UniversityManager.AddModule(111, mod2);
 
             string s = "{ ";
-            foreach (uint i in uni.Modules) 
+            string s2 = "{ ";
+            foreach (uint i in UniversityManager.GetUniversity(111).Modules)
+            {
                 s += i + ", ";
-            Console.Out.WriteLine("Initialized uni: " + uni.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
-            Console.Out.WriteLine("Initialized module: " + mod1.ID);
+                foreach (ulong e in UniversityManager.GetModule(i).Events)
+                    s2 += UniversityManager.GetEvent(e).ID + ", ";
+            }
+            Console.Out.WriteLine("Initialized uni: " + uni.ID + "\n" +
+                "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" +
+                "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
 
             Xml.XmlSerializer<University>.Serialize(@"..\..\Data\test.xml", uni);
             University uniDes = Xml.XmlSerializer<University>.Deserialize(@"..\..\Data\test.xml");
 
             s = "{ ";
+            s2 = "{ ";
             foreach (uint i in uniDes.Modules)
+            {
                 s += i + ", ";
-            Console.Out.WriteLine("Deserialized uni: " + uniDes.ID + " | it's modules: " + s.Substring(0, s.Length - 2) + " }");
+                foreach (ulong e in UniversityManager.GetModule(i).Events)
+                    s2 += e + ", ";
+            }
+            Console.Out.WriteLine("Deserialized uni: " + uniDes.ID + "\n" +
+                "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" + 
+                "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
         }
 
         private static UniversityModule mockupEditModuleForm()

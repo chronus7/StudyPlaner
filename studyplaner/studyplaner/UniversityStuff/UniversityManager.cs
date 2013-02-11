@@ -56,7 +56,7 @@ namespace Studyplaner.UniversityStuff
 
         /// <summary>
         /// Adds a University o the UniversityManager
-        /// Gets called multiple times at constrution time to build the initial University-List
+        /// Gets called multiple times at construction time to build the initial University-List
         /// </summary>
         /// <param name="toAdd">The University to add</param>
         /// <returns>The ID that was used to add the University</returns>
@@ -100,7 +100,9 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            _universities.Remove(uniID);       //TODO: can be called even if the key doesnt exist.. do we want to do nothing or throw an exception?
+            if (!_universities.Remove(uniID))
+                throw new InvalidOperationException(
+                    "The university with the given id (" + uniID + ") does not exist!");
         }
 
         /// <summary>
@@ -118,15 +120,13 @@ namespace Studyplaner.UniversityStuff
 
             uint newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsModule(newID))
-                newID = GenerateNewID(uniID); // TODO | dj | no manipulation/changes of modules allowed!?
+                newID = GenerateNewID(uniID);
 
             toAdd.ID = newID;
             _modules.Add(newID, toAdd);
 
             University uni = GetUniversity(uniID);
-            if (uni.Modules == null)
-                uni.Modules = new List<uint>();
-            uni.Modules.Add(newID);
+            uni.Modules.Add(newID); // uni.Modules != null garanteed by uni
 
             return toAdd.ID;
         }
@@ -163,19 +163,17 @@ namespace Studyplaner.UniversityStuff
             CheckInitialization();
 
             if(toAdd == null)
-                throw new ArgumentNullException("evnt");
+                throw new ArgumentNullException("toAdd");
 
             ulong newID = toAdd.ID;
-            if (!IsValidID(newID) || ContainsEvent(newID)) // TODO see above...
+            if (!IsValidID(newID) || ContainsEvent(newID))
                 newID = GenerateNewID(moduleID);
 
             toAdd.ID = newID;
             _events.Add(newID, toAdd);
 
             UniversityModule module = GetModule(moduleID);
-            if (module.Events == null)
-                module.Events = new List<ulong>();
-            module.Events.Add(newID);
+            module.Events.Add(newID); // module.Events != null garanteed by module.
 
             return toAdd.ID;
         }
@@ -246,7 +244,7 @@ namespace Studyplaner.UniversityStuff
             ushort id = 1;
             while (ContainsUniversity(id))
             {
-                if (id < MAXSIZE_UNIVERSITY)
+                if (id < MAXSIZE_UNIVERSITY) // TODO | dj |shouldn't this one be (id < MAXSIZE - 1)?
                     id++;
                 else
                     throw new OverflowException(ERROR_ID_OVERFLOW);
@@ -282,6 +280,7 @@ namespace Studyplaner.UniversityStuff
 
             return id;
         }
+        #endregion
 
         private static bool ContainsUniversity(ushort id)
         {
@@ -297,6 +296,5 @@ namespace Studyplaner.UniversityStuff
         {
             return _events.ContainsKey(id);
         }
-        #endregion
     }
 }
