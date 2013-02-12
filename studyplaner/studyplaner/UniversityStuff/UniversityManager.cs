@@ -9,9 +9,9 @@ namespace Studyplaner.UniversityStuff
         private const string ERROR_ID_OVERFLOW      = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well written ;)
 
         //TODO: We can save ram here by using the appropiate types
-        private const ulong MAXSIZE_UNIVERSITY      = 10000;
-        private const ulong MAXSIZE_MODULE          = 1000000000;
-        private const ulong MAXSIZE_EVENT           = 100000000000;
+        public const ulong MAXSIZE_UNIVERSITY      = 10000;
+        public const ulong MAXSIZE_MODULE          = 1000000000;
+        public const ulong MAXSIZE_EVENT           = 100000000000;
 
         public const uint MULTIPLYER_UNIVERSITY    = 100000;
         public const uint MULTIPLYER_MODULE        = 100;
@@ -195,33 +195,35 @@ namespace Studyplaner.UniversityStuff
             _events.Remove(evntID);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
         public static bool IsValidID(ulong id)
         {
-            ushort uni = (ushort)(id / (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE));
-            uint module = (uint)(id % (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE) / MULTIPLYER_MODULE);
-            ulong evnt = id % MULTIPLYER_MODULE;
-
-            return (IsValidID(uni) && IsValidID(module) && (evnt > 0) && (evnt < MULTIPLYER_MODULE));
+            return UniversityFunctions.IsValidID(id);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
         public static bool IsValidID(uint id)
         {
-            ushort uni = (ushort)(id / MULTIPLYER_UNIVERSITY);
-            uint module = id % MULTIPLYER_UNIVERSITY;
-
-            return (IsValidID(uni) && (module > 0 && module < MULTIPLYER_UNIVERSITY));
+            return UniversityFunctions.IsValidID(id);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
         public static bool IsValidID(ushort id)
         {
-            return (id > 0) && (id < MAXSIZE_UNIVERSITY);
+            return UniversityFunctions.IsValidID(id);
         }
 
         /// <summary>
         /// Returns wether the UniversityManager contains an Item with the given ID
         /// </summary>
         /// <param name="id">The Id to check</param>
-        /// <returns>Teh result</returns>
+        /// <returns>The result</returns>
         public static bool ContainsID(ulong id)
         {
             CheckInitialization();

@@ -80,6 +80,9 @@ namespace Studyplaner.UniversityStuff
             Semester = (Semester)Enum.Parse(typeof(Semester), reader.ReadElementString("semester"));
             Department = (Department)Enum.Parse(typeof(Department), reader.ReadElementString("department"));
 
+            // module has to be added first because if adding events
+            UniversityManager.AddModule(UniversityFunctions.GetUniID(ID), this);
+
             Events = new List<ulong>(); // TODO
             reader.MoveToContent();
             XmlSerializer ser = new XmlSerializer(typeof(UniversityEvent));
@@ -90,7 +93,8 @@ namespace Studyplaner.UniversityStuff
                 UniversityEvent ev = (UniversityEvent)ser.Deserialize(subreader);
                 subreader.Close();
 
-                // TODO | dj | add to list...
+                // add to list...
+                UniversityManager.AddEvent(this.ID, ev);
             }
         }
 

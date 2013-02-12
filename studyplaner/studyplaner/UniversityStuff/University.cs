@@ -54,6 +54,9 @@ namespace Studyplaner.UniversityStuff
             Name = reader.ReadElementString("name");
             ShortName = reader.ReadElementString("short");
 
+            // university has to be added first because of adding modules
+            UniversityManager.AddUniversity(this);
+
             Modules = new List<uint>();
             reader.MoveToContent();
             XmlSerializer ser = new XmlSerializer(typeof(UniversityModule));
@@ -63,10 +66,6 @@ namespace Studyplaner.UniversityStuff
                 subreader.Read();
                 UniversityModule module = (UniversityModule)ser.Deserialize(subreader);
                 subreader.Close();
-
-                // add module to lists...
-                Modules.Add(module.ID);
-                UniversityManager.AddModule(this.ID, module);
             }
         }
 

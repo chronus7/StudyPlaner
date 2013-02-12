@@ -58,12 +58,17 @@ namespace Studyplaner
                 "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" +
                 "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
 
+            // serialize:
             Xml.XmlSerializer<University>.Serialize(@"..\..\Data\test.xml", uni);
+            
+            UniversityManager.Initialize(); // important!
+                        
+            // deserialize:
             University uniDes = Xml.XmlSerializer<University>.Deserialize(@"..\..\Data\test.xml");
 
             s = "{ ";
             s2 = "{ ";
-            foreach (uint i in uniDes.Modules)
+            foreach (uint i in UniversityManager.GetUniversity(uniDes.ID).Modules)
             {
                 s += i + ", ";
                 foreach (ulong e in UniversityManager.GetModule(i).Events)
