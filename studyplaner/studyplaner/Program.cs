@@ -75,6 +75,12 @@ namespace Studyplaner
             Console.Out.WriteLine("Deserialized uni: " + 111 + "\n" +
                 "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" + 
                 "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
+
+            ////change and serialize
+            //UniversityManager.GetModule(11100001).Semester = UniversityStuff.Enums.Semester.Summer;
+            //UniversityManager.StoreUniversity(111);
+            //UniversityManager.Initialize();
+            //Console.WriteLine(UniversityManager.GetModule(11100001).Semester);
         }
 
         private static UniversityModule mockupEditModuleForm()

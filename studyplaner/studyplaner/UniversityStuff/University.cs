@@ -77,7 +77,6 @@ namespace Studyplaner.UniversityStuff
             writer.WriteStartElement("modules");
             foreach (uint i in Modules)
                 new XmlSerializer(typeof(UniversityModule)).Serialize(writer, UniversityManager.GetModule(i));
-            //writer.WriteRaw(UniversityManager.GetModule(i)); //WriteElementString("moduleid", i.ToString());
             writer.WriteEndElement();
         }
     }

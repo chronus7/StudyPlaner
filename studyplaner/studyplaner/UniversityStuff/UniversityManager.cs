@@ -9,6 +9,9 @@ namespace Studyplaner.UniversityStuff
         private const string ERROR_NOT_INITIALIZED  = "The UniversityManager has not been correctly initialized! Call UniversityManager.Initialize() before using.";
         private const string ERROR_ID_OVERFLOW      = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well written ;)
 
+        private const string UNIVERSITY_FILE_PRENAME = "university_";
+        private const string UNIVERSITY_FILE_EXTENSION = ".xml";
+
         //TODO: We can save ram here by using the appropiate types
         public const ulong MAXSIZE_UNIVERSITY      = 10000;
         public const ulong MAXSIZE_MODULE          = 1000000000;
@@ -34,7 +37,7 @@ namespace Studyplaner.UniversityStuff
 
             Initialized = true;
 
-            // TODO: deserialize values with path from settings
+            // deserialize values with path from settings
             LoadUniversities(Properties.Settings.Default.USER_DATAPATH);
         }
 
@@ -42,10 +45,26 @@ namespace Studyplaner.UniversityStuff
         {
             DirectoryInfo dir = new DirectoryInfo(uniDirectory);
             foreach (FileInfo item in dir.GetFiles())
-                if (item.Name.StartsWith("university_"))
-                    Xml.XmlSerializer<University>.Deserialize(item.FullName);
+                if (item.Name.StartsWith(UNIVERSITY_FILE_PRENAME))
+                    Xml.XmlSerializer<University>.Deserialize(item.FullName); // automatically fills dictionaries
 
-            return _universities;
+            return _universities; // return unnecessary
+        }
+
+        /// <summary>
+        /// Stores the given University and all it's modules
+        /// and events in the local University's file.
+        /// </summary>
+        /// <param name="uniID">The University's ID which will be stored </param>
+        public static void StoreUniversity(ushort uniID)
+        {
+            University uni = GetUniversity(uniID);
+            string path = Path.Combine( // combines path and filename
+                Properties.Settings.Default.USER_DATAPATH,  // path to file(s)
+                UNIVERSITY_FILE_PRENAME + uniID + UNIVERSITY_FILE_EXTENSION); // filename
+
+            // serialize...
+            Xml.XmlSerializer<University>.Serialize(path, uni);
         }
 
         /// <summary>
