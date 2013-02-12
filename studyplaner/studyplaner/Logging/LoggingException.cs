@@ -13,6 +13,5 @@ namespace Studyplaner.Logging
             : base(message, innerException)
         {
         }
-        // TODO: nothing to do here ;)
     }
 }

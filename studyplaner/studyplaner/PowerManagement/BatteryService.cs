@@ -57,7 +57,7 @@ namespace Studyplaner.PowerManagement
 
         private void UpdateBatteryState()
         {
-            bool isChargingNow = SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online ? true : false; // TODO: PowerLineStatus.Unknown wird nicht behandelt und als !charging interpretiert ändern?
+            bool isChargingNow = (SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online); // TODO: PowerLineStatus.Unknown wird nicht behandelt |f| würde es so lassen
             short batteryStateNow = (short)Math.Floor(SystemInformation.PowerStatus.BatteryLifePercent * 100f);
             int batteryRemaining = SystemInformation.PowerStatus.BatteryLifeRemaining;
 
@@ -75,14 +75,11 @@ namespace Studyplaner.PowerManagement
                 _batteryState = batteryStateNow;
                 _batteryRemaining = batteryRemaining;
             }
-
-            // SystemInformation.PowerStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery 
-            // TODO: bisher gibt die Methode auf Desktoprechnern leere Batterie aus ansonsten könnte man diese Property checken, aber dann müsste die Struktur geändert werden
         }
 
         private BatteryState CalculateBatteryState(short batteryRemaining)
         {
-            if (batteryRemaining <= BATTERYTHRESHOLD_EMPTY)                  // TODO: eventuell ranges anpassen.. btw: das geht nicht mit switch, weil man da keine ranges verwenden kann ;)
+            if (batteryRemaining <= BATTERYTHRESHOLD_EMPTY)
                 return BatteryState.Empty;
             else if (batteryRemaining <= BATTERYTHRESHOLD_LOW)
                 return BatteryState.Low;

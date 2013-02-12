@@ -17,14 +17,17 @@
     <Setting Name="USER_COLOR_TUTORIAL" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Yellow</Value>
     </Setting>
+    <Setting Name="USER_COLOR_CUSTOM" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkOrange</Value>
+    </Setting>
     <Setting Name="USER_LOGGING_ENABLED" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="USER_LOGGING_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">log.txt</Value>
+    <Setting Name="USER_LOGGING_WRITETIME" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="USER_COLOR_CUSTOM" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DarkOrange</Value>
+    <Setting Name="USER_LOGGING_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">studyplaner.log</Value>
     </Setting>
     <Setting Name="USER_LOGGING_TOCONSOLE" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -32,11 +35,8 @@
     <Setting Name="USER_LOGGING_TOFILE" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="USER_LOGGING_WRITETIME" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="USER_DATAPATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">..\..\Data</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,5 +1,5 @@
 ﻿
-namespace Studyplaner.UniversityStuff
+namespace Studyplaner.UniversityStuff.Enums
 {
     public enum EventType
     {

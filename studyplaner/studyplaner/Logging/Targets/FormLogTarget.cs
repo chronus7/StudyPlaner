@@ -8,8 +8,6 @@ namespace Studyplaner.Logging.Targets
 {
     public class FormLogTarget : ILogTarget
     {
-        private StringBuilder _builder;
-
         private LogForm _logForm;
 
         /// <summary>
@@ -20,22 +18,22 @@ namespace Studyplaner.Logging.Targets
             _logForm = new LogForm();
         }
 
-        /// <summary>
-        /// Secures that the created LogForm gets disposed, when our LogFormTarget gets destroyed
-        /// We might not actaully need this..^^
-        /// </summary>
-        ~FormLogTarget()
-        {
-            if (_logForm != null)
-                _logForm.Dispose();
-        }
-
         void ILogTarget.WriteToLog(string logEntry)
         {
             if (!_logForm.Visible)
                 _logForm.Show();
 
             _logForm.AddLogEntry(logEntry);
+        }
+
+        /// <summary>
+        /// Secures that the created LogForm gets disposed, when our LogFormTarget gets destroyed
+        /// We might not actually need this..^^
+        /// </summary>
+        void IDisposable.Dispose()
+        {
+            if (_logForm != null)
+                _logForm.Dispose();
         }
 
         public override int GetHashCode()

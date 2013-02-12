@@ -6,6 +6,7 @@ using Studyplaner.Logging;
 using Studyplaner.Logging.Targets;
 using Studyplaner.PowerManagement;
 using Studyplaner.UniversityStuff;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.GUI.Forms
 {
@@ -15,8 +16,6 @@ namespace Studyplaner.GUI.Forms
                                                                 //            the infopanel seems to get really big
                                                                 //            in fullscreen mode
         private const string TOOLTIP_BATTERYLIFE = "Time remaining: ";
-
-        private SettingsForm _settingsFrm;
 
         private BatteryService _batteryService;
 
@@ -47,7 +46,7 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
-            InitializeLogging();
+            LoggingManager.Initialize();
 
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
 
@@ -79,29 +78,21 @@ namespace Studyplaner.GUI.Forms
                 this._statusElementBattery.ToolTipText = string.Empty;
             }
         }
-
-
-        private void InitializeLogging()
-        {
-            LoggingManager.SwitchTarget(new FormLogTarget());
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Logging has been successfully initialized!");
-        }
-
-
+        
         private void ResizePanels()
         {
+            //TODO: |f| might wanna change this, but it works for now
             _panelMain.Size = new Size((int)(this.Size.Width * MAINPANEL_YDISTANCE_FACTOR), _panelMain.Size.Height);
-            _panelMain.Refresh(); //TODO | dj | not so nice...
+            _panelMain.Refresh();
             _panelInfo.Location = new Point(_panelMain.Location.X + _panelMain.Size.Width + 5, _panelInfo.Location.Y);
             _panelInfo.Size = new Size((int)(this.Size.Width * (1 - MAINPANEL_YDISTANCE_FACTOR)) - 40, _panelInfo.Height);
-            _panelInfo.Refresh(); //TODO | f | not so nice as well...
+            _panelInfo.Refresh();
         }
 
         private void UpdateStatusBarDateTime()
         {
-            this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString(); // TODO: "\t" will irgendwie nicht richtig, daher die spaces
-            // TODO: ergibt "Montag, 19. November 2012" nicht genau das, was wir wollten, aber die anderen Methoden sind schlechter und ich will den string nicht selber zusammenbauen 
-            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
+            this._statusElementDateTime.Text = DateTime.Now.ToLongDateString() + "   " + DateTime.Now.ToShortTimeString();
+            LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Statusbar time updated to: " + DateTime.Now.ToShortTimeString());                                                       
         }
 
         private void UpdateStatusBarBatteryState(BatteryState batteryState)
@@ -146,12 +137,15 @@ namespace Studyplaner.GUI.Forms
 
         private void LaunchSettingsDialog()
         {
-            this._settingsFrm = new SettingsForm();
-            if (_settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Launching settings dialog.");
+            SettingsForm settingsFrm = new SettingsForm();
+            if (settingsFrm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Properties.Settings.Default.Save(); // will be saved in C:\Users\xxx\AppData\Low\Studyplaner\...
                 // TODO | dj | here should be more... (method extraction) :P
                 this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
+                //LoggingManager.Initialize(); TODO | dj | shall reinitialize the Logging, but the Form still remains -.-'
+                                            // and after the second form an exc. raises...
                 LoggingManager.LogEvent(LogEventType.DEBUG, "Updated properties");
             }
             else
@@ -161,7 +155,29 @@ namespace Studyplaner.GUI.Forms
             }
         }
 
-        private void dateTimeTimer_Tick(object sender, EventArgs e)
+        private void LaunchModuleDialog()
+        {
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Launching new module dialog.");
+            
+            UniversitySelectForm usf = new UniversitySelectForm();
+            if (usf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                LoggingManager.LogEvent(LogEventType.DEBUG, "University selected: " + usf.SelectedUniversity.ID);
+                EditUniModuleForm moduleForm = new EditUniModuleForm(usf.SelectedUniversity.ID);
+                if (moduleForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    LoggingManager.LogEvent(LogEventType.DEBUG, "New Module created.");
+                    // refreshing. see todo in EditModuleForm
+                }
+                else
+                    LoggingManager.LogEvent(LogEventType.DEBUG, "Creation of a new module aborted.");
+            }
+            else
+                LoggingManager.LogEvent(LogEventType.DEBUG, "University selection canceled.");
+            
+        }
+
+        private void DateTimeTimer_Tick(object sender, EventArgs e)
         {
             UpdateStatusBarDateTime();
         }
@@ -208,6 +224,11 @@ namespace Studyplaner.GUI.Forms
         private void MainForm_Loaded(object sender, EventArgs e)
         {
             //TestEventPanel();         //TODO: implement properly
+        }
+
+        private void _mainMenu_file_new_module_Click(object sender, EventArgs e)
+        {
+            LaunchModuleDialog();
         }
     }
 }

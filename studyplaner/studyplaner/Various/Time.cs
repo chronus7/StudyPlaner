@@ -2,6 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.Various
 {
@@ -32,7 +33,7 @@ namespace Studyplaner.Various
         {
             get
             {
-                if (WeekInterval == UniversityStuff.WeekInterval.FixedDate)
+                if (WeekInterval == WeekInterval.FixedDate)
                     return _date;
                 else
                     return GetNextValidDate();

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Studyplaner.UniversityStuff;
-using Studyplaner.Services;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.GUI.Controls
 {
@@ -45,25 +45,25 @@ namespace Studyplaner.GUI.Controls
         }
 
 
-        private Color GetBackgroundColorFromEventType(UniversityStuff.EventType eventType)
+        private Color GetBackgroundColorFromEventType(UniversityStuff.Enums.EventType eventType)
         {
             Color bg = Color.LightGray;
 
             switch (eventType)
             {
-                case UniversityStuff.EventType.Lecture:
+                case EventType.Lecture:
                     bg = Properties.Settings.Default.USER_COLOR_LECTURE;
                     break;
-                case UniversityStuff.EventType.Exercise:
+                case EventType.Exercise:
                     bg = Properties.Settings.Default.USER_COLOR_EXERCISE;
                     break;
-                case UniversityStuff.EventType.Tutorial:
+                case EventType.Tutorial:
                     bg = Properties.Settings.Default.USER_COLOR_TUTORIAL;
                     break;
-                case UniversityStuff.EventType.Internship:
+                case EventType.Internship:
                     bg = Properties.Settings.Default.USER_COLOR_INTERNSHIP;
                     break;
-                case UniversityStuff.EventType.Custom:
+                case EventType.Custom:
                     bg = Properties.Settings.Default.USER_COLOR_CUSTOM;
                     break;
                 default:

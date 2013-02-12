@@ -30,6 +30,14 @@
         {
             this._mainPanel = new System.Windows.Forms.Panel();
             this._grpBoxEventSettings = new System.Windows.Forms.GroupBox();
+            this._btnColorCustoms = new System.Windows.Forms.Button();
+            this._lblColorCustoms = new System.Windows.Forms.Label();
+            this._btnColorTutorials = new System.Windows.Forms.Button();
+            this._lblColorTutorials = new System.Windows.Forms.Label();
+            this._btnColorInternships = new System.Windows.Forms.Button();
+            this._lblColorInternships = new System.Windows.Forms.Label();
+            this._btnColorExercises = new System.Windows.Forms.Button();
+            this._lblColorExercises = new System.Windows.Forms.Label();
             this._btnColorLecture = new System.Windows.Forms.Button();
             this._lblColorLecture = new System.Windows.Forms.Label();
             this._grpBoxGeneral = new System.Windows.Forms.GroupBox();
@@ -39,7 +47,6 @@
             this._ckBoxOutputConsole = new System.Windows.Forms.CheckBox();
             this._lblOutput = new System.Windows.Forms.Label();
             this._txBoxOutputFile = new System.Windows.Forms.TextBox();
-            this._ckBoxLogging = new System.Windows.Forms.CheckBox();
             this._btnBgColor = new System.Windows.Forms.Button();
             this._lblBgColor = new System.Windows.Forms.Label();
             this._btnReset = new System.Windows.Forms.Button();
@@ -48,14 +55,7 @@
             this._colorDialog = new System.Windows.Forms.ColorDialog();
             this._fileDialog = new System.Windows.Forms.SaveFileDialog();
             this._folderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this._btnColorExercises = new System.Windows.Forms.Button();
-            this._lblColorExercises = new System.Windows.Forms.Label();
-            this._btnColorInternships = new System.Windows.Forms.Button();
-            this._lblColorInternships = new System.Windows.Forms.Label();
-            this._btnColorTutorials = new System.Windows.Forms.Button();
-            this._lblColorTutorials = new System.Windows.Forms.Label();
-            this._btnColorCustoms = new System.Windows.Forms.Button();
-            this._lblColorCustoms = new System.Windows.Forms.Label();
+            this._ckBoxTime = new System.Windows.Forms.CheckBox();
             this._mainPanel.SuspendLayout();
             this._grpBoxEventSettings.SuspendLayout();
             this._grpBoxGeneral.SuspendLayout();
@@ -91,12 +91,92 @@
             this._grpBoxEventSettings.Controls.Add(this._lblColorExercises);
             this._grpBoxEventSettings.Controls.Add(this._btnColorLecture);
             this._grpBoxEventSettings.Controls.Add(this._lblColorLecture);
-            this._grpBoxEventSettings.Location = new System.Drawing.Point(3, 112);
+            this._grpBoxEventSettings.Location = new System.Drawing.Point(3, 151);
             this._grpBoxEventSettings.Name = "_grpBoxEventSettings";
-            this._grpBoxEventSettings.Size = new System.Drawing.Size(452, 141);
+            this._grpBoxEventSettings.Size = new System.Drawing.Size(452, 102);
             this._grpBoxEventSettings.TabIndex = 6;
             this._grpBoxEventSettings.TabStop = false;
             this._grpBoxEventSettings.Text = "Events";
+            // 
+            // _btnColorCustoms
+            // 
+            this._btnColorCustoms.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorCustoms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorCustoms.Location = new System.Drawing.Point(241, 45);
+            this._btnColorCustoms.Name = "_btnColorCustoms";
+            this._btnColorCustoms.Size = new System.Drawing.Size(20, 20);
+            this._btnColorCustoms.TabIndex = 11;
+            this._btnColorCustoms.UseVisualStyleBackColor = false;
+            this._btnColorCustoms.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorCustoms
+            // 
+            this._lblColorCustoms.AutoSize = true;
+            this._lblColorCustoms.Location = new System.Drawing.Point(144, 49);
+            this._lblColorCustoms.Name = "_lblColorCustoms";
+            this._lblColorCustoms.Size = new System.Drawing.Size(74, 13);
+            this._lblColorCustoms.TabIndex = 10;
+            this._lblColorCustoms.Text = "Color Customs";
+            // 
+            // _btnColorTutorials
+            // 
+            this._btnColorTutorials.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorTutorials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorTutorials.Location = new System.Drawing.Point(241, 19);
+            this._btnColorTutorials.Name = "_btnColorTutorials";
+            this._btnColorTutorials.Size = new System.Drawing.Size(20, 20);
+            this._btnColorTutorials.TabIndex = 9;
+            this._btnColorTutorials.UseVisualStyleBackColor = false;
+            this._btnColorTutorials.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorTutorials
+            // 
+            this._lblColorTutorials.AutoSize = true;
+            this._lblColorTutorials.Location = new System.Drawing.Point(144, 23);
+            this._lblColorTutorials.Name = "_lblColorTutorials";
+            this._lblColorTutorials.Size = new System.Drawing.Size(74, 13);
+            this._lblColorTutorials.TabIndex = 8;
+            this._lblColorTutorials.Text = "Color Tutorials";
+            // 
+            // _btnColorInternships
+            // 
+            this._btnColorInternships.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorInternships.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorInternships.Location = new System.Drawing.Point(105, 71);
+            this._btnColorInternships.Name = "_btnColorInternships";
+            this._btnColorInternships.Size = new System.Drawing.Size(20, 20);
+            this._btnColorInternships.TabIndex = 7;
+            this._btnColorInternships.UseVisualStyleBackColor = false;
+            this._btnColorInternships.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorInternships
+            // 
+            this._lblColorInternships.AutoSize = true;
+            this._lblColorInternships.Location = new System.Drawing.Point(8, 75);
+            this._lblColorInternships.Name = "_lblColorInternships";
+            this._lblColorInternships.Size = new System.Drawing.Size(85, 13);
+            this._lblColorInternships.TabIndex = 6;
+            this._lblColorInternships.Text = "Color Internships";
+            // 
+            // _btnColorExercises
+            // 
+            this._btnColorExercises.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._btnColorExercises.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnColorExercises.Location = new System.Drawing.Point(105, 45);
+            this._btnColorExercises.Name = "_btnColorExercises";
+            this._btnColorExercises.Size = new System.Drawing.Size(20, 20);
+            this._btnColorExercises.TabIndex = 5;
+            this._btnColorExercises.UseVisualStyleBackColor = false;
+            this._btnColorExercises.Click += new System.EventHandler(this.ChangeColorClick);
+            // 
+            // _lblColorExercises
+            // 
+            this._lblColorExercises.AutoSize = true;
+            this._lblColorExercises.Location = new System.Drawing.Point(8, 49);
+            this._lblColorExercises.Name = "_lblColorExercises";
+            this._lblColorExercises.Size = new System.Drawing.Size(79, 13);
+            this._lblColorExercises.TabIndex = 4;
+            this._lblColorExercises.Text = "Color Exercises";
             // 
             // _btnColorLecture
             // 
@@ -122,25 +202,25 @@
             // 
             this._grpBoxGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._grpBoxGeneral.Controls.Add(this._ckBoxTime);
             this._grpBoxGeneral.Controls.Add(this._txBoxDatapath);
             this._grpBoxGeneral.Controls.Add(this._lblDatapath);
             this._grpBoxGeneral.Controls.Add(this._ckBoxOutputFile);
             this._grpBoxGeneral.Controls.Add(this._ckBoxOutputConsole);
             this._grpBoxGeneral.Controls.Add(this._lblOutput);
             this._grpBoxGeneral.Controls.Add(this._txBoxOutputFile);
-            this._grpBoxGeneral.Controls.Add(this._ckBoxLogging);
             this._grpBoxGeneral.Controls.Add(this._btnBgColor);
             this._grpBoxGeneral.Controls.Add(this._lblBgColor);
             this._grpBoxGeneral.Location = new System.Drawing.Point(3, 3);
             this._grpBoxGeneral.Name = "_grpBoxGeneral";
-            this._grpBoxGeneral.Size = new System.Drawing.Size(452, 103);
+            this._grpBoxGeneral.Size = new System.Drawing.Size(452, 142);
             this._grpBoxGeneral.TabIndex = 5;
             this._grpBoxGeneral.TabStop = false;
             this._grpBoxGeneral.Text = "General";
             // 
             // _txBoxDatapath
             // 
-            this._txBoxDatapath.Location = new System.Drawing.Point(105, 70);
+            this._txBoxDatapath.Location = new System.Drawing.Point(105, 116);
             this._txBoxDatapath.Name = "_txBoxDatapath";
             this._txBoxDatapath.Size = new System.Drawing.Size(341, 20);
             this._txBoxDatapath.TabIndex = 9;
@@ -149,7 +229,7 @@
             // _lblDatapath
             // 
             this._lblDatapath.AutoSize = true;
-            this._lblDatapath.Location = new System.Drawing.Point(8, 73);
+            this._lblDatapath.Location = new System.Drawing.Point(8, 119);
             this._lblDatapath.Name = "_lblDatapath";
             this._lblDatapath.Size = new System.Drawing.Size(51, 13);
             this._lblDatapath.TabIndex = 8;
@@ -158,56 +238,43 @@
             // _ckBoxOutputFile
             // 
             this._ckBoxOutputFile.AutoSize = true;
-            this._ckBoxOutputFile.Location = new System.Drawing.Point(219, 46);
+            this._ckBoxOutputFile.Location = new System.Drawing.Point(176, 49);
             this._ckBoxOutputFile.Name = "_ckBoxOutputFile";
             this._ckBoxOutputFile.Size = new System.Drawing.Size(42, 17);
             this._ckBoxOutputFile.TabIndex = 7;
             this._ckBoxOutputFile.Text = "File";
             this._ckBoxOutputFile.UseVisualStyleBackColor = true;
-            this._ckBoxOutputFile.Visible = false;
-            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.OutputFile_CheckedChanged);
+            this._ckBoxOutputFile.CheckedChanged += new System.EventHandler(this.Output_CheckedChanged);
             // 
             // _ckBoxOutputConsole
             // 
             this._ckBoxOutputConsole.AutoSize = true;
-            this._ckBoxOutputConsole.Location = new System.Drawing.Point(149, 46);
+            this._ckBoxOutputConsole.Location = new System.Drawing.Point(105, 49);
             this._ckBoxOutputConsole.Name = "_ckBoxOutputConsole";
             this._ckBoxOutputConsole.Size = new System.Drawing.Size(64, 17);
             this._ckBoxOutputConsole.TabIndex = 4;
             this._ckBoxOutputConsole.Text = "Console";
             this._ckBoxOutputConsole.UseVisualStyleBackColor = true;
-            this._ckBoxOutputConsole.Visible = false;
+            this._ckBoxOutputConsole.CheckedChanged += new System.EventHandler(this.Output_CheckedChanged);
             // 
             // _lblOutput
             // 
             this._lblOutput.AutoSize = true;
-            this._lblOutput.Location = new System.Drawing.Point(102, 47);
+            this._lblOutput.Location = new System.Drawing.Point(8, 50);
             this._lblOutput.Name = "_lblOutput";
-            this._lblOutput.Size = new System.Drawing.Size(42, 13);
+            this._lblOutput.Size = new System.Drawing.Size(80, 13);
             this._lblOutput.TabIndex = 6;
-            this._lblOutput.Text = "Output:";
-            this._lblOutput.Visible = false;
+            this._lblOutput.Text = "Logging Output";
             // 
             // _txBoxOutputFile
             // 
-            this._txBoxOutputFile.Location = new System.Drawing.Point(267, 44);
+            this._txBoxOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._txBoxOutputFile.Location = new System.Drawing.Point(105, 90);
             this._txBoxOutputFile.Name = "_txBoxOutputFile";
-            this._txBoxOutputFile.Size = new System.Drawing.Size(179, 20);
+            this._txBoxOutputFile.Size = new System.Drawing.Size(341, 20);
             this._txBoxOutputFile.TabIndex = 5;
-            this._txBoxOutputFile.Visible = false;
             this._txBoxOutputFile.Click += new System.EventHandler(this.OutputFile_Click);
-            // 
-            // _ckBoxLogging
-            // 
-            this._ckBoxLogging.AutoSize = true;
-            this._ckBoxLogging.Location = new System.Drawing.Point(6, 46);
-            this._ckBoxLogging.Name = "_ckBoxLogging";
-            this._ckBoxLogging.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this._ckBoxLogging.Size = new System.Drawing.Size(64, 17);
-            this._ckBoxLogging.TabIndex = 2;
-            this._ckBoxLogging.Text = "Logging";
-            this._ckBoxLogging.UseVisualStyleBackColor = true;
-            this._ckBoxLogging.CheckedChanged += new System.EventHandler(this.Logging_CheckedChanged);
             // 
             // _btnBgColor
             // 
@@ -275,85 +342,16 @@
             // 
             this._folderDialog.Description = "Directory containing the important datafiles.";
             // 
-            // _btnColorExercises
+            // _ckBoxTime
             // 
-            this._btnColorExercises.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorExercises.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorExercises.Location = new System.Drawing.Point(105, 45);
-            this._btnColorExercises.Name = "_btnColorExercises";
-            this._btnColorExercises.Size = new System.Drawing.Size(20, 20);
-            this._btnColorExercises.TabIndex = 5;
-            this._btnColorExercises.UseVisualStyleBackColor = false;
-            this._btnColorExercises.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorExercises
-            // 
-            this._lblColorExercises.AutoSize = true;
-            this._lblColorExercises.Location = new System.Drawing.Point(8, 49);
-            this._lblColorExercises.Name = "_lblColorExercises";
-            this._lblColorExercises.Size = new System.Drawing.Size(79, 13);
-            this._lblColorExercises.TabIndex = 4;
-            this._lblColorExercises.Text = "Color Exercises";
-            // 
-            // _btnColorInternships
-            // 
-            this._btnColorInternships.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorInternships.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorInternships.Location = new System.Drawing.Point(105, 71);
-            this._btnColorInternships.Name = "_btnColorInternships";
-            this._btnColorInternships.Size = new System.Drawing.Size(20, 20);
-            this._btnColorInternships.TabIndex = 7;
-            this._btnColorInternships.UseVisualStyleBackColor = false;
-            this._btnColorInternships.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorInternships
-            // 
-            this._lblColorInternships.AutoSize = true;
-            this._lblColorInternships.Location = new System.Drawing.Point(8, 75);
-            this._lblColorInternships.Name = "_lblColorInternships";
-            this._lblColorInternships.Size = new System.Drawing.Size(85, 13);
-            this._lblColorInternships.TabIndex = 6;
-            this._lblColorInternships.Text = "Color Internships";
-            // 
-            // _btnColorTutorials
-            // 
-            this._btnColorTutorials.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorTutorials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorTutorials.Location = new System.Drawing.Point(241, 19);
-            this._btnColorTutorials.Name = "_btnColorTutorials";
-            this._btnColorTutorials.Size = new System.Drawing.Size(20, 20);
-            this._btnColorTutorials.TabIndex = 9;
-            this._btnColorTutorials.UseVisualStyleBackColor = false;
-            this._btnColorTutorials.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorTutorials
-            // 
-            this._lblColorTutorials.AutoSize = true;
-            this._lblColorTutorials.Location = new System.Drawing.Point(144, 23);
-            this._lblColorTutorials.Name = "_lblColorTutorials";
-            this._lblColorTutorials.Size = new System.Drawing.Size(74, 13);
-            this._lblColorTutorials.TabIndex = 8;
-            this._lblColorTutorials.Text = "Color Tutorials";
-            // 
-            // _btnColorCustoms
-            // 
-            this._btnColorCustoms.Cursor = System.Windows.Forms.Cursors.Hand;
-            this._btnColorCustoms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnColorCustoms.Location = new System.Drawing.Point(241, 45);
-            this._btnColorCustoms.Name = "_btnColorCustoms";
-            this._btnColorCustoms.Size = new System.Drawing.Size(20, 20);
-            this._btnColorCustoms.TabIndex = 11;
-            this._btnColorCustoms.UseVisualStyleBackColor = false;
-            this._btnColorCustoms.Click += new System.EventHandler(this.ChangeColorClick);
-            // 
-            // _lblColorCustoms
-            // 
-            this._lblColorCustoms.AutoSize = true;
-            this._lblColorCustoms.Location = new System.Drawing.Point(144, 49);
-            this._lblColorCustoms.Name = "_lblColorCustoms";
-            this._lblColorCustoms.Size = new System.Drawing.Size(74, 13);
-            this._lblColorCustoms.TabIndex = 10;
-            this._lblColorCustoms.Text = "Color Customs";
+            this._ckBoxTime.AutoSize = true;
+            this._ckBoxTime.Location = new System.Drawing.Point(105, 72);
+            this._ckBoxTime.Name = "_ckBoxTime";
+            this._ckBoxTime.Size = new System.Drawing.Size(73, 17);
+            this._ckBoxTime.TabIndex = 10;
+            this._ckBoxTime.Text = "Write time";
+            this._ckBoxTime.UseVisualStyleBackColor = true;
+            this._ckBoxTime.CheckedChanged += new System.EventHandler(this.WriteTime_CheckedChanged);
             // 
             // SettingsForm
             // 
@@ -393,7 +391,6 @@
         private System.Windows.Forms.GroupBox _grpBoxEventSettings;
         private System.Windows.Forms.Button _btnColorLecture;
         private System.Windows.Forms.Label _lblColorLecture;
-        private System.Windows.Forms.CheckBox _ckBoxLogging;
         private System.Windows.Forms.TextBox _txBoxOutputFile;
         private System.Windows.Forms.Label _lblOutput;
         private System.Windows.Forms.CheckBox _ckBoxOutputFile;
@@ -410,5 +407,6 @@
         private System.Windows.Forms.Label _lblColorInternships;
         private System.Windows.Forms.Button _btnColorExercises;
         private System.Windows.Forms.Label _lblColorExercises;
+        private System.Windows.Forms.CheckBox _ckBoxTime;
     }
 }

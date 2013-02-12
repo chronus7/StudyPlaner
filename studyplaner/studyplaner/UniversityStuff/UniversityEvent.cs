@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using Studyplaner.UniversityStuff;
 using Studyplaner.Various;
 using System.ComponentModel;
+using Studyplaner.UniversityStuff.Enums;
 
 namespace Studyplaner.UniversityStuff
 {
@@ -20,7 +21,7 @@ namespace Studyplaner.UniversityStuff
         /// parent module.
         /// </summary>
         [XmlIgnore]
-        public int ModuleID { get; set; }
+        public uint ModuleID { get; set; }
         
         /// <summary>
         /// The LV-Number of the event.

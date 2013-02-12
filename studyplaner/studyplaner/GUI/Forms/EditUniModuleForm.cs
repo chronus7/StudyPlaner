@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Studyplaner.GUI.Controls;
+using Studyplaner.Logging;
 using Studyplaner.UniversityStuff;
+using Studyplaner.UniversityStuff.Enums;
 using Studyplaner.Various;
 
 namespace Studyplaner.GUI.Forms
@@ -12,16 +14,18 @@ namespace Studyplaner.GUI.Forms
         private UniversityModule _module;
         private bool _shortModified;
         private List<HeadTreeNode> _headNodes;
+        private ushort _uniId;
 
-        public EditUniModuleForm()
+        public EditUniModuleForm(ushort uniid)
         {
             InitializeComponent();
+            _uniId = uniid;
             Init();
             // TODO | dj | Tooltips for properties?!?
         }
 
         public EditUniModuleForm(UniversityModule module)
-            : this()
+            : this(module.UniID)
         {
             this._module = module;
             this._shortModified = true;
@@ -29,11 +33,13 @@ namespace Studyplaner.GUI.Forms
             _txBoxShort.Text = module.Short;
             _cmBoxSemester.SelectedItem = module.Semester;
             _cmBoxDepartment.SelectedItem = module.Department;
-            buildTree();
+            BuildTree();
         }
 
         private void Init()
         {
+            _module = new UniversityModule();
+            _module.UniID = _uniId;
             _headNodes = new List<HeadTreeNode>();
 
             _cmBoxSemester.DataSource = Enum.GetValues(typeof(Semester));
@@ -44,9 +50,7 @@ namespace Studyplaner.GUI.Forms
             _panelEventData.Visible = false;
         }
 
-        // adds all UniEvents to the tree. Also their corresponding
-        // type-nodes.
-        private void buildTree()
+        private void BuildTree()
         {
             _headNodes.Clear();
             _eventTree.Nodes.Clear();
@@ -75,6 +79,39 @@ namespace Studyplaner.GUI.Forms
             }
             _eventTree.Sort();
             _eventTree.ExpandAll();
+        }
+
+
+        private void ClearEventFields()
+        {
+            _txBoxLVNum.Clear();
+            _txBoxLocation.Clear();
+            _txBoxLecturer.Clear();
+            _cmBoxEventType.SelectedIndex = 0;
+            _cmBoxWeekInterval.SelectedIndex = 0;
+            _dtPickerDate.Value = DateTime.Now;
+            _dtPickerTime.Value = DateTime.Now;
+            _dtPickerDuration.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 1, 30, 0);
+            _trackBarImportance.Value = _trackBarImportance.Maximum;
+            _ckBoxPower.Checked = false;
+        }
+
+        private void ShowEventData(EventTreeNode node)
+        {
+            UniversityEvent ev = node.UniEvent;
+            _txBoxLVNum.Text = ev.LVNum;
+            _cmBoxEventType.SelectedItem = ev.Type;
+            _dtPickerDate.Value = ev.Date.Date;
+            int a = ev.Date.Date.Year;
+            int b = ev.Date.Date.Month;
+            int c = ev.Date.Date.Day;
+            _dtPickerTime.Value = new DateTime(a, b, c, ev.Date.Hours, ev.Date.Minutes, 0);
+            _cmBoxWeekInterval.SelectedItem = ev.Date.WeekInterval;
+            _dtPickerDuration.Value = new DateTime(a, b, c, ev.Duration.Hours, ev.Duration.Minutes, ev.Duration.Seconds);
+            _txBoxLocation.Text = ev.Location;
+            _txBoxLecturer.Text = ev.Lecturer;
+            _trackBarImportance.Value = ev.Importance;
+            _ckBoxPower.Checked = ev.Power;
         }
 
         private void Name_TextChanged(object sender, EventArgs e)
@@ -110,42 +147,10 @@ namespace Studyplaner.GUI.Forms
             else
             {
                 _panelEventData.Visible = true;
-                emptyEventFields();
+                ClearEventFields();
                 if (e.Node.Parent != null)
-                    showEventData((e.Node as EventTreeNode));
+                    ShowEventData((e.Node as EventTreeNode));
             }
-        }
-
-        private void emptyEventFields()
-        {
-            _txBoxLVNum.Clear();
-            _txBoxLocation.Clear();
-            _txBoxLecturer.Clear();
-            _cmBoxEventType.SelectedIndex = 0;
-            _cmBoxWeekInterval.SelectedIndex = 0;
-            _dtPickerDate.Value = DateTime.Now;
-            _dtPickerTime.Value = DateTime.Now;
-            _dtPickerDuration.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 1, 30, 0);
-            _trackBarImportance.Value = _trackBarImportance.Maximum;
-            _ckBoxPower.Checked = false;
-        }
-
-        private void showEventData(EventTreeNode node)
-        {
-            UniversityEvent ev = node.UniEvent;
-            _txBoxLVNum.Text = ev.LVNum;
-            _cmBoxEventType.SelectedItem = ev.Type;
-            _dtPickerDate.Value = ev.Date.Date;
-            int a = ev.Date.Date.Year;
-            int b = ev.Date.Date.Month;
-            int c = ev.Date.Date.Day;
-            _dtPickerTime.Value = new DateTime(a, b, c, ev.Date.Hours, ev.Date.Minutes, 0);
-            _cmBoxWeekInterval.SelectedItem = ev.Date.WeekInterval;
-            _dtPickerDuration.Value = new DateTime(a, b, c, ev.Duration.Hours, ev.Duration.Minutes, ev.Duration.Seconds);
-            _txBoxLocation.Text = ev.Location;
-            _txBoxLecturer.Text = ev.Lecturer;
-            _trackBarImportance.Value = ev.Importance;
-            _ckBoxPower.Checked = ev.Power;
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -155,6 +160,7 @@ namespace Studyplaner.GUI.Forms
             _eventTree.Add(etn);
             _eventTree.Focus();
             _eventTree.SelectedNode = etn;
+            LoggingManager.LogEvent(LogEventType.DEBUG, "New event added.");
         }
 
         private void Remove_Click(object sender, EventArgs e)
@@ -183,9 +189,10 @@ namespace Studyplaner.GUI.Forms
         private void DiscardEvent_Click(object sender, EventArgs e)
         {
             if (_eventTree.SelectedNode.Parent == null)
-                emptyEventFields();
+                ClearEventFields();
             else
-                showEventData((_eventTree.SelectedNode as EventTreeNode));
+                ShowEventData((_eventTree.SelectedNode as EventTreeNode));
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Eventchanges discarded. Event: " + (_eventTree.SelectedNode as EventTreeNode).UniEvent.ID);
         }
 
         private void SaveEvent_Click(object sender, EventArgs e)
@@ -231,7 +238,8 @@ namespace Studyplaner.GUI.Forms
                 _module.Events.Add(ev);
             }
 
-            buildTree();
+            BuildTree();
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Saved new event: " + ev.ID);
         }
     }
 }

@@ -8,10 +8,7 @@ namespace Studyplaner.Logging.Targets
 {
     public class FileLogTarget : ILogTarget
     {
-        private bool _writeTime;
         private string _fileName;
-
-        private StringBuilder _builder;
 
         public FileLogTarget(string fileName)
         {
@@ -24,6 +21,13 @@ namespace Studyplaner.Logging.Targets
         void ILogTarget.WriteToLog(string logEntry)
         {
             WriteToFile(logEntry);
+        }
+
+        /// <summary>
+        /// Nothing to do here
+        /// </summary>
+        void IDisposable.Dispose()
+        {
         }
 
         private void WriteToFile(string message)
@@ -55,7 +59,7 @@ namespace Studyplaner.Logging.Targets
             if (other == null)
                 return false;
 
-            return (this.GetHashCode() == other.GetHashCode()) && (this._fileName == other._fileName) && (this._writeTime == other._writeTime);
+            return (this.GetHashCode() == other.GetHashCode()) && (this._fileName == other._fileName);
         }
     }
 }
