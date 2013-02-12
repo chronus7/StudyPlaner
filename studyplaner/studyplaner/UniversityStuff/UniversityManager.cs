@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace Studyplaner.UniversityStuff
@@ -31,17 +32,20 @@ namespace Studyplaner.UniversityStuff
             _modules = new Dictionary<uint, UniversityModule>();
             _events = new Dictionary<ulong, UniversityEvent>();
 
-            // TODO: deserialize values with path from settings
-
             Initialized = true;
+
+            // TODO: deserialize values with path from settings
+            LoadUniversities(Properties.Settings.Default.USER_DATAPATH);
         }
 
         private static Dictionary<ushort, University> LoadUniversities(string uniDirectory)
         {
-            //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
-            //by the way... do we really wanna it this way??
+            DirectoryInfo dir = new DirectoryInfo(uniDirectory);
+            foreach (FileInfo item in dir.GetFiles())
+                if (item.Name.StartsWith("university_"))
+                    Xml.XmlSerializer<University>.Deserialize(item.FullName);
 
-            return null;
+            return _universities;
         }
 
         /// <summary>
@@ -52,6 +56,20 @@ namespace Studyplaner.UniversityStuff
         {
             if (!Initialized)
                 throw new InvalidOperationException(ERROR_NOT_INITIALIZED);
+        }
+
+        /// <summary>
+        /// Returns all known Universities as an array
+        /// of the IDs
+        /// </summary>
+        /// <returns>Array of all University-IDs</returns>
+        public static ushort[] GetUniversities()
+        {
+            CheckInitialization();
+
+            ushort[] arr = new ushort[_universities.Keys.Count];
+            _universities.Keys.CopyTo(arr, 0);
+            return arr;
         }
 
         /// <summary>
@@ -198,6 +216,7 @@ namespace Studyplaner.UniversityStuff
         /// <summary>
         /// Deprecated. Use UniversityFunctions.IsValidID
         /// </summary>
+        [Obsolete]
         public static bool IsValidID(ulong id)
         {
             return UniversityFunctions.IsValidID(id);
@@ -206,6 +225,7 @@ namespace Studyplaner.UniversityStuff
         /// <summary>
         /// Deprecated. Use UniversityFunctions.IsValidID
         /// </summary>
+        [Obsolete]
         public static bool IsValidID(uint id)
         {
             return UniversityFunctions.IsValidID(id);
@@ -214,6 +234,7 @@ namespace Studyplaner.UniversityStuff
         /// <summary>
         /// Deprecated. Use UniversityFunctions.IsValidID
         /// </summary>
+        [Obsolete]
         public static bool IsValidID(ushort id)
         {
             return UniversityFunctions.IsValidID(id);

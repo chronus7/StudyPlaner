@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<university>
+  <id>111</id>
+  <name>Uni Hamburg</name>
+  <short>UHH</short>
+  <modules>
+    <module>
+      <id>11100001</id>
+      <name>TestModule1</name>
+      <short>TM1</short>
+      <semester>Summer</semester>
+      <department>IT</department>
+      <events>
+        <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <id>1110000101</id>
+          <lvnum>64-001</lvnum>
+          <date>
+            <interval>FixedDate</interval>
+            <hours>0</hours>
+            <minutes>0</minutes>
+            <date>01.01.0001</date>
+          </date>
+          <duration>00:00:00</duration>
+          <importance>0</importance>
+          <power>false</power>
+          <type>Lecture</type>
+        </event>
+      </events>
+    </module>
+    <module>
+      <id>11100002</id>
+      <name>Test Module 2</name>
+      <short>TM2</short>
+      <semester>Summer</semester>
+      <department>IT</department>
+      <events />
+    </module>
+  </modules>
+</university>

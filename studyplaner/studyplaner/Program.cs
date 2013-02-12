@@ -24,27 +24,45 @@ namespace Studyplaner
 
         private static void mockupSerialization()
         {
-            UniversityManager.Initialize();
+            //UniversityManager.Initialize();
 
-            University uni = new University();
-            uni.ID = 111;
-            uni.Name = "Uni Hamburg";
-            uni.ShortName = "UHH";
-            UniversityManager.AddUniversity(uni);
+            //University uni = new University();
+            //uni.ID = 111;
+            //uni.Name = "Uni Hamburg";
+            //uni.ShortName = "UHH";
+            //UniversityManager.AddUniversity(uni);
 
-            UniversityModule mod1 = new UniversityModule();
-            mod1.Name = "TestModule1";
-            mod1.ShortName = "TM1";
-            uint mod1id = UniversityManager.AddModule(111, mod1);
+            //UniversityModule mod1 = new UniversityModule();
+            //mod1.Name = "TestModule1";
+            //mod1.ShortName = "TM1";
+            //uint mod1id = UniversityManager.AddModule(111, mod1);
 
-            UniversityEvent ev1 = new UniversityEvent();
-            ev1.LVNum = "64-001";
-            UniversityManager.AddEvent(mod1id, ev1);
+            //UniversityEvent ev1 = new UniversityEvent();
+            //ev1.LVNum = "64-001";
+            //UniversityManager.AddEvent(mod1id, ev1);
+
+            //UniversityModule mod2 = new UniversityModule();
+            //mod2.Name = "Test Module 2";
+            //mod2.ShortName = "TM2";
+            //UniversityManager.AddModule(111, mod2);
+
+            //string s = "{ ";
+            //string s2 = "{ ";
+            //foreach (uint i in UniversityManager.GetUniversity(111).Modules)
+            //{
+            //    s += i + ", ";
+            //    foreach (ulong e in UniversityManager.GetModule(i).Events)
+            //        s2 += UniversityManager.GetEvent(e).ID + ", ";
+            //}
+            //Console.Out.WriteLine("Initialized uni: " + uni.ID + "\n" +
+            //    "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" +
+            //    "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
+
+            //// serialize:
+            //Xml.XmlSerializer<University>.Serialize(@"..\..\Data\university_111.xml", uni);
             
-            UniversityModule mod2 = new UniversityModule();
-            mod2.Name = "Test Module 2";
-            mod2.ShortName = "TM2";
-            UniversityManager.AddModule(111, mod2);
+            // deserialize:
+            UniversityManager.Initialize(); // important!
 
             string s = "{ ";
             string s2 = "{ ";
@@ -52,29 +70,9 @@ namespace Studyplaner
             {
                 s += i + ", ";
                 foreach (ulong e in UniversityManager.GetModule(i).Events)
-                    s2 += UniversityManager.GetEvent(e).ID + ", ";
-            }
-            Console.Out.WriteLine("Initialized uni: " + uni.ID + "\n" +
-                "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" +
-                "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
-
-            // serialize:
-            Xml.XmlSerializer<University>.Serialize(@"..\..\Data\test.xml", uni);
-            
-            UniversityManager.Initialize(); // important!
-                        
-            // deserialize:
-            University uniDes = Xml.XmlSerializer<University>.Deserialize(@"..\..\Data\test.xml");
-
-            s = "{ ";
-            s2 = "{ ";
-            foreach (uint i in UniversityManager.GetUniversity(uniDes.ID).Modules)
-            {
-                s += i + ", ";
-                foreach (ulong e in UniversityManager.GetModule(i).Events)
                     s2 += e + ", ";
             }
-            Console.Out.WriteLine("Deserialized uni: " + uniDes.ID + "\n" +
+            Console.Out.WriteLine("Deserialized uni: " + 111 + "\n" +
                 "| it's modules: " + s.Substring(0, s.Length - 2) + " }\n" + 
                 "| it's events: " + s2.Substring(0, s2.Length - 2) + " }");
         }
