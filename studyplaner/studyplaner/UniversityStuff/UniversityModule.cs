@@ -83,7 +83,6 @@ namespace Studyplaner.UniversityStuff
             // module has to be added first because if adding events
             UniversityManager.AddModule(UniversityFunctions.GetUniID(ID), this);
 
-            Events = new List<ulong>(); // TODO
             reader.MoveToContent();
             XmlSerializer ser = new XmlSerializer(typeof(UniversityEvent));
             while (reader.ReadToFollowing("event"))

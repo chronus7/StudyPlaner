@@ -57,7 +57,6 @@ namespace Studyplaner.UniversityStuff
             // university has to be added first because of adding modules
             UniversityManager.AddUniversity(this);
 
-            Modules = new List<uint>();
             reader.MoveToContent();
             XmlSerializer ser = new XmlSerializer(typeof(UniversityModule));
             while (reader.ReadToFollowing("module"))
