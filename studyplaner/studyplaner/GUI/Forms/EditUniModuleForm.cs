@@ -24,16 +24,22 @@ namespace Studyplaner.GUI.Forms
             // TODO | dj | Tooltips for properties?!?
         }
 
-        public EditUniModuleForm(UniversityModule module)
-            : this(module.UniID)
+        //[Obsolete]
+        public EditUniModuleForm(uint moduleID)
+            : this(UniversityFunctions.GetUniID(moduleID))
         {
-            this._module = module;
-            this._shortModified = true;
-            _txBoxName.Text = module.Name;
-            _txBoxShort.Text = module.ShortName;
-            _cmBoxSemester.SelectedItem = module.Semester;
-            _cmBoxDepartment.SelectedItem = module.Department;
+            CollectModuleData(moduleID);
             BuildTree();
+        }
+
+        private void CollectModuleData(uint moduleID)
+        {
+            _module = UniversityManager.GetModule(moduleID);
+            _shortModified = true;
+            _txBoxName.Text = _module.Name;
+            _txBoxShort.Text = _module.ShortName;
+            _cmBoxSemester.SelectedItem = _module.Semester;
+            _cmBoxDepartment.SelectedItem = _module.Department;
         }
 
         private void Init()
@@ -55,29 +61,29 @@ namespace Studyplaner.GUI.Forms
             _headNodes.Clear();
             _eventTree.Nodes.Clear();
 
-            // TODO | dj | FIXME!!!
-            //foreach (UniversityEvent ev in _module.Events)
-            //{
-            //    HeadTreeNode htn = null;
-            //    foreach (HeadTreeNode htn2 in _headNodes)
-            //    {
-            //        if (htn2.EventType == ev.Type)
-            //        {
-            //            htn = htn2;
-            //            break;
-            //        }
-            //    }
-            //    if (htn == null)
-            //    {
-            //        htn = new HeadTreeNode(ev.Type);
-            //        _eventTree.Add(htn);
-            //    }
+            foreach (ulong evID in _module.Events)
+            {
+                UniversityEvent ev = UniversityManager.GetEvent(evID);
+                HeadTreeNode htn = null;
+                foreach (HeadTreeNode htn2 in _headNodes)
+                {
+                    if (htn2.EventType == ev.Type)
+                    {
+                        htn = htn2;
+                        break;
+                    }
+                }
+                if (htn == null)
+                {
+                    htn = new HeadTreeNode(ev.Type);
+                    _eventTree.Add(htn);
+                }
 
-            //    _headNodes.Add(htn);
+                _headNodes.Add(htn);
 
-            //    EventTreeNode etn = new EventTreeNode(ev);
-            //    htn.Nodes.Add(etn);
-            //}
+                EventTreeNode etn = new EventTreeNode(ev);
+                htn.Nodes.Add(etn);
+            }
             _eventTree.Sort();
             _eventTree.ExpandAll();
         }
