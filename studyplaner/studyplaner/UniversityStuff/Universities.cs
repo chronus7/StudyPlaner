@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Studyplaner.Xml;
+using System.Xml.Serialization;
 
 namespace Studyplaner.UniversityStuff
 {
