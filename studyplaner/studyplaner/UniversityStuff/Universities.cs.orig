@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+<<<<<<< HEAD
+=======
+using System.Xml.Serialization;
+>>>>>>> serialization
 using Studyplaner.Xml;
 
 namespace Studyplaner.UniversityStuff

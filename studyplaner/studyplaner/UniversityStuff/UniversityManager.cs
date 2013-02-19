@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace Studyplaner.UniversityStuff
@@ -8,10 +9,13 @@ namespace Studyplaner.UniversityStuff
         private const string ERROR_NOT_INITIALIZED  = "The UniversityManager has not been correctly initialized! Call UniversityManager.Initialize() before using.";
         private const string ERROR_ID_OVERFLOW      = "Cannot generate a new ID since there is a maximum reached of the requested type!";        // Not well written ;)
 
+        private const string UNIVERSITY_FILE_PRENAME = "university_";
+        private const string UNIVERSITY_FILE_EXTENSION = ".xml";
+
         //TODO: We can save ram here by using the appropiate types
-        private const ulong MAXSIZE_UNIVERSITY      = 10000;
-        private const ulong MAXSIZE_MODULE          = 1000000000;
-        private const ulong MAXSIZE_EVENT           = 100000000000;
+        public const ulong MAXSIZE_UNIVERSITY      = 10000;
+        public const ulong MAXSIZE_MODULE          = 1000000000;
+        public const ulong MAXSIZE_EVENT           = 100000000000;
 
         public const uint MULTIPLYER_UNIVERSITY    = 100000;
         public const uint MULTIPLYER_MODULE        = 100;
@@ -31,17 +35,36 @@ namespace Studyplaner.UniversityStuff
             _modules = new Dictionary<uint, UniversityModule>();
             _events = new Dictionary<ulong, UniversityEvent>();
 
-            // TODO: deserialize values with path from settings
-
             Initialized = true;
+
+            // deserialize values with path from settings
+            LoadUniversities(Properties.Settings.Default.USER_DATAPATH);
         }
 
         private static Dictionary<ushort, University> LoadUniversities(string uniDirectory)
         {
-            //TODO: |f| load universities from given path.. remember to add values to +_usedIDs;
-            //by the way... do we really wanna it this way??
+            DirectoryInfo dir = new DirectoryInfo(uniDirectory);
+            foreach (FileInfo item in dir.GetFiles())
+                if (item.Name.StartsWith(UNIVERSITY_FILE_PRENAME))
+                    Xml.XmlSerializer<University>.Deserialize(item.FullName); // automatically fills dictionaries
 
-            return null;
+            return _universities; // return unnecessary
+        }
+
+        /// <summary>
+        /// Stores the given University and all it's modules
+        /// and events in the local University's file.
+        /// </summary>
+        /// <param name="uniID">The University's ID which will be stored </param>
+        public static void StoreUniversity(ushort uniID)
+        {
+            University uni = GetUniversity(uniID);
+            string path = Path.Combine( // combines path and filename
+                Properties.Settings.Default.USER_DATAPATH,  // path to file(s)
+                UNIVERSITY_FILE_PRENAME + uniID + UNIVERSITY_FILE_EXTENSION); // filename
+
+            // serialize...
+            Xml.XmlSerializer<University>.Serialize(path, uni);
         }
 
         /// <summary>
@@ -55,8 +78,22 @@ namespace Studyplaner.UniversityStuff
         }
 
         /// <summary>
+        /// Returns all known Universities as an array
+        /// of the IDs
+        /// </summary>
+        /// <returns>Array of all University-IDs</returns>
+        public static ushort[] GetUniversities()
+        {
+            CheckInitialization();
+
+            ushort[] arr = new ushort[_universities.Keys.Count];
+            _universities.Keys.CopyTo(arr, 0);
+            return arr;
+        }
+
+        /// <summary>
         /// Adds a University o the UniversityManager
-        /// Gets called multiple times at constrution time to build the initial University-List
+        /// Gets called multiple times at construction time to build the initial University-List
         /// </summary>
         /// <param name="toAdd">The University to add</param>
         /// <returns>The ID that was used to add the University</returns>
@@ -67,14 +104,14 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            ushort newID = (ushort)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            ushort newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsUniversity(newID))
                 newID = GenerateNewID();
 
             toAdd.ID = newID;
             _universities.Add(newID, toAdd);
 
-            return (ushort)toAdd.ID;
+            return toAdd.ID;
         }
 
         /// <summary>
@@ -100,7 +137,9 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            _universities.Remove(uniID);       //TODO: can be called even if the key doesnt exist.. do we want to do nothing or throw an exception?
+            if (!_universities.Remove(uniID))
+                throw new InvalidOperationException(
+                    "The university with the given id (" + uniID + ") does not exist!");
         }
 
         /// <summary>
@@ -116,14 +155,17 @@ namespace Studyplaner.UniversityStuff
             if (toAdd == null)
                 throw new ArgumentNullException("toAdd");
 
-            uint newID = (uint)toAdd.ID;                        //TODO: need to change the id fields in the classes to the proper type
+            uint newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsModule(newID))
-                newID = GenerateNewID();
+                newID = GenerateNewID(uniID);
 
             toAdd.ID = newID;
             _modules.Add(newID, toAdd);
 
-            return (uint)toAdd.ID;
+            University uni = GetUniversity(uniID);
+            uni.Modules.Add(newID); // uni.Modules != null garanteed by uni
+
+            return toAdd.ID;
         }
 
         /// <summary>
@@ -153,11 +195,24 @@ namespace Studyplaner.UniversityStuff
             _modules.Remove(moduleID);
         }
 
-        public static ulong AddEvent(uint moduleID, UniversityEvent evnt)
+        public static ulong AddEvent(uint moduleID, UniversityEvent toAdd)
         {
             CheckInitialization();
 
-            return 0;
+            if(toAdd == null)
+                throw new ArgumentNullException("toAdd");
+
+            ulong newID = toAdd.ID;
+            if (!IsValidID(newID) || ContainsEvent(newID))
+                newID = GenerateNewID(moduleID);
+
+            toAdd.ID = newID;
+            _events.Add(newID, toAdd);
+
+            UniversityModule module = GetModule(moduleID);
+            module.Events.Add(newID); // module.Events != null garanteed by module.
+
+            return toAdd.ID;
         }
 
         public static UniversityEvent GetEvent(ulong evntID)
@@ -177,33 +232,38 @@ namespace Studyplaner.UniversityStuff
             _events.Remove(evntID);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
+        [Obsolete]
         public static bool IsValidID(ulong id)
         {
-            ushort uni = (ushort)(id / (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE));
-            uint module = (uint)(id % (MULTIPLYER_UNIVERSITY * MULTIPLYER_MODULE) / MULTIPLYER_MODULE);
-            ulong evnt = id % MULTIPLYER_MODULE;
-
-            return (IsValidID(uni) && IsValidID(module) && (evnt > 0) && (evnt < MULTIPLYER_MODULE));
+            return UniversityFunctions.IsValidID(id);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
+        [Obsolete]
         public static bool IsValidID(uint id)
         {
-            ushort uni = (ushort)(id / MULTIPLYER_UNIVERSITY);
-            uint module = id % MULTIPLYER_UNIVERSITY;
-
-            return (IsValidID(uni) && (module > 0 && module < MULTIPLYER_UNIVERSITY));
+            return UniversityFunctions.IsValidID(id);
         }
 
+        /// <summary>
+        /// Deprecated. Use UniversityFunctions.IsValidID
+        /// </summary>
+        [Obsolete]
         public static bool IsValidID(ushort id)
         {
-            return (id > 0) && (id < MAXSIZE_UNIVERSITY);
+            return UniversityFunctions.IsValidID(id);
         }
 
         /// <summary>
         /// Returns wether the UniversityManager contains an Item with the given ID
         /// </summary>
         /// <param name="id">The Id to check</param>
-        /// <returns>Teh result</returns>
+        /// <returns>The result</returns>
         public static bool ContainsID(ulong id)
         {
             CheckInitialization();
@@ -220,12 +280,13 @@ namespace Studyplaner.UniversityStuff
             return ContainsEvent(id);
         }
 
+        #region Generate New ID
         private static ushort GenerateNewID()
         {
             ushort id = 1;
             while (ContainsUniversity(id))
             {
-                if (id < MAXSIZE_UNIVERSITY)
+                if (id < MAXSIZE_UNIVERSITY) // TODO | dj |shouldn't this one be (id < MAXSIZE - 1)?
                     id++;
                 else
                     throw new OverflowException(ERROR_ID_OVERFLOW);
@@ -261,6 +322,7 @@ namespace Studyplaner.UniversityStuff
 
             return id;
         }
+        #endregion
 
         private static bool ContainsUniversity(ushort id)
         {

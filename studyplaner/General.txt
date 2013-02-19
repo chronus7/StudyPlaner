@@ -21,6 +21,11 @@ General Information / Important ToDos:
 
  - Not sure wether we want to put bool writeTime to settings so the user can decide that..
 
+ ------------------------
+ 2013-02-13
+ - long ago, i know, but there is something really - well - disturbing: you can set the ids of any uni/module/event at any time. but they should only be set by the manager or the deserializer. otherwise the dictonaries will be useless...
+
+
 -------------------------
 --------------------- IDs
 My idea:
