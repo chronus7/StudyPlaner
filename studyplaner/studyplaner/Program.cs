@@ -19,8 +19,8 @@ namespace Studyplaner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StartUp();
-            //Application.Run(new MainForm());
-            Application.Run(new EditUniModuleForm(11100001));
+            Application.Run(new MainForm());
+            //Application.Run(new EditUniModuleForm(11100001));
             //mockupSerialization();
         }
 
