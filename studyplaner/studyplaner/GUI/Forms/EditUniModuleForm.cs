@@ -45,7 +45,6 @@ namespace Studyplaner.GUI.Forms
         private void Init()
         {
             _module = new UniversityModule();
-            _module.UniID = _uniId;
             _headNodes = new List<HeadTreeNode>();
 
             _cmBoxSemester.DataSource = Enum.GetValues(typeof(Semester));
@@ -227,7 +226,6 @@ namespace Studyplaner.GUI.Forms
             TimeSpan duration = new TimeSpan(durationRAW.Hour, durationRAW.Minute, 0);
 
             ev.LVNum = lvnum;
-            ev.ModuleID = _module.ID;
             ev.Type = type;
             ev.Date = startTime;
             ev.Duration = duration;
@@ -235,15 +233,10 @@ namespace Studyplaner.GUI.Forms
             ev.Lecturer = lecturer;
             ev.Importance = (byte)importance;
             ev.Power = power;
-            // ID won't be changed (only generated for new Events (below))
-
+            
             //if it's a new Event
             if (etn.Parent == null)
-            {
-                // TODO | dj | Here should be the id-generator!!!
-                ev.ID = (ulong)new Random().Next(500, 5000);
-                //_module.Events.Add(ev); // TODO | dj | adjust this!
-            }
+                ev.ID = UniversityManager.AddEvent(_module.ID, ev);
 
             BuildTree();
             LoggingManager.LogEvent(LogEventType.DEBUG, "Saved new event: " + ev.ID);

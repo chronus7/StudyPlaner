@@ -35,12 +35,6 @@ namespace Studyplaner.UniversityStuff
             {
                 return UniversityFunctions.GetUniID(this.ID);
             }
-            set
-            {
-                uint modID = ID % UniversityManager.MULTIPLYER_UNIVERSITY;
-                ID = modID + (uint)(value * UniversityManager.MULTIPLYER_UNIVERSITY);
-                // TODO | dj | fun. if changing uniID here we will have to refresh the Dictonary in UniversityManager
-            }
         }
         
         /// <summary>

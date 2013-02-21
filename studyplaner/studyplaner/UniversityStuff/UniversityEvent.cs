@@ -26,11 +26,6 @@ namespace Studyplaner.UniversityStuff
             {
                 return UniversityFunctions.GetModuleID(this.ID);
             }
-            set
-            {
-                throw new NotImplementedException();
-                // TODO | dj | see UniversityModule...
-            }
         }
         
         /// <summary>

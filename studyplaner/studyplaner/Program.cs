@@ -15,10 +15,10 @@ namespace Studyplaner
         [STAThread]
         static void Main()
         {
-            StartUp();
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            StartUp();
             //Application.Run(new MainForm());
             Application.Run(new EditUniModuleForm(11100001));
             //mockupSerialization();
@@ -27,6 +27,7 @@ namespace Studyplaner
         private static void StartUp()
         {
             UniversityManager.Initialize();
+            Logging.LoggingManager.Initialize();
         }
 
         private static void mockupSerialization()
