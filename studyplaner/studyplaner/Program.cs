@@ -26,8 +26,8 @@ namespace Studyplaner
 
         private static void StartUp()
         {
-            UniversityManager.Initialize();
             Logging.LoggingManager.Initialize();
+            UniversityManager.Initialize();
         }
 
         private static void mockupSerialization()

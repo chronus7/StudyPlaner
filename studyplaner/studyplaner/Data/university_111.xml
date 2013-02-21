@@ -25,6 +25,22 @@
           <power>false</power>
           <type>Lecture</type>
         </event>
+        <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <id>1110000102</id>
+          <lvnum>64-002</lvnum>
+          <location>D-010</location>
+          <date>
+            <interval>EveryWeek</interval>
+            <hours>9</hours>
+            <minutes>0</minutes>
+            <date>02.04.2013</date>
+          </date>
+          <duration>03:00:00</duration>
+          <lecturer>SHK</lecturer>
+          <importance>9</importance>
+          <power>true</power>
+          <type>Exercise</type>
+        </event>
       </events>
     </module>
     <module>

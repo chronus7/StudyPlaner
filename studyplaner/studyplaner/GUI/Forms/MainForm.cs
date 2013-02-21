@@ -46,7 +46,7 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
-            LoggingManager.Initialize();
+            //LoggingManager.Initialize(); | dj | already in startup now (program.cs)
 
             this.BackColor = Properties.Settings.Default.USER_COLOR_BACKGROUND;
 

@@ -65,6 +65,9 @@ namespace Studyplaner.UniversityStuff
 
             // serialize...
             Xml.XmlSerializer<University>.Serialize(path, uni);
+            // TODO | dj | try-catch here?
+
+            Logging.LoggingManager.LogEvent(Logging.LogEventType.DEBUG, "Saved University (" + uniID + ") locally.");
         }
 
         /// <summary>

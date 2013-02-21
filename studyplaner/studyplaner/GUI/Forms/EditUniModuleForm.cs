@@ -186,8 +186,7 @@ namespace Studyplaner.GUI.Forms
 
         private void SaveModule_Click(object sender, EventArgs e)
         {
-            
-            // TODO | dj | implement module saving
+            UniversityManager.StoreUniversity(_uniId); // best one ever!!! ^^
             this.Close();
             // TODO | dj | refreshing of mainForm etc. (in mainform with dialogresult).
         }
