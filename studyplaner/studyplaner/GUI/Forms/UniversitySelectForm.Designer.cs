@@ -45,6 +45,7 @@
             // 
             // _cmBoxUni
             // 
+            this._cmBoxUni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmBoxUni.FormattingEnabled = true;
             this._cmBoxUni.Location = new System.Drawing.Point(71, 12);
             this._cmBoxUni.Name = "_cmBoxUni";
