@@ -40,7 +40,7 @@ namespace Studyplaner.UniversityStuff
         public static uint GetModuleID(ulong eventid)
         {
             return (uint)(eventid / (UniversityManager.MULTIPLYER_MODULE
-                * UniversityManager.MULTIPLYER_UNIVERSITY)); // TODO ??
+                * UniversityManager.MULTIPLYER_UNIVERSITY));
         }
 
         /// <summary>
