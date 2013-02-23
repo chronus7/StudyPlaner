@@ -207,7 +207,7 @@ namespace Studyplaner.UniversityStuff
 
             ulong newID = toAdd.ID;
             if (!IsValidID(newID) || ContainsEvent(newID))
-                newID = GenerateNewID(moduleID);
+                newID = GenerateNewID(moduleID); // TODO | dj | generates a new ID, but not a valid/complete one
 
             toAdd.ID = newID;
             _events.Add(newID, toAdd);
