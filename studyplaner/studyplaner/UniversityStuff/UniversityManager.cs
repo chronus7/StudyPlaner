@@ -195,7 +195,14 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            _modules.Remove(moduleID);
+            if (!_modules.Remove(moduleID))
+                throw new InvalidOperationException(
+                    "The module with the given id (" + moduleID + ") does not exist!");
+            else
+            {
+                University uni = GetUniversity(UniversityFunctions.GetUniID(moduleID));
+                uni.Modules.Remove(moduleID);
+            }
         }
 
         public static ulong AddEvent(uint moduleID, UniversityEvent toAdd)
@@ -232,7 +239,14 @@ namespace Studyplaner.UniversityStuff
         {
             CheckInitialization();
 
-            _events.Remove(evntID);
+            if (!_events.Remove(evntID))
+                throw new InvalidOperationException(
+                    "The event with the given id (" + evntID + ") does not exist!");
+            else
+            {
+                UniversityModule mod = GetModule(UniversityFunctions.GetModuleID(evntID));
+                mod.Events.Remove(evntID);
+            }
         }
 
         /// <summary>
