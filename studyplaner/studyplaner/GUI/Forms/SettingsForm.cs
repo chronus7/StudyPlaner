@@ -15,9 +15,15 @@ namespace Studyplaner.GUI.Forms
 
         private void Initialize()
         {
+            initDataPath();
             changeMainBgColor();
             changeEventColors();
             _fileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
+        private void initDataPath()
+        {
+            _txBox_datapath.Text = Properties.Settings.Default.USER_DATAPATH;
         }
 
         private void changeMainBgColor()

@@ -126,7 +126,7 @@
             // 
             this._tabPg_logging.Location = new System.Drawing.Point(4, 22);
             this._tabPg_logging.Name = "_tabPg_logging";
-            this._tabPg_logging.Size = new System.Drawing.Size(452, 261);
+            this._tabPg_logging.Size = new System.Drawing.Size(446, 219);
             this._tabPg_logging.TabIndex = 2;
             this._tabPg_logging.Text = "Logging";
             this._tabPg_logging.UseVisualStyleBackColor = true;
