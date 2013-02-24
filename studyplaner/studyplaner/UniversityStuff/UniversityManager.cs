@@ -59,9 +59,9 @@ namespace Studyplaner.UniversityStuff
         public static void StoreUniversity(ushort uniID)
         {
             University uni = GetUniversity(uniID);
-            string path = Path.Combine( // combines path and filename
-                Properties.Settings.Default.USER_DATAPATH,  // path to file(s)
-                UNIVERSITY_FILE_PRENAME + uniID + UNIVERSITY_FILE_EXTENSION); // filename
+            string path = Path.Combine(                                     // combines path and filename
+                Properties.Settings.Default.USER_DATAPATH,                      // path to file(s)
+                UNIVERSITY_FILE_PRENAME + uniID + UNIVERSITY_FILE_EXTENSION);   // filename
 
             // serialize...
             Xml.XmlSerializer<University>.Serialize(path, uni);

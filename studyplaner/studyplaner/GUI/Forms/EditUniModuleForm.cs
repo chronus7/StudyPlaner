@@ -15,21 +15,47 @@ namespace Studyplaner.GUI.Forms
         private bool _shortModified;
         private List<HeadTreeNode> _headNodes;
         private ushort _uniId;
+        private bool _isNewModule;
 
         public EditUniModuleForm(ushort uniid)
         {
-            InitializeComponent();
-            _uniId = uniid;
-            Init();
+            _isNewModule = true;
+            InitForAll(uniid);
             // TODO | dj | Tooltips for properties?!?
         }
 
-        //[Obsolete]
         public EditUniModuleForm(uint moduleID)
-            : this(UniversityFunctions.GetUniID(moduleID))
         {
+            _isNewModule = false;
+            InitForAll(UniversityFunctions.GetUniID(moduleID));
+
             CollectModuleData(moduleID);
             BuildTree();
+        }
+
+        // A standard initalization for all constructors
+        private void InitForAll(ushort uniID)
+        {
+            InitializeComponent();
+            _uniId = uniID;
+            Init();
+        }
+
+        private void Init()
+        {
+            if (_isNewModule)
+                _module = new UniversityModule();
+            _headNodes = new List<HeadTreeNode>();
+
+            _cmBoxSemester.DataSource = Enum.GetValues(typeof(Semester));
+            _cmBoxDepartment.DataSource = Enum.GetValues(typeof(Department));
+            _cmBoxEventType.DataSource = Enum.GetValues(typeof(EventType));
+            _cmBoxWeekInterval.DataSource = Enum.GetValues(typeof(WeekInterval));
+
+            _panelEventData.Visible = false;
+
+            if (_isNewModule)
+                UniversityManager.AddModule(_uniId, _module); // will be deleted on cancel.
         }
 
         private void CollectModuleData(uint moduleID)
@@ -40,19 +66,6 @@ namespace Studyplaner.GUI.Forms
             _txBoxShort.Text = _module.ShortName;
             _cmBoxSemester.SelectedItem = _module.Semester;
             _cmBoxDepartment.SelectedItem = _module.Department;
-        }
-
-        private void Init()
-        {
-            _module = new UniversityModule();
-            _headNodes = new List<HeadTreeNode>();
-
-            _cmBoxSemester.DataSource = Enum.GetValues(typeof(Semester));
-            _cmBoxDepartment.DataSource = Enum.GetValues(typeof(Department));
-            _cmBoxEventType.DataSource = Enum.GetValues(typeof(EventType));
-            _cmBoxWeekInterval.DataSource = Enum.GetValues(typeof(WeekInterval));
-
-            _panelEventData.Visible = false;
         }
 
         private void BuildTree()
@@ -141,7 +154,7 @@ namespace Studyplaner.GUI.Forms
 
         private void Short_TextChanged(object sender, KeyEventArgs e)
         {
-            _shortModified = true;
+            _shortModified = _txBoxShort.Text.Length > 0;
         }
 
         private void EventTree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -181,11 +194,18 @@ namespace Studyplaner.GUI.Forms
         private void CancelModule_Click(object sender, EventArgs e)
         {
             // TODO | dj | ask user wether really want to cancel or save modifications...
+            if (_isNewModule)
+                UniversityManager.RemoveModule(_module.ID);
             this.Close();
         }
 
         private void SaveModule_Click(object sender, EventArgs e)
         {
+            _module.Name = _txBoxName.Text;
+            _module.ShortName = _txBoxShort.Text;
+            _module.Semester = (Semester)_cmBoxSemester.SelectedItem;
+            _module.Department = (Department)_cmBoxDepartment.SelectedItem;
+
             UniversityManager.StoreUniversity(_uniId); // best one ever!!! ^^
             this.Close();
             // TODO | dj | refreshing of mainForm etc. (in mainform with dialogresult).
@@ -197,7 +217,9 @@ namespace Studyplaner.GUI.Forms
                 ClearEventFields();
             else
                 ShowEventData((_eventTree.SelectedNode as EventTreeNode));
-            LoggingManager.LogEvent(LogEventType.DEBUG, "Eventchanges discarded. Event: " + (_eventTree.SelectedNode as EventTreeNode).UniEvent.ID);
+
+            LoggingManager.LogEvent(LogEventType.DEBUG, "Eventchanges discarded. Event: "
+                + (_eventTree.SelectedNode as EventTreeNode).UniEvent.ID);
         }
 
         private void SaveEvent_Click(object sender, EventArgs e)

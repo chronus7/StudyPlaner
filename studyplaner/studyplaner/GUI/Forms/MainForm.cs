@@ -155,7 +155,7 @@ namespace Studyplaner.GUI.Forms
             }
         }
 
-        private void LaunchModuleDialog()
+        private void LaunchNewModuleDialog()
         {
             LoggingManager.LogEvent(LogEventType.DEBUG, "Launching new module dialog.");
             
@@ -163,6 +163,7 @@ namespace Studyplaner.GUI.Forms
             if (usf.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 LoggingManager.LogEvent(LogEventType.DEBUG, "University selected: " + usf.SelectedUniversity.ID);
+
                 EditUniModuleForm moduleForm = new EditUniModuleForm(usf.SelectedUniversity.ID);
                 if (moduleForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -228,7 +229,7 @@ namespace Studyplaner.GUI.Forms
 
         private void _mainMenu_file_new_module_Click(object sender, EventArgs e)
         {
-            LaunchModuleDialog();
+            LaunchNewModuleDialog();
         }
     }
 }

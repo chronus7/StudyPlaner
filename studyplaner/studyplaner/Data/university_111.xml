@@ -51,5 +51,30 @@
       <department>IT</department>
       <events />
     </module>
+    <module>
+      <id>11100003</id>
+      <name>Test Module 3</name>
+      <short>TM3</short>
+      <semester>Summer</semester>
+      <department>IT</department>
+      <events>
+        <event xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <id>1110000301</id>
+          <lvnum>67-001</lvnum>
+          <location>smw</location>
+          <date>
+            <interval>EveryWeek</interval>
+            <hours>12</hours>
+            <minutes>15</minutes>
+            <date>02.04.2013</date>
+          </date>
+          <duration>01:30:00</duration>
+          <lecturer>smb</lecturer>
+          <importance>8</importance>
+          <power>true</power>
+          <type>Lecture</type>
+        </event>
+      </events>
+    </module>
   </modules>
 </university>
