@@ -101,7 +101,7 @@ namespace Studyplaner.Logging
                 else
                     _builder.Append('\t');
 
-                _builder.Append("\t" + message);
+                _builder.Append(" " + message);
 
                 WriteToTargets(_builder.ToString());
             }

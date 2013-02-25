@@ -59,6 +59,7 @@
             this._panel_bottom = new System.Windows.Forms.Panel();
             this._btn_confirm = new System.Windows.Forms.Button();
             this._btn_cancel = new System.Windows.Forms.Button();
+            this._btn_reset = new System.Windows.Forms.Button();
             this._tabCtrl.SuspendLayout();
             this._tabPg_general.SuspendLayout();
             this._tabPg_colors.SuspendLayout();
@@ -155,6 +156,7 @@
             this._btn_colorCustoms.Size = new System.Drawing.Size(23, 23);
             this._btn_colorCustoms.TabIndex = 11;
             this._btn_colorCustoms.UseVisualStyleBackColor = true;
+            this._btn_colorCustoms.Click += new System.EventHandler(this.ChooseColor_Click);
             // 
             // _lbl_colorCustoms
             // 
@@ -174,6 +176,7 @@
             this._btn_colorInternships.Size = new System.Drawing.Size(23, 23);
             this._btn_colorInternships.TabIndex = 9;
             this._btn_colorInternships.UseVisualStyleBackColor = true;
+            this._btn_colorInternships.Click += new System.EventHandler(this.ChooseColor_Click);
             // 
             // _lbl_colorInternships
             // 
@@ -193,6 +196,7 @@
             this._btn_colorTutorials.Size = new System.Drawing.Size(23, 23);
             this._btn_colorTutorials.TabIndex = 7;
             this._btn_colorTutorials.UseVisualStyleBackColor = true;
+            this._btn_colorTutorials.Click += new System.EventHandler(this.ChooseColor_Click);
             // 
             // _lbl_colorTutorials
             // 
@@ -212,6 +216,7 @@
             this._btn_colorExercises.Size = new System.Drawing.Size(23, 23);
             this._btn_colorExercises.TabIndex = 5;
             this._btn_colorExercises.UseVisualStyleBackColor = true;
+            this._btn_colorExercises.Click += new System.EventHandler(this.ChooseColor_Click);
             // 
             // _lbl_colorExercises
             // 
@@ -231,6 +236,7 @@
             this._btn_colorLectures.Size = new System.Drawing.Size(23, 23);
             this._btn_colorLectures.TabIndex = 3;
             this._btn_colorLectures.UseVisualStyleBackColor = true;
+            this._btn_colorLectures.Click += new System.EventHandler(this.ChooseColor_Click);
             // 
             // _lbl_colorLectures
             // 
@@ -250,6 +256,7 @@
             this._btn_colorBG.Size = new System.Drawing.Size(23, 23);
             this._btn_colorBG.TabIndex = 1;
             this._btn_colorBG.UseVisualStyleBackColor = true;
+            this._btn_colorBG.Click += new System.EventHandler(this.ChooseBackground_Click);
             // 
             // _lbl_colorBG
             // 
@@ -290,10 +297,12 @@
             // 
             // _txBox_loggingpath
             // 
+            this._txBox_loggingpath.Cursor = System.Windows.Forms.Cursors.Hand;
             this._txBox_loggingpath.Location = new System.Drawing.Point(136, 71);
             this._txBox_loggingpath.Name = "_txBox_loggingpath";
             this._txBox_loggingpath.Size = new System.Drawing.Size(307, 20);
             this._txBox_loggingpath.TabIndex = 6;
+            this._txBox_loggingpath.Click += new System.EventHandler(this.LogPath_Click);
             // 
             // _lbl_loggingpath
             // 
@@ -353,6 +362,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._panel_bottom.BackColor = System.Drawing.SystemColors.Control;
             this._panel_bottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._panel_bottom.Controls.Add(this._btn_reset);
             this._panel_bottom.Controls.Add(this._btn_confirm);
             this._panel_bottom.Controls.Add(this._btn_cancel);
             this._panel_bottom.Location = new System.Drawing.Point(13, 264);
@@ -369,6 +379,7 @@
             this._btn_confirm.TabIndex = 1;
             this._btn_confirm.Text = "Confirm";
             this._btn_confirm.UseVisualStyleBackColor = true;
+            this._btn_confirm.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // _btn_cancel
             // 
@@ -379,6 +390,18 @@
             this._btn_cancel.TabIndex = 0;
             this._btn_cancel.Text = "Cancel";
             this._btn_cancel.UseVisualStyleBackColor = true;
+            this._btn_cancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // _btn_reset
+            // 
+            this._btn_reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._btn_reset.Location = new System.Drawing.Point(3, 3);
+            this._btn_reset.Name = "_btn_reset";
+            this._btn_reset.Size = new System.Drawing.Size(75, 22);
+            this._btn_reset.TabIndex = 2;
+            this._btn_reset.Text = "Reset";
+            this._btn_reset.UseVisualStyleBackColor = true;
+            this._btn_reset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // SettingsForm
             // 
@@ -440,5 +463,6 @@
         private System.Windows.Forms.Label _lbl_loggingpath;
         private System.Windows.Forms.TextBox _txBox_loggingpath;
         private System.Windows.Forms.CheckBox _chkBox_writetime;
+        private System.Windows.Forms.Button _btn_reset;
     }
 }
