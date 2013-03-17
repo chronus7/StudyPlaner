@@ -88,6 +88,7 @@ namespace Studyplaner.GUI.Forms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
+            // TODO | dj | check with Logging enabled but no target set...
             Properties.Settings.Default.Save();
             LoggingManager.LogEvent(LogEventType.DEBUG, "Settingsform closed; changes saved.");
             this.Close();

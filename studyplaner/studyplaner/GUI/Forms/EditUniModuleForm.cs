@@ -20,6 +20,7 @@ namespace Studyplaner.GUI.Forms
         public EditUniModuleForm(ushort uniid)
         {
             _isNewModule = true;
+            // TODO | dj | change principe by using a null-Module here and building everything up when saving
             InitForAll(uniid);
             // TODO | dj | Tooltips for properties?!?
         }
